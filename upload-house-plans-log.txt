@@ -1,0 +1,100 @@
+Found 55 .docx files. Processing 55. dryRun=false status=published
+OK: upserted small-2-story-house-plan-house-of-watkins-llc :: descLen=1370
+OK: upserted 3-bedroom-contemporary-house-plan-with-side-entrance :: descLen=4007
+OK: upserted birchwood :: descLen=1338
+WARN: birchwood :: Duplicate slug 'small-2-story-house-plan-house-of-watkins-llc' in this run; using filename slug 'birchwood' to avoid overwrite
+OK: upserted boardwalk-2-car :: descLen=383
+WARN: boardwalk-2-car :: Missing 'Product Description' heading | Description missing; used full raw document text as fallback
+OK: upserted s-with-2-car-angled-garage :: descLen=4914
+OK: upserted 4-bedroom-modern-farmhouse-house-plan-with-walk-out-basement :: descLen=213
+WARN: 4-bedroom-modern-farmhouse-house-plan-with-walk-out-basement :: Missing 'Product Description' heading; used text after 'Meta Description'
+OK: upserted with-4-car-garage-loft-balcony :: descLen=3996
+WARN: with-4-car-garage-loft-balcony :: Could not parse depth_ft; defaulted to 0
+OK: upserted compact-craftsman-adu-house-plan-house-of-watkins-llc :: descLen=1966
+OK: upserted under-1100-sq-ft-with-2-car-garage :: descLen=3862
+WARN: under-1100-sq-ft-with-2-car-garage :: Could not parse ceiling_height_ft; defaulted to 0
+OK: upserted s-with-2-car-garage-under-1300-sq-ft :: descLen=3711
+WARN: s-with-2-car-garage-under-1300-sq-ft :: Could not parse roof slopes; defaulted roof_primary_slope to flat
+OK: upserted contemporary-adu :: descLen=3193
+WARN: contemporary-adu :: Could not parse roof slopes; defaulted roof_primary_slope to flat
+OK: upserted 1-bedroom-contemporary-house-plan-w-attached-rv-garage :: descLen=4808
+WARN: 1-bedroom-contemporary-house-plan-w-attached-rv-garage :: Could not parse building_height_ft; defaulted to 0 | Could not parse roof slopes; defaulted roof_primary_slope to flat
+OK: upserted 1-bedroom-cottage-house-plan-with-single-car-garage :: descLen=4179
+WARN: 1-bedroom-cottage-house-plan-with-single-car-garage :: Garage bays present but garage type missing; defaulted to detached
+OK: upserted with-2-car-garage :: descLen=2825
+OK: upserted with-office-and-2-car-garage :: descLen=2581
+OK: upserted 3-bedroom-modern-farmhouse-house-plan-with-office :: descLen=3795
+OK: upserted 3-bedroom-2-5-bath-craftsman-house-plan-for-narrow-lot-detached-garage :: descLen=3158
+OK: upserted modern-2-bedroom-1-bath-adu-house-plan-under-900-sq-ft :: descLen=2811
+WARN: modern-2-bedroom-1-bath-adu-house-plan-under-900-sq-ft :: Missing 'Product Description' heading; used text after 'Meta Description' | Could not parse roof slopes; defaulted roof_primary_slope to flat
+OK: upserted cottage-home-design-house-of-watkins-llc :: descLen=1291
+OK: upserted modern-3-bed-office-house-plan-house-of-watkins-llc :: descLen=2341
+WARN: modern-3-bed-office-house-plan-house-of-watkins-llc :: Garage bays present but garage type missing; defaulted to detached
+OK: upserted 2023-cottage-home-design-house-of-watkins-llc :: descLen=2187
+OK: upserted mesa-avenue :: descLen=2811
+WARN: mesa-avenue :: Missing 'Product Description' heading; used text after 'Meta Description' | Duplicate slug 'modern-2-bedroom-1-bath-adu-house-plan-under-900-sq-ft' in this run; using filename slug 'mesa-avenue' to avoid overwrite
+OK: upserted under-2500-sq-ft-with-office-and-3-car-garage :: descLen=3253
+WARN: under-2500-sq-ft-with-office-and-3-car-garage :: Could not parse ceiling_height_ft; defaulted to 0 | Could not parse roof slopes; defaulted roof_primary_slope to flat
+OK: upserted with-office-and-3-car-garage :: descLen=4098
+WARN: with-office-and-3-car-garage :: Could not parse roof slopes; defaulted roof_primary_slope to flat
+OK: upserted misty-glen-meta-product-description :: descLen=4322
+WARN: misty-glen-meta-product-description :: Duplicate slug 'with-office-and-2-car-garage' in this run; using filename slug 'misty-glen-meta-product-description' to avoid overwrite
+OK: upserted with-loft-and-2-car-garage-for-narrow-lot :: descLen=5034
+OK: upserted narrow-lot-contemporary-house-plan :: descLen=2862
+WARN: narrow-lot-contemporary-house-plan :: Missing 'Product Description' heading; used text after 'Meta Description' | Could not parse roof slopes; defaulted roof_primary_slope to flat
+OK: upserted with-office-and-3-car-garage-perfect-for-wedge-shaped-lots :: descLen=4310
+OK: upserted new-coast-front-load :: descLen=3167
+WARN: new-coast-front-load :: Missing 'Product Description' heading | Description missing; used full raw document text as fallback
+OK: upserted with-loft-and-2-master-suites :: descLen=664
+WARN: with-loft-and-2-master-suites :: Missing 'Product Description' heading | Description missing; used full raw document text as fallback
+OK: upserted 1-bedroom-nordic-style-tiny-house-with-vaulted-ceiling-under-400-sq-ft :: descLen=2120
+OK: upserted with-2-car-garage-for-narrow-lot :: descLen=3308
+WARN: with-2-car-garage-for-narrow-lot :: Could not parse ceiling_height_ft; defaulted to 0
+OK: upserted with-office-and-3-car-side-load-garage :: descLen=4285
+OK: upserted 3-bedroom-craftsman-house-plan-w-office-and-detached-garage :: descLen=3639
+OK: upserted 2023-contemporary-house-plans-house-of-watkins-llc :: descLen=4655
+OK: upserted with-2-car-garage-loft-balcony :: descLen=3941
+WARN: with-2-car-garage-loft-balcony :: Could not parse depth_ft; defaulted to 0
+OK: upserted 1-bedroom-cottage-house-plan-with-loft-single-car-garage :: descLen=3995
+WARN: 1-bedroom-cottage-house-plan-with-loft-single-car-garage :: Garage bays present but garage type missing; defaulted to detached
+OK: upserted rustic-craftsman :: descLen=1291
+WARN: rustic-craftsman :: Duplicate slug 'cottage-home-design-house-of-watkins-llc' in this run; using filename slug 'rustic-craftsman' to avoid overwrite
+OK: upserted rustic-dream :: descLen=1196
+WARN: rustic-dream :: Duplicate slug 'with-2-car-garage' in this run; using filename slug 'rustic-dream' to avoid overwrite
+OK: upserted rustic-living-meta-product-description :: descLen=1918
+WARN: rustic-living-meta-product-description :: Duplicate slug 'cottage-home-design-house-of-watkins-llc' in this run; using filename slug 'rustic-living-meta-product-description' to avoid overwrite
+OK: upserted small-cottage-house-plan-house-of-watkins-llc :: descLen=1312
+OK: upserted under-1800-sq-ft :: descLen=4789
+OK: upserted sandcastle :: descLen=2012
+WARN: sandcastle :: Could not parse roof slopes; defaulted roof_primary_slope to flat | Duplicate slug 'cottage-home-design-house-of-watkins-llc' in this run; using filename slug 'sandcastle' to avoid overwrite
+OK: upserted seabreeze-meta-product-description :: descLen=2018
+WARN: seabreeze-meta-product-description :: Duplicate slug 'cottage-home-design-house-of-watkins-llc' in this run; using filename slug 'seabreeze-meta-product-description' to avoid overwrite
+OK: upserted 3-car-garage-house-plans-perfect-for-wedge-shaped-properties :: descLen=4105
+OK: upserted smith-ranch-meta-product-description :: descLen=4431
+WARN: smith-ranch-meta-product-description :: Duplicate slug 'with-office-and-2-car-garage' in this run; using filename slug 'smith-ranch-meta-product-description' to avoid overwrite
+OK: upserted 2-story-multifamily-house-plan-house-of-watkins-llc :: descLen=250
+WARN: 2-story-multifamily-house-plan-house-of-watkins-llc :: Missing 'Product Description' heading; used text after 'Meta Description'
+OK: upserted 2-bedroom-cottage-house-plan-with-office-2-car-garage :: descLen=4198
+OK: upserted contemporary-farmhouse-plans-house-of-watkins-llc :: descLen=2528
+WARN: contemporary-farmhouse-plans-house-of-watkins-llc :: Could not parse building_height_ft; defaulted to 0
+OK: upserted 1-bedroom-cottage-adu-house-plans :: descLen=3354
+OK: upserted sunrise-cove :: descLen=330
+WARN: sunrise-cove :: Missing 'Product Description' heading | Description missing; used full raw document text as fallback
+OK: upserted 4-bedroom-2-story-craftsman-house-plan-w-office :: descLen=3803
+OK: upserted tuscan-vineyard :: descLen=250
+WARN: tuscan-vineyard :: Missing 'Product Description' heading; used text after 'Meta Description' | Duplicate slug '2-story-multifamily-house-plan-house-of-watkins-llc' in this run; using filename slug 'tuscan-vineyard' to avoid overwrite
+OK: upserted 3-bedroom-small-cottage-home-design-with-2-car-garage :: descLen=1318
+OK: upserted with-media-room-and-office-with-3-car-garage :: descLen=4846
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+DONE. ok=55 failed=0 skippedInvalid=0
+Examples:
+- small-2-story-house-plan-house-of-watkins-llc :: descLen=1370 :: garage_bays=2 :: garageType=front-load :: priceCents=null
+- 3-bedroom-contemporary-house-plan-with-side-entrance :: descLen=4007 :: garage_bays=2 :: garageType=front-load :: priceCents=null
+- birchwood :: descLen=1338 :: garage_bays=2 :: garageType=front-load :: priceCents=null
+- boardwalk-2-car :: descLen=383 :: garage_bays=2 :: garageType=front-load :: priceCents=null
+- s-with-2-car-angled-garage :: descLen=4914 :: garage_bays=2 :: garageType=front-load :: priceCents=null
+- 4-bedroom-modern-farmhouse-house-plan-with-walk-out-basement :: descLen=213 :: garage_bays=2 :: garageType=front-load :: priceCents=null
+- with-4-car-garage-loft-balcony :: descLen=3996 :: garage_bays=4 :: garageType=front-load :: priceCents=null
+- compact-craftsman-adu-house-plan-house-of-watkins-llc :: descLen=1966 :: garage_bays=0 :: garageType=detached :: priceCents=null
+- under-1100-sq-ft-with-2-car-garage :: descLen=3862 :: garage_bays=2 :: garageType=front-load :: priceCents=null
+- s-with-2-car-garage-under-1300-sq-ft :: descLen=3711 :: garage_bays=2 :: garageType=front-load :: priceCents=null

@@ -1,0 +1,182 @@
+# Figma Text System
+
+## Text Styles Mapping
+
+Based on the "My New Website Dec 2025" Figma file analysis.
+
+---
+
+### Title Styles
+
+**Title/Main (H1):**
+- Font Family: Gilroy
+- Weight: Semibold (600)
+- Size: 79px
+- Line Height: 86px
+- Letter Spacing: 0%
+- Text Transform: none
+
+**Title/56 (H2):**
+- Font Family: Gilroy
+- Weight: Semibold (600)
+- Size: 56px
+- Line Height: 64px
+- Letter Spacing: 0%
+- Text Transform: none
+
+**Title/40 (H3):**
+- Font Family: Gilroy
+- Weight: Semibold (600)
+- Size: 40px
+- Line Height: 48px
+- Letter Spacing: 0%
+- Text Transform: none
+
+**Title/28 (H4):**
+- Font Family: Gilroy
+- Weight: Semibold (600)
+- Size: 28px
+- Line Height: 40px
+- Letter Spacing: 0%
+- Text Transform: none
+
+**Title/20 (H5):**
+- Font Family: Gilroy
+- Weight: Semibold (600)
+- Size: 20px
+- Line Height: 30px
+- Letter Spacing: 0%
+- Text Transform: none
+
+**Title/18:**
+- Font Family: Gilroy
+- Weight: Semibold (600)
+- Size: 18px
+- Line Height: 24px
+- Letter Spacing: 0%
+- Text Transform: none
+
+**Title/16:**
+- Font Family: Gilroy
+- Weight: Semibold (600)
+- Size: 16px
+- Line Height: 24px
+- Letter Spacing: 0%
+- Text Transform: none
+
+**Title/14:**
+- Font Family: Gilroy
+- Weight: Semibold (600)
+- Size: 14px
+- Line Height: 19px
+- Letter Spacing: 0%
+- Text Transform: none
+
+**Title/13:**
+- Font Family: Gilroy
+- Weight: Semibold (600)
+- Size: 13px
+- Line Height: 24px
+- Letter Spacing: 0%
+- Text Transform: none
+
+**Title/13 Medium:**
+- Font Family: Gilroy
+- Weight: Semibold (600)
+- Size: 13px
+- Line Height: 20px
+- Letter Spacing: 0%
+- Text Transform: none
+
+**Title/15 Medium:**
+- Font Family: Gilroy
+- Weight: Semibold (600)
+- Size: 15px
+- Line Height: 22px
+- Letter Spacing: 0%
+- Text Transform: none
+
+**Title/18 Big:**
+- Font Family: Gilroy
+- Weight: Semibold (600)
+- Size: 18px
+- Line Height: 28px
+- Letter Spacing: 0%
+- Text Transform: none
+
+---
+
+### Button Styles
+
+**Button/15:**
+- Font Family: Gilroy
+- Weight: Semibold (600)
+- Size: 15px
+- Line Height: 24px
+- Letter Spacing: 1%
+- Text Transform: none
+
+**Button/16:**
+- Font Family: Gilroy
+- Weight: Semibold (600)
+- Size: 16px
+- Line Height: 24px
+- Letter Spacing: 1%
+- Text Transform: none
+
+---
+
+### Body Styles
+
+**Body/18:**
+- Font Family: Gilroy
+- Weight: Regular (400)
+- Size: 18px
+- Line Height: 28px
+- Letter Spacing: 0%
+- Text Transform: none
+
+**Body/15:**
+- Font Family: Gilroy
+- Weight: Regular (400)
+- Size: 15px
+- Line Height: 22px
+- Letter Spacing: 0%
+- Text Transform: none
+
+**Body/13:**
+- Font Family: Gilroy
+- Weight: Regular (400)
+- Size: 13px
+- Line Height: 19px
+- Letter Spacing: 0%
+- Text Transform: none
+
+---
+
+## Summary
+
+### Font Family
+All text styles use **Gilroy** as the primary font family.
+
+### Weight Distribution
+- **Titles**: Semibold (600)
+- **Buttons**: Semibold (600) 
+- **Body**: Regular (400)
+
+### Letter Spacing
+- **Titles**: 0%
+- **Buttons**: 1%
+- **Body**: 0%
+
+### Text Transform
+No uppercase or other text transforms are applied at the style level.
+
+---
+
+## Notes
+
+- The Gilroy font has a warning icon in Figma, indicating it may be missing or need to be installed
+- Line heights are specified in pixels
+- Letter spacing is specified as percentage
+- All styles have consistent naming: [Category]/[Size] format

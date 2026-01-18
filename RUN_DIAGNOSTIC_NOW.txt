@@ -1,0 +1,25 @@
+# Quick Windsurf Command – Run Token Diagnostic
+
+Copy and paste this into Windsurf:
+
+```
+Read the file: C:\Users\user\Downloads\moss-clone-nextjs-fixed\repo\WINDSURF_TOKEN_DIAGNOSTIC.md
+
+Execute ALL the diagnostic tests in that file:
+1. Create the diagnostic test script
+2. Run: node diagnostic-test.js
+3. Check token format
+4. Compare tokens (.env.local vs config file)
+5. Report all findings
+
+Do NOT create a new token. Just diagnose and report what's wrong.
+```
+
+This will:
+- ✅ Test if the current token is valid
+- ✅ Check if it has the right permissions
+- ✅ Verify it matches what's in .env.local
+- ✅ Identify the exact problem
+- ✅ Report findings so we know if we need a new token
+
+**Run this now and report back what Windsurf finds.**

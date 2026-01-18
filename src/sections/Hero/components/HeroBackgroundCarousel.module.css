@@ -1,0 +1,74 @@
+.root {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
+  opacity: 0;
+  transition: opacity 600ms ease;
+  will-change: opacity;
+}
+
+.slideActive {
+  opacity: 1;
+}
+
+/* Mask layer (applied to images only; content overlays unaffected) */
+.mask {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  pointer-events: auto;
+  background: transparent;
+}
+
+.masked {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.debugOverlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("/masks/home-hero-mask.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: right bottom;
+  opacity: 0.18;
+  mix-blend-mode: multiply;
+}
+
+.dots {
+  position: absolute;
+  left: 56px;
+  bottom: 40px;
+  z-index: 5;
+  pointer-events: none;
+}
+
+@media (min-width: 768px) {
+  .debugOverlay {
+    background-position: 105% 108%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .debugOverlay {
+    background-position: 102% 106%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slide {
+    transition: none;
+  }
+}

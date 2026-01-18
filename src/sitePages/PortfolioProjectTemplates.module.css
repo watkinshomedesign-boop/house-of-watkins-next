@@ -1,0 +1,230 @@
+.page {
+  background: #ffffff;
+  width: 100%;
+}
+
+.container {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1020px;
+  padding: 0 24px;
+}
+
+.breadcrumbSection {
+  background: #ffffff;
+  padding-top: 16px;
+}
+
+.breadcrumb {
+  font-family: Gilroy, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 22px;
+  color: #404040;
+}
+
+.breadcrumbLink {
+  color: #ff5c02;
+  text-decoration: none;
+}
+
+.breadcrumbSep {
+  margin: 0;
+  padding: 0 8px;
+  color: #a3a3a3;
+}
+
+.titleSection {
+  background: #ffffff;
+  padding-top: 190px;
+  padding-bottom: 184px;
+}
+
+.title {
+  text-align: center;
+  font-family: ui-serif, Georgia, "Times New Roman", Times, serif;
+  font-size: 63px;
+  font-weight: 400;
+  line-height: 77px;
+  letter-spacing: 0.01em;
+  color: #9f9f9f;
+}
+
+.gallerySection {
+  background: #ffffff;
+  padding-bottom: 110px;
+}
+
+.planDetails {
+  margin-top: 108px;
+  text-align: center;
+}
+
+.planDetailsLink {
+  font-size: 28px;
+  font-weight: 600;
+  color: #ff5c02;
+  text-decoration: underline;
+}
+
+.galleryWrap {
+  background: #ffffff;
+  padding: 0;
+}
+
+.galleryA {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    "tile1 tile2"
+    "tile1 tile4"
+    "tile3 tile4"
+    "tile5 tile5";
+  gap: 25px;
+}
+
+.galleryATile1 {
+  grid-area: tile1;
+  aspect-ratio: 2 / 3;
+}
+
+.galleryATile2 {
+  grid-area: tile2;
+  aspect-ratio: 3 / 2;
+}
+
+.galleryATile3 {
+  grid-area: tile3;
+  aspect-ratio: 3 / 2;
+}
+
+.galleryATile4 {
+  grid-area: tile4;
+  aspect-ratio: 2 / 3;
+}
+
+.galleryATile5 {
+  grid-area: tile5;
+  aspect-ratio: 21 / 9;
+}
+
+.galleryB {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    "b1 b2"
+    "b3 b3"
+    "b4 b5"
+    "b6 b6";
+  gap: 25px;
+}
+
+.galleryBTile1 {
+  grid-area: b1;
+  aspect-ratio: 5 / 3;
+}
+
+.galleryBTile2 {
+  grid-area: b2;
+  aspect-ratio: 5 / 3;
+}
+
+.galleryBTile3 {
+  grid-area: b3;
+  aspect-ratio: 5 / 3;
+}
+
+.galleryBTile4 {
+  grid-area: b4;
+  aspect-ratio: 5 / 3;
+}
+
+.galleryBTile5 {
+  grid-area: b5;
+  aspect-ratio: 5 / 3;
+}
+
+.galleryBTile6 {
+  grid-area: b6;
+  aspect-ratio: 5 / 3;
+}
+
+.galleryC {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    "c1 c1"
+    "c2 c3"
+    "c4 c5"
+    "c6 c6";
+  gap: 25px;
+}
+
+.galleryCTile1 {
+  grid-area: c1;
+  aspect-ratio: 3 / 2;
+}
+
+.galleryCTile2 {
+  grid-area: c2;
+  aspect-ratio: 2 / 3;
+}
+
+.galleryCTile3 {
+  grid-area: c3;
+  aspect-ratio: 3 / 2;
+}
+
+.galleryCTile4 {
+  grid-area: c4;
+  aspect-ratio: 3 / 2;
+}
+
+.galleryCTile5 {
+  grid-area: c5;
+  aspect-ratio: 3 / 2;
+}
+
+.galleryCTile6 {
+  grid-area: c6;
+  aspect-ratio: 3 / 2;
+}
+
+.tile {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #f2efeb;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.desktopOnly {
+  display: none;
+}
+
+.mobileFallback {
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .desktopOnly {
+    display: block;
+  }
+
+  .mobileFallback {
+    display: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    max-width: none;
+    padding: 0 200px;
+  }
+}

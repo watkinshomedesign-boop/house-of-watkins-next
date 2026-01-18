@@ -1,0 +1,123 @@
+BREADCRUMB:
+Main / What's included page
+
+PAGE TITLE:
+More Than a Plan. You're Buying a Service.
+
+VALUE PROP 1:
+Heading:
+Clarity at Every Step
+Body Text:
+You’ll always know what you’re getting—and what comes next. Everything is clear and predictable, so you can move forward with confidence and no surprises.
+
+VALUE PROP 2:
+Heading:
+Pride in the Result
+Body Text:
+No matter your lot, your budget, or your vision, you deserve a home that’s uniquely yours and a process that feels empowering, not exhausting.
+
+VALUE PROP 3:
+Heading:
+Relief from Overwhelm
+Body Text:
+We’ve helped thousands of clients just like you find a clear path through the building process. You’re not “missing something”—you’re just new to this, and we’ll guide you.
+
+// ============================================================
+
+SECTION TITLE:
+What's Included When You Choose House of Watkins
+
+INCLUDED ITEM 01:
+Number:
+01
+Title:
+A collaborative design process
+• We listen.
+• We ask questions you might not have thought of.
+• We offer options, explain trade-offs, and let you decide what feels right—for your budget, your family, and your future.
+
+INCLUDED ITEM 02:
+Number:
+02
+Title:
+Direct access to your designer
+Details:
+You get real conversations, not just download links. We're here for your questions, big or small, before and after you buy.
+
+INCLUDED ITEM 03:
+Number:
+03
+Title:
+Upfront, transparent pricing
+Details:
+No hidden "gotchas." If something requires extra engineering or customization, you'll know exactly what it costs (and why) before you commit.
+
+INCLUDED ITEM 04:
+Number:
+04
+Title:
+What’s Included In All House Plans
+Details:
+See the full breakdown below.
+
+INCLUDED ITEM 05:
+Number:
+05
+Title:
+Added by Request
+Details:
+See the full breakdown below.
+
+INCLUDED ITEM 06:
+Number:
+06
+Title:
+Plan limitations
+Details:
+See the details below.
+
+SECTION TITLE:
+Our Promise to You
+
+PROMISE 1:
+Heading:
+Clarity at Every Step
+Body:
+You’ll always know what you’re getting—and what comes next. Everything is clear and predictable, so you can move forward with confidence and no surprises.
+
+PROMISE 2:
+Heading:
+Pride in the Result
+Body:
+No matter your lot, your budget, or your vision, you deserve a home that’s uniquely yours and a process that feels empowering, not exhausting.
+
+PROMISE 3:
+Heading:
+Relief from Overwhelm
+Body:
+We’ve helped thousands of clients just like you find a clear path through the building process. You’re not “missing something”—you’re just new to this, and we’ll guide you.
+
+HEADING:
+
+SECTION TITLE:
+What's Not Included, and Why
+
+REASON 1:
+Heading:
+Site-specific engineering
+Body:
+Beams, headers, seismic loads. Every region, and every lot, is different. Your local engineer will tweak these details for your safety and permitting. This is the industry gold standard, and protects your investment.
+
+REASON 2:
+Heading:
+Cost-to-Build Estimates
+Body:
+Construction costs change fast and depend on local labor, materials, and site conditions. We’ll guide you on where and how to get accurate numbers, and help you avoid common cost traps.
+
+REASON 3:
+Heading:
+3D Walkthroughs for Custom Changes
+Body:
+For clients who want a full 3D experience, we can recommend trusted partners.
+
+// ============================================================

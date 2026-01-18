@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+  <rect width="1200" height="800" fill="#fafaf9" />
+  <rect x="60" y="60" width="1080" height="680" rx="32" fill="#ffffff" stroke="#d6d3d1" stroke-width="6" />
+  <g stroke="#a8a29e" stroke-width="6" fill="none">
+    <rect x="140" y="140" width="500" height="260" rx="12" />
+    <rect x="680" y="140" width="380" height="180" rx="12" />
+    <rect x="680" y="350" width="380" height="300" rx="12" />
+    <rect x="140" y="430" width="500" height="220" rx="12" />
+  </g>
+  <g fill="#78716c" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" text-anchor="middle">
+    <text x="600" y="92" font-size="32" font-weight="700">Floorplan placeholder</text>
+    <text x="600" y="740" font-size="24" font-weight="500">/public/placeholders/floorplan.svg</text>
+  </g>
+</svg>

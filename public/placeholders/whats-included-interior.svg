@@ -1,0 +1,12 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f4f4f5" />
+      <stop offset="1" stop-color="#e4e4e7" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#g)" />
+  <rect x="70" y="70" width="1060" height="660" fill="#ffffff" opacity="0.55" />
+  <text x="100" y="150" font-family="Arial, Helvetica, sans-serif" font-size="44" fill="#18181b">Placeholder Image</text>
+  <text x="100" y="220" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="#52525b">whats-included-interior.svg</text>
+</svg>

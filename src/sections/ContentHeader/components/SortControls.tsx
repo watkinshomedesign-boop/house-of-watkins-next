@@ -1,0 +1,80 @@
+export type SortKey = "popular" | "size" | "price";
+
+export type SortControlsProps = {
+  value?: SortKey;
+  onChange?: (value: SortKey) => void;
+};
+
+export const SortControls = (props: SortControlsProps) => {
+  const value = props.value ?? "popular";
+  const onChange = props.onChange ?? (() => {});
+
+  return (
+    <div className="relative text-[15.2625px] items-start box-border caret-transparent gap-x-[9.525px] flex basis-auto flex-col grow-0 shrink justify-start leading-[22.8937px] min-h-[auto] min-w-[auto] outline-[oklab(0.708_0_0_/_0.5)] gap-y-[9.525px] w-full md:text-[14.208px] md:items-center md:gap-x-[17.792px] md:basis-0 md:flex-row md:grow md:shrink-0 md:leading-[21.312px] md:min-h-px md:min-w-px md:gap-y-[17.792px] md:w-auto">
+      <div className="relative text-[15.2625px] font-semibold box-border caret-transparent shrink-0 leading-[0px] outline-[oklab(0.708_0_0_/_0.5)] text-nowrap md:text-[14.208px]">
+        <p className="text-[15.2625px] box-border caret-transparent leading-[22.9125px] outline-[oklab(0.708_0_0_/_0.5)] text-nowrap md:text-[14.208px] md:leading-[21.376px]">
+          Sort by
+        </p>
+      </div>
+      <div className="static text-base [align-items:normal] box-content caret-black gap-x-[normal] block shrink justify-normal leading-[normal] min-h-0 min-w-0 outline-black gap-y-[normal] md:relative md:text-[14.208px] md:items-center md:aspect-auto md:box-border md:caret-transparent md:gap-x-[5.376px] md:flex md:shrink-0 md:justify-start md:leading-[21.312px] md:min-h-[auto] md:min-w-[auto] md:outline-[oklab(0.708_0_0_/_0.5)] md:overscroll-x-auto md:overscroll-y-auto md:gap-y-[5.376px] md:snap-align-none md:snap-normal md:snap-none md:decoration-auto md:underline-offset-auto md:[mask-position:0%] md:bg-left-top md:scroll-m-0 md:scroll-p-[auto]">
+        <button
+          type="button"
+          onClick={() => onChange("popular")}
+          className={
+            value === "popular"
+              ? "static text-black bg-zinc-100 caret-black inline-block shrink h-auto min-h-0 min-w-0 outline-black rounded-none md:relative md:text-white md:aspect-auto md:bg-orange-600 md:caret-transparent md:block md:shrink-0 md:h-[42.624px] md:min-h-[auto] md:min-w-[auto] md:outline-[oklab(0.708_0_0_/_0.5)] md:overscroll-x-auto md:overscroll-y-auto md:snap-align-none md:snap-normal md:snap-none md:decoration-auto md:underline-offset-auto md:[mask-position:0%] md:bg-left-top md:p-0 md:scroll-m-0 md:scroll-p-[auto] md:rounded-[44.416px]"
+              : "static bg-zinc-100 caret-black inline-block shrink h-auto min-h-0 min-w-0 outline-black w-auto rounded-none md:relative md:aspect-auto md:bg-stone-50 md:caret-transparent md:block md:shrink-0 md:h-[42.624px] md:min-h-[auto] md:min-w-[auto] md:outline-[oklab(0.708_0_0_/_0.5)] md:overscroll-x-auto md:overscroll-y-auto md:snap-align-none md:snap-normal md:snap-none md:decoration-auto md:underline-offset-auto md:w-[120px] md:[mask-position:0%] md:bg-left-top md:p-0 md:scroll-m-0 md:scroll-p-[auto] md:rounded-[44.416px]"
+          }
+        >
+          <div className="static [align-items:normal] box-content caret-black gap-x-[normal] block flex-row h-auto justify-normal outline-black gap-y-[normal] p-0 md:relative md:items-center md:aspect-auto md:box-border md:caret-transparent md:gap-x-[8.832px] md:flex md:flex-col md:h-[42.624px] md:justify-center md:outline-[oklab(0.708_0_0_/_0.5)] md:overscroll-x-auto md:overscroll-y-auto md:gap-y-[8.832px] md:snap-align-none md:snap-normal md:snap-none md:decoration-auto md:underline-offset-auto md:overflow-clip md:[mask-position:0%] md:bg-left-top md:px-[14.208px] md:py-[10.624px] md:scroll-m-0 md:scroll-p-[auto]">
+            <div className="static text-base font-normal box-content caret-black block flex-row shrink justify-normal leading-[normal] min-h-0 min-w-0 outline-black text-wrap md:relative md:text-[13.312px] md:font-medium md:aspect-auto md:box-border md:caret-transparent md:flex md:flex-col md:shrink-0 md:justify-center md:leading-[0px] md:min-h-[auto] md:min-w-[auto] md:outline-[oklab(0.708_0_0_/_0.5)] md:overscroll-x-auto md:overscroll-y-auto md:snap-align-none md:snap-normal md:snap-none md:decoration-auto md:underline-offset-auto md:text-nowrap md:[mask-position:0%] md:bg-left-top md:scroll-m-0 md:scroll-p-[auto]">
+              <p className="box-content caret-black leading-[normal] min-h-0 min-w-0 outline-black text-wrap md:aspect-auto md:box-border md:caret-transparent md:leading-[19.584px] md:min-h-[auto] md:min-w-[auto] md:outline-[oklab(0.708_0_0_/_0.5)] md:overscroll-x-auto md:overscroll-y-auto md:snap-align-none md:snap-normal md:snap-none md:decoration-auto md:underline-offset-auto md:text-nowrap md:[mask-position:0%] md:bg-left-top md:scroll-m-0 md:scroll-p-[auto]">
+                Most Popular
+              </p>
+            </div>
+          </div>
+        </button>
+        <button
+          type="button"
+          onClick={() => onChange("size")}
+          className={
+            value === "size"
+              ? "static text-black bg-zinc-100 caret-black inline-block shrink h-auto min-h-0 min-w-0 outline-black rounded-none md:relative md:text-white md:aspect-auto md:bg-orange-600 md:caret-transparent md:block md:shrink-0 md:h-[42.624px] md:min-h-[auto] md:min-w-[auto] md:outline-[oklab(0.708_0_0_/_0.5)] md:overscroll-x-auto md:overscroll-y-auto md:snap-align-none md:snap-normal md:snap-none md:decoration-auto md:underline-offset-auto md:[mask-position:0%] md:bg-left-top md:p-0 md:scroll-m-0 md:scroll-p-[auto] md:rounded-[44.416px]"
+              : "static bg-zinc-100 caret-black inline-block shrink h-auto min-h-0 min-w-0 outline-black w-auto rounded-none md:relative md:aspect-auto md:bg-stone-50 md:caret-transparent md:block md:shrink-0 md:h-[42.624px] md:min-h-[auto] md:min-w-[auto] md:outline-[oklab(0.708_0_0_/_0.5)] md:overscroll-x-auto md:overscroll-y-auto md:snap-align-none md:snap-normal md:snap-none md:decoration-auto md:underline-offset-auto md:w-[60.416px] md:[mask-position:0%] md:bg-left-top md:p-0 md:scroll-m-0 md:scroll-p-[auto] md:rounded-[44.416px]"
+          }
+        >
+          <div className="static [align-items:normal] box-content caret-black gap-x-[normal] block flex-row h-auto justify-normal outline-black gap-y-[normal] p-0 md:relative md:items-center md:aspect-auto md:box-border md:caret-transparent md:gap-x-[8.832px] md:flex md:flex-col md:h-[42.624px] md:justify-center md:outline-[oklab(0.708_0_0_/_0.5)] md:overscroll-x-auto md:overscroll-y-auto md:gap-y-[8.832px] md:snap-align-none md:snap-normal md:snap-none md:decoration-auto md:underline-offset-auto md:overflow-clip md:[mask-position:0%] md:bg-left-top md:px-[14.208px] md:py-[10.624px] md:scroll-m-0 md:scroll-p-[auto]">
+            <div className="static text-base font-normal box-content caret-black block flex-row shrink justify-normal leading-[normal] min-h-0 min-w-0 outline-black text-wrap md:relative md:text-[13.312px] md:font-medium md:aspect-auto md:box-border md:caret-transparent md:flex md:flex-col md:shrink-0 md:justify-center md:leading-[0px] md:min-h-[auto] md:min-w-[auto] md:outline-[oklab(0.708_0_0_/_0.5)] md:overscroll-x-auto md:overscroll-y-auto md:snap-align-none md:snap-normal md:snap-none md:decoration-auto md:underline-offset-auto md:text-nowrap md:[mask-position:0%] md:bg-left-top md:scroll-m-0 md:scroll-p-[auto]">
+              <p className="box-content caret-black leading-[normal] min-h-0 min-w-0 outline-black text-wrap md:aspect-auto md:box-border md:caret-transparent md:leading-[19.584px] md:min-h-[auto] md:min-w-[auto] md:outline-[oklab(0.708_0_0_/_0.5)] md:overscroll-x-auto md:overscroll-y-auto md:snap-align-none md:snap-normal md:snap-none md:decoration-auto md:underline-offset-auto md:text-nowrap md:[mask-position:0%] md:bg-left-top md:scroll-m-0 md:scroll-p-[auto]">
+                Size
+              </p>
+            </div>
+          </div>
+          {value === "size" ? null : (
+            <div className="static box-content caret-black outline-black pointer-events-auto rounded-none inset-auto md:absolute md:aspect-auto md:box-border md:caret-transparent md:outline-[oklab(0.708_0_0_/_0.5)] md:overscroll-x-auto md:overscroll-y-auto md:pointer-events-none md:snap-align-none md:snap-normal md:snap-none md:decoration-auto md:underline-offset-auto md:border md:border-stone-200 md:[mask-position:0%] md:bg-left-top md:scroll-m-0 md:scroll-p-[auto] md:rounded-[44.416px] md:border-solid md:inset-0"></div>
+          )}
+        </button>
+        <button
+          type="button"
+          onClick={() => onChange("price")}
+          className={
+            value === "price"
+              ? "static text-black bg-zinc-100 caret-black inline-block shrink h-auto min-h-0 min-w-0 outline-black rounded-none md:relative md:text-white md:aspect-auto md:bg-orange-600 md:caret-transparent md:block md:shrink-0 md:h-[42.624px] md:min-h-[auto] md:min-w-[auto] md:outline-[oklab(0.708_0_0_/_0.5)] md:overscroll-x-auto md:overscroll-y-auto md:snap-align-none md:snap-normal md:snap-none md:decoration-auto md:underline-offset-auto md:[mask-position:0%] md:bg-left-top md:p-0 md:scroll-m-0 md:scroll-p-[auto] md:rounded-[44.416px]"
+              : "static bg-zinc-100 caret-black inline-block shrink h-auto min-h-0 min-w-0 outline-black w-auto rounded-none md:relative md:aspect-auto md:bg-stone-50 md:caret-transparent md:block md:shrink-0 md:h-[42.624px] md:min-h-[auto] md:min-w-[auto] md:outline-[oklab(0.708_0_0_/_0.5)] md:overscroll-x-auto md:overscroll-y-auto md:snap-align-none md:snap-normal md:snap-none md:decoration-auto md:underline-offset-auto md:w-[60.416px] md:[mask-position:0%] md:bg-left-top md:p-0 md:scroll-m-0 md:scroll-p-[auto] md:rounded-[44.416px]"
+          }
+        >
+          <div className="static [align-items:normal] box-content caret-black gap-x-[normal] block flex-row h-auto justify-normal outline-black gap-y-[normal] p-0 md:relative md:items-center md:aspect-auto md:box-border md:caret-transparent md:gap-x-[8.832px] md:flex md:flex-col md:h-[42.624px] md:justify-center md:outline-[oklab(0.708_0_0_/_0.5)] md:overscroll-x-auto md:overscroll-y-auto md:gap-y-[8.832px] md:snap-align-none md:snap-normal md:snap-none md:decoration-auto md:underline-offset-auto md:overflow-clip md:[mask-position:0%] md:bg-left-top md:px-[14.208px] md:py-[10.624px] md:scroll-m-0 md:scroll-p-[auto]">
+            <div className="static text-base font-normal box-content caret-black block flex-row shrink justify-normal leading-[normal] min-h-0 min-w-0 outline-black text-wrap md:relative md:text-[13.312px] md:font-medium md:aspect-auto md:box-border md:caret-transparent md:flex md:flex-col md:shrink-0 md:justify-center md:leading-[0px] md:min-h-[auto] md:min-w-[auto] md:outline-[oklab(0.708_0_0_/_0.5)] md:overscroll-x-auto md:overscroll-y-auto md:snap-align-none md:snap-normal md:snap-none md:decoration-auto md:underline-offset-auto md:text-nowrap md:[mask-position:0%] md:bg-left-top md:scroll-m-0 md:scroll-p-[auto]">
+              <p className="box-content caret-black leading-[normal] min-h-0 min-w-0 outline-black text-wrap md:aspect-auto md:box-border md:caret-transparent md:leading-[19.584px] md:min-h-[auto] md:min-w-[auto] md:outline-[oklab(0.708_0_0_/_0.5)] md:overscroll-x-auto md:overscroll-y-auto md:snap-align-none md:snap-normal md:snap-none md:decoration-auto md:underline-offset-auto md:text-nowrap md:[mask-position:0%] md:bg-left-top md:scroll-m-0 md:scroll-p-[auto]">
+                Price
+              </p>
+            </div>
+          </div>
+          {value === "price" ? null : (
+            <div className="static box-content caret-black outline-black pointer-events-auto rounded-none inset-auto md:absolute md:aspect-auto md:box-border md:caret-transparent md:outline-[oklab(0.708_0_0_/_0.5)] md:overscroll-x-auto md:overscroll-y-auto md:pointer-events-none md:snap-align-none md:snap-normal md:snap-none md:decoration-auto md:underline-offset-auto md:border md:border-stone-200 md:[mask-position:0%] md:bg-left-top md:scroll-m-0 md:scroll-p-[auto] md:rounded-[44.416px] md:border-solid md:inset-0"></div>
+          )}
+        </button>
+      </div>
+    </div>
+  );
+};

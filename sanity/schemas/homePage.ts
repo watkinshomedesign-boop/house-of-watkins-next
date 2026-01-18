@@ -1,0 +1,130 @@
+import { defineField, defineType } from "sanity";
+
+export const homePage = defineType({
+  name: "homePage",
+  title: "Home Page",
+  type: "document",
+  fields: [
+    defineField({
+      name: "status",
+      title: "Status",
+      type: "string",
+      initialValue: "draft",
+      options: {
+        list: [
+          { title: "Draft", value: "draft" },
+          { title: "Published", value: "published" },
+        ],
+        layout: "radio",
+      },
+      validation: (r) => r.required(),
+    }),
+    defineField({
+      name: "hero",
+      title: "Hero",
+      type: "object",
+      fields: [
+        defineField({ name: "headlineLine1", title: "Headline line 1", type: "string" }),
+        defineField({ name: "headlineLine2", title: "Headline line 2", type: "string" }),
+        defineField({ name: "subhead", title: "Subhead", type: "string" }),
+        defineField({ name: "ctaLabel", title: "Primary CTA label", type: "string" }),
+        defineField({ name: "ctaUrl", title: "Primary CTA URL", type: "string" }),
+        defineField({ name: "heroImage", title: "Hero image", type: "image", options: { hotspot: true } }),
+        defineField({ name: "heroImageAlt", title: "Hero image alt", type: "string" }),
+        defineField({ name: "headshotImage", title: "Headshot (circle)", type: "image", options: { hotspot: true } }),
+        defineField({ name: "headshotImageAlt", title: "Headshot alt", type: "string" }),
+      ],
+    }),
+    defineField({
+      name: "heroCarouselImages",
+      title: "Hero carousel images (5)",
+      type: "array",
+      of: [{ type: "image", options: { hotspot: true } }],
+    }),
+    defineField({
+      name: "heroMaskAsset",
+      title: "Hero mask asset (optional)",
+      type: "file",
+    }),
+    defineField({
+      name: "tripleCarouselImages",
+      title: "Triple carousel images (12)",
+      type: "array",
+      of: [{ type: "image", options: { hotspot: true } }],
+    }),
+    defineField({
+      name: "welcomeCardBackgroundImage",
+      title: "Welcome card background image",
+      type: "image",
+      options: { hotspot: true },
+    }),
+    defineField({
+      name: "welcomeCardPortraitImage",
+      title: "Welcome card portrait image",
+      type: "image",
+      options: { hotspot: true },
+    }),
+    defineField({
+      name: "featuredPlans",
+      title: "Featured Plans",
+      type: "object",
+      fields: [
+        defineField({ name: "enabled", title: "Enabled", type: "boolean", initialValue: false }),
+        defineField({ name: "title", title: "Title", type: "string" }),
+        defineField({ name: "planSlugs", title: "Plan slugs (manual order)", type: "array", of: [{ type: "string" }] }),
+      ],
+    }),
+    defineField({
+      name: "valueProps",
+      title: "Trust / Value Props",
+      type: "object",
+      fields: [
+        defineField({ name: "enabled", title: "Enabled", type: "boolean", initialValue: false }),
+        defineField({ name: "title", title: "Title", type: "string" }),
+        defineField({ name: "bullets", title: "Bullets", type: "array", of: [{ type: "string" }] }),
+      ],
+    }),
+    defineField({
+      name: "consultationCta",
+      title: "Consultation CTA",
+      type: "object",
+      fields: [
+        defineField({ name: "enabled", title: "Enabled", type: "boolean", initialValue: false }),
+        defineField({ name: "text", title: "Text", type: "string" }),
+        defineField({ name: "buttonLabel", title: "Button label", type: "string" }),
+        defineField({ name: "buttonUrl", title: "Button URL", type: "string" }),
+      ],
+    }),
+    defineField({
+      name: "secretExtraIcon1",
+      title: "Design Secrets extra icon 1",
+      type: "image",
+      options: { hotspot: true },
+    }),
+    defineField({ name: "secretExtraTitle1", title: "Design Secrets extra title 1", type: "string" }),
+    defineField({ name: "secretExtraBody1", title: "Design Secrets extra body 1", type: "string" }),
+    defineField({
+      name: "secretExtraIcon2",
+      title: "Design Secrets extra icon 2",
+      type: "image",
+      options: { hotspot: true },
+    }),
+    defineField({ name: "secretExtraTitle2", title: "Design Secrets extra title 2", type: "string" }),
+    defineField({ name: "secretExtraBody2", title: "Design Secrets extra body 2", type: "string" }),
+    defineField({
+      name: "secretExtraIcon3",
+      title: "Design Secrets extra icon 3",
+      type: "image",
+      options: { hotspot: true },
+    }),
+    defineField({ name: "secretExtraTitle3", title: "Design Secrets extra title 3", type: "string" }),
+    defineField({ name: "secretExtraBody3", title: "Design Secrets extra body 3", type: "string" }),
+    defineField({
+      name: "leadCaptureImage",
+      title: "Lead capture image",
+      type: "image",
+      options: { hotspot: true },
+    }),
+    defineField({ name: "leadCaptureImageAlt", title: "Lead capture image alt", type: "string" }),
+  ],
+});

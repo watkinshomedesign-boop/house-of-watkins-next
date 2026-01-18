@@ -1,0 +1,193 @@
+{
+  "sourceRoot": "D:\\New Website Assets\\Website Images",
+  "processedRoot": "D:\\New Website Assets\\Website Images_Processed",
+  "sanity": {
+    "projectId": "oz82ztaw",
+    "dataset": "production",
+    "apiToken": "skD6phXDuQPoIwiqAUpjlNzVeZp3BBH9ZHXmy8RvrXFqjULT1yux44tYiX8Yn46akw2WDQWxVWIMmrpe6Pq9dnTljm2OqiOkFmNO7f4Ab6IBvMZNSJb2epevMSBN2Z2PWC5MZSdOscCpSSr3dJVhTNxyPcRc5vgq5FvNUBN0ziHWYq4OLzyg"
+  },
+  "pageImages": [
+    {
+      "pageType": "home",
+      "sanityDocId": "home",
+      "mappings": [
+        {
+          "sourceFolder": "Home Page Assets",
+          "targetField": "heroImages",
+          "format": "site-avif",
+          "isList": true,
+          "limit": 5,
+          "description": "5 landscape images for hero carousel"
+        }
+      ]
+    },
+    {
+      "pageType": "about",
+      "sanityDocId": "about",
+      "mappings": [
+        {
+          "sourceFolder": "About Us Page",
+          "targetField": "pageImages",
+          "format": "site-avif",
+          "isList": true,
+          "description": "About page section images"
+        }
+      ]
+    },
+    {
+      "pageType": "portfolio",
+      "sanityDocId": "portfolioIndex",
+      "mappings": [
+        {
+          "sourceFolder": "Portfolio Parent",
+          "targetField": "portfolioImages",
+          "format": "site-avif",
+          "isList": true,
+          "description": "Portfolio parent gallery images"
+        },
+        {
+          "sourceFolder": "Portfolio Children",
+          "targetField": "portfolioChildImages",
+          "format": "site-avif",
+          "isList": true,
+          "description": "Portfolio children gallery images"
+        }
+      ]
+    },
+    {
+      "pageType": "whatsIncluded",
+      "sanityDocId": "whatsIncluded",
+      "mappings": [
+        {
+          "sourceFolder": "Whats Included Page",
+          "targetField": "sectionImages",
+          "format": "site-avif",
+          "isList": true,
+          "description": "What's Included section images"
+        }
+      ]
+    },
+    {
+      "pageType": "contractors",
+      "sanityDocId": "contractors",
+      "mappings": [
+        {
+          "sourceFolder": "Contractor page",
+          "targetField": "pageImages",
+          "format": "site-avif",
+          "isList": true,
+          "description": "Contractors page images"
+        }
+      ]
+    },
+    {
+      "pageType": "contact",
+      "sanityDocId": "contact",
+      "mappings": [
+        {
+          "sourceFolder": "Contact Us",
+          "targetField": "pageImages",
+          "format": "site-avif",
+          "isList": true,
+          "description": "Contact page images"
+        }
+      ]
+    }
+  ],
+  "productImages": {
+    "sourceFolder": "Products Organized by Folder",
+    "sanityCollectionType": "plan",
+    "imageMappings": {
+      "floorPlan": {
+        "patterns": [
+          "*floor-plan*",
+          "*floor_plan*"
+        ],
+        "targetField": "floorPlanImage",
+        "useDesktop": true
+      },
+      "frontRender": {
+        "patterns": [
+          "*image-of-front*",
+          "*image_of_front*",
+          "*front*"
+        ],
+        "targetField": "frontRenderImage",
+        "useDesktop": true
+      },
+      "rightElevation": {
+        "patterns": [
+          "*right-elevation*",
+          "*right_elevation*"
+        ],
+        "targetField": "rightElevationImage",
+        "useDesktop": true
+      },
+      "backElevation": {
+        "patterns": [
+          "*back-elevation*",
+          "*back_elevation*"
+        ],
+        "targetField": "backElevationImage",
+        "useDesktop": true
+      },
+      "leftElevation": {
+        "patterns": [
+          "*left-elevation*",
+          "*left_elevation*"
+        ],
+        "targetField": "leftElevationImage",
+        "useDesktop": true
+      },
+      "cardImage": {
+        "patterns": [
+          "*product-image*",
+          "*product_image*"
+        ],
+        "targetField": "cardImage",
+        "useDesktop": false,
+        "useThumbnail": true
+      }
+    },
+    "imageSources": {
+      "desktop": "D:\\New Website Assets\\Website Images\\Products Organized by Folder",
+      "mobile": "D:\\New Website Assets\\Website Images_Processed\\products-mobile\\Products Organized by Folder",
+      "thumbnail": "D:\\New Website Assets\\Website Images_Processed\\products-thumb\\Products Organized by Folder"
+    }
+  },
+  "productMetadata": {
+    "sourceFolder": "Products Organized by Folder",
+    "metadataPath": "D:\\New Website Assets\\Website Images\\Products Organized by Folder",
+    "docxPatterns": [
+      "*.docx"
+    ],
+    "extractFields": [
+      "planName",
+      "bedrooms",
+      "bathrooms",
+      "stories",
+      "mainLevel",
+      "totalSqFt",
+      "width",
+      "depth",
+      "ceilingHeight",
+      "roofHeight",
+      "primarySlope",
+      "secondarySlope",
+      "meta",
+      "productDescription"
+    ],
+    "targetSanityFields": {
+      "bedrooms": "bedrooms",
+      "bathrooms": "bathrooms",
+      "mainLevel": "squareFootage",
+      "productDescription": "description",
+      "meta": "seoMeta"
+    }
+  },
+  "adminPanel": {
+    "enabled": false,
+    "baseUrl": "http://localhost:3000",
+    "plansEndpoint": "/admin/api/plans"
+  }
+}

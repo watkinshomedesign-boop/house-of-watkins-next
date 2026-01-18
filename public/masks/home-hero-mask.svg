@@ -1,0 +1,18 @@
+<svg width="1200" height="700" viewBox="0 0 1200 700" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="fade" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="white" />
+      <stop offset="1" stop-color="white" />
+    </linearGradient>
+  </defs>
+  <!-- Placeholder asymmetric mask. Replace with exact Figma-exported SVG for pixel-perfect shape. -->
+  <path
+    d="M0 0H1200V700H0V0Z"
+    fill="url(#fade)"
+  />
+  <path
+    d="M0 0H820C900 150 980 260 1200 310V700H0V0Z"
+    fill="black"
+    opacity="0"
+  />
+</svg>

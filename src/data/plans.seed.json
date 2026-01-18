@@ -1,0 +1,386 @@
+[
+  {
+    "slug": "2-bed-adu",
+    "name": "2 Bed ADU",
+    "description": null,
+    "heated_sqft": 780,
+    "beds": 2,
+    "baths": null,
+    "stories": 1,
+    "garage_bays": null,
+    "width_ft": null,
+    "depth_ft": null,
+    "images": {
+      "hero_desktop": "/plans/2-bed-adu/thumbs/desktop.jpg",
+      "hero_mobile": "/plans/2-bed-adu/thumbs/mobile.jpg",
+      "hover": "/plans/2-bed-adu/hover/floorplan.jpg",
+      "gallery": [
+        "/plans/2-bed-adu/gallery/01.jpg",
+        "/plans/2-bed-adu/gallery/02.jpg",
+        "/plans/2-bed-adu/gallery/03.jpg",
+        "/plans/2-bed-adu/gallery/04.jpg"
+      ],
+      "floorplan": ["/plans/2-bed-adu/floorplans/fp-01.jpg"]
+    },
+    "tags": [],
+    "status": "published"
+  },
+  {
+    "slug": "adu-under-750",
+    "name": "ADU under 750",
+    "description": null,
+    "heated_sqft": 750,
+    "beds": 2,
+    "baths": null,
+    "stories": 1,
+    "garage_bays": null,
+    "width_ft": null,
+    "depth_ft": null,
+    "images": {
+      "hero_desktop": "/plans/ADU%20under%20750/thumbs/2-bedroom-adu-under-750-sq-ft-image-of-front-thumb.jpg",
+      "hero_mobile": "/plans/ADU%20under%20750/thumbs/2-bedroom-adu-under-750-sq-ft-image-of-front-thumb.jpg",
+      "hover": "/plans/ADU%20under%20750/hover/35%20by%2025%20ADU%20under%20750%20for%20AD-FP%20for%20HoW.jpg",
+      "gallery": [
+        "/plans/ADU%20under%20750/gallery/2-bedroom-adu-under-750-sq-ft-image-of-front-v1.jpg",
+        "/plans/ADU%20under%20750/gallery/2-bedroom-adu-under-750-sq-ft-interior-bedroom-1-v1.jpg",
+        "/plans/ADU%20under%20750/gallery/2-bedroom-adu-under-750-sq-ft-interior-bedroom-1-v2.jpg",
+        "/plans/ADU%20under%20750/gallery/2-bedroom-adu-under-750-sq-ft-interior-bedroom-one-view-1.jpg",
+        "/plans/ADU%20under%20750/gallery/2-bedroom-adu-under-750-sq-ft-interior-bedroom-one-view-3.jpg",
+        "/plans/ADU%20under%20750/gallery/2-bedroom-adu-under-750-sq-ft-interior-bedroom-two-view-1.jpg",
+        "/plans/ADU%20under%20750/gallery/2-bedroom-adu-under-750-sq-ft-interior-bedroom-two-view-2.jpg",
+        "/plans/ADU%20under%20750/gallery/2-bedroom-adu-under-750-sq-ft-interior-bedroom-two-view-3.jpg",
+        "/plans/ADU%20under%20750/gallery/2-bedroom-adu-under-750-sq-ft-interior-kitchen-view-1.jpg",
+        "/plans/ADU%20under%20750/gallery/2-bedroom-adu-under-750-sq-ft-interior-kitchen-view-2.jpg",
+        "/plans/ADU%20under%20750/gallery/2-bedroom-adu-under-750-sq-ft-interior-kitchen-view-3.jpg",
+        "/plans/ADU%20under%20750/gallery/2-bedroom-adu-under-750-sq-ft-interior-laundry-room.jpg",
+        "/plans/ADU%20under%20750/gallery/2-bedroom-adu-under-750-sq-ft-interior-livingroom.jpg"
+      ],
+      "floorplan": [
+        "/plans/ADU%20under%20750/floorplans/35%20by%2025%20ADU%20under%20750%20for%20AD-FP%20for%20HoW.jpg"
+      ]
+    },
+    "tags": [],
+    "status": "published"
+  },
+  {
+    "slug": "boardwalk-4-car",
+    "name": "Boardwalk 4- Car",
+    "description": null,
+    "heated_sqft": 3200,
+    "beds": 4,
+    "baths": 3,
+    "stories": 2,
+    "garage_bays": 4,
+    "width_ft": null,
+    "depth_ft": null,
+    "images": {
+      "hero_desktop": "/plans/Boardwalk%204-%20Car/thumbs/4-bedroom-3-bath-2-story-contemporary-farmhouse-house-plan-with-loft-with-office-with-4-car-garage-exterior-front-view-product-image-thumb.jpg",
+      "hero_mobile": "/plans/Boardwalk%204-%20Car/thumbs/4-bedroom-3-bath-2-story-contemporary-farmhouse-house-plan-with-loft-with-office-with-4-car-garage-exterior-front-view-product-image-thumb.jpg",
+      "hover": "/plans/Boardwalk%204-%20Car/hover/4-bedroom-3-bath-2-story-contemporary-farmhouse-house-plan-with-loft-with-office-with-4-car-garage-main-level-floor-plan-architectural-drawing.jpg",
+      "gallery": [
+        "/plans/Boardwalk%204-%20Car/gallery/4-bedroom-3-bath-2-story-contemporary-farmhouse-house-plan-with-loft-with-office-with-4-car-garage-aerial-view.jpg",
+        "/plans/Boardwalk%204-%20Car/gallery/4-bedroom-3-bath-2-story-contemporary-farmhouse-house-plan-with-loft-with-office-with-4-car-garage-back-elevation-architectural-drawing.jpg",
+        "/plans/Boardwalk%204-%20Car/gallery/4-bedroom-3-bath-2-story-contemporary-farmhouse-house-plan-with-loft-with-office-with-4-car-garage-exterior-back-view-v2.jpg",
+        "/plans/Boardwalk%204-%20Car/gallery/4-bedroom-3-bath-2-story-contemporary-farmhouse-house-plan-with-loft-with-office-with-4-car-garage-exterior-back-view-v3.jpg",
+        "/plans/Boardwalk%204-%20Car/gallery/4-bedroom-3-bath-2-story-contemporary-farmhouse-house-plan-with-loft-with-office-with-4-car-garage-exterior-back-view.jpg",
+        "/plans/Boardwalk%204-%20Car/gallery/4-bedroom-3-bath-2-story-contemporary-farmhouse-house-plan-with-loft-with-office-with-4-car-garage-exterior-front-view-product-image.jpg",
+        "/plans/Boardwalk%204-%20Car/gallery/4-bedroom-3-bath-2-story-contemporary-farmhouse-house-plan-with-loft-with-office-with-4-car-garage-exterior-front-view-v2.jpg",
+        "/plans/Boardwalk%204-%20Car/gallery/4-bedroom-3-bath-2-story-contemporary-farmhouse-house-plan-with-loft-with-office-with-4-car-garage-exterior-front-view.jpg",
+        "/plans/Boardwalk%204-%20Car/gallery/4-bedroom-3-bath-2-story-contemporary-farmhouse-house-plan-with-loft-with-office-with-4-car-garage-exterior-side-view-v2.jpg",
+        "/plans/Boardwalk%204-%20Car/gallery/4-bedroom-3-bath-2-story-contemporary-farmhouse-house-plan-with-loft-with-office-with-4-car-garage-exterior-side-view-v3.jpg",
+        "/plans/Boardwalk%204-%20Car/gallery/4-bedroom-3-bath-2-story-contemporary-farmhouse-house-plan-with-loft-with-office-with-4-car-garage-exterior-side-view.jpg",
+        "/plans/Boardwalk%204-%20Car/gallery/4-bedroom-3-bath-2-story-contemporary-farmhouse-house-plan-with-loft-with-office-with-4-car-garage-farmhouse-kitchen.jpg",
+        "/plans/Boardwalk%204-%20Car/gallery/4-bedroom-3-bath-2-story-contemporary-farmhouse-house-plan-with-loft-with-office-with-4-car-garage-front-door.jpg",
+        "/plans/Boardwalk%204-%20Car/gallery/4-bedroom-3-bath-2-story-contemporary-farmhouse-house-plan-with-loft-with-office-with-4-car-garage-front-elevation-architectural-drawing.jpg",
+        "/plans/Boardwalk%204-%20Car/gallery/4-bedroom-3-bath-2-story-contemporary-farmhouse-house-plan-with-loft-with-office-with-4-car-garage-front-elevation.jpg",
+        "/plans/Boardwalk%204-%20Car/gallery/4-bedroom-3-bath-2-story-contemporary-farmhouse-house-plan-with-loft-with-office-with-4-car-garage-gray-bathroom.jpg",
+        "/plans/Boardwalk%204-%20Car/gallery/4-bedroom-3-bath-2-story-contemporary-farmhouse-house-plan-with-loft-with-office-with-4-car-garage-kitchen-island.jpg",
+        "/plans/Boardwalk%204-%20Car/gallery/4-bedroom-3-bath-2-story-contemporary-farmhouse-house-plan-with-loft-with-office-with-4-car-garage-kitchen-large.jpg",
+        "/plans/Boardwalk%204-%20Car/gallery/4-bedroom-3-bath-2-story-contemporary-farmhouse-house-plan-with-loft-with-office-with-4-car-garage-kitchen-oven.jpg",
+        "/plans/Boardwalk%204-%20Car/gallery/4-bedroom-3-bath-2-story-contemporary-farmhouse-house-plan-with-loft-with-office-with-4-car-garage-kitchen.jpg",
+        "/plans/Boardwalk%204-%20Car/gallery/4-bedroom-3-bath-2-story-contemporary-farmhouse-house-plan-with-loft-with-office-with-4-car-garage-left-elevation-architectural-drawing.jpg",
+        "/plans/Boardwalk%204-%20Car/gallery/4-bedroom-3-bath-2-story-contemporary-farmhouse-house-plan-with-loft-with-office-with-4-car-garage-living-room-large-windows.jpg",
+        "/plans/Boardwalk%204-%20Car/gallery/4-bedroom-3-bath-2-story-contemporary-farmhouse-house-plan-with-loft-with-office-with-4-car-garage-master-bedroom-barn-door.jpg",
+        "/plans/Boardwalk%204-%20Car/gallery/4-bedroom-3-bath-2-story-contemporary-farmhouse-house-plan-with-loft-with-office-with-4-car-garage-right-elevation-architectural-drawing.jpg",
+        "/plans/Boardwalk%204-%20Car/gallery/4-bedroom-3-bath-2-story-contemporary-farmhouse-house-plan-with-loft-with-office-with-4-car-garage-view-from-balcony.jpg",
+        "/plans/Boardwalk%204-%20Car/gallery/4-bedroom-3-bath-2-story-contemporary-farmhouse-house-plan-with-loft-with-office-with-4-car-garage-white-country-kitchen.jpg",
+        "/plans/Boardwalk%204-%20Car/gallery/4-bedroom-3-bath-2-story-contemporary-farmhouse-house-plan-with-loft-with-office-with-4-car-garage-white-kitchen.jpg"
+      ],
+      "floorplan": [
+        "/plans/Boardwalk%204-%20Car/floorplans/4-bedroom-3-bath-2-story-contemporary-farmhouse-house-plan-with-loft-with-office-with-4-car-garage-main-level-floor-plan-architectural-drawing.jpg",
+        "/plans/Boardwalk%204-%20Car/gallery/4-bedroom-3-bath-2-story-contemporary-farmhouse-house-plan-with-loft-with-office-with-4-car-garage-upper-level-floor-plan-architectural-drawing.jpg"
+      ]
+    },
+    "tags": [],
+    "status": "published"
+  },
+  {
+    "slug": "classic-contemporary-farmhouse",
+    "name": "Classic Contemporary Farmhouse",
+    "description": null,
+    "heated_sqft": 2800,
+    "beds": 4,
+    "baths": null,
+    "stories": 2,
+    "garage_bays": 2,
+    "width_ft": null,
+    "depth_ft": null,
+    "images": {
+      "hero_desktop": "/plans/Classic%20Contemporary%20Farmhouse/thumbs/4-bedroom-with-office-2-story-contemporary-farmhouse-with-2-master-suites-front-view-thumb.jpg",
+      "hero_mobile": "/plans/Classic%20Contemporary%20Farmhouse/thumbs/4-bedroom-with-office-2-story-contemporary-farmhouse-with-2-master-suites-front-view-thumb.jpg",
+      "hover": "/plans/Classic%20Contemporary%20Farmhouse/hover/4-bedroom-with-office-2-story-contemporary-farmhouse-with-2-master-suites-main-level-floor-plan-architectural-drawing.jpg",
+      "gallery": [
+        "/plans/Classic%20Contemporary%20Farmhouse/gallery/4-bedroom-with-office-2-story-contemporary-farmhouse-with-2-master-suites-back-elevation-architectural-drawing.jpg",
+        "/plans/Classic%20Contemporary%20Farmhouse/gallery/4-bedroom-with-office-2-story-contemporary-farmhouse-with-2-master-suites-front-elevation-architectural-drawing.jpg",
+        "/plans/Classic%20Contemporary%20Farmhouse/gallery/4-bedroom-with-office-2-story-contemporary-farmhouse-with-2-master-suites-front-view.jpg",
+        "/plans/Classic%20Contemporary%20Farmhouse/gallery/4-bedroom-with-office-2-story-contemporary-farmhouse-with-2-master-suites-left-elevation-architectural-drawing.jpg",
+        "/plans/Classic%20Contemporary%20Farmhouse/gallery/4-bedroom-with-office-2-story-contemporary-farmhouse-with-2-master-suites-right-elevation-architectural-drawing.jpg"
+      ],
+      "floorplan": [
+        "/plans/Classic%20Contemporary%20Farmhouse/floorplans/4-bedroom-with-office-2-story-contemporary-farmhouse-with-2-master-suites-main-level-floor-plan-architectural-drawing.jpg",
+        "/plans/Classic%20Contemporary%20Farmhouse/gallery/4-bedroom-with-office-2-story-contemporary-farmhouse-with-2-master-suites-upper-level-floor-plan-architectural-drawing.jpg"
+      ]
+    },
+    "tags": [],
+    "status": "published"
+  },
+  {
+    "slug": "classic-midcentury",
+    "name": "Classic Midcentury",
+    "description": null,
+    "heated_sqft": 1676,
+    "beds": 3,
+    "baths": 2,
+    "stories": 1,
+    "garage_bays": 2,
+    "width_ft": null,
+    "depth_ft": null,
+    "images": {
+      "hero_desktop": "/plans/Classic%20Midcentury/thumbs/3-bedroom-2-bath-1-story-1676-sq-ft-2-car-garage-Classic-Midcentury-house-plan-front-image-thumb.jpg",
+      "hero_mobile": "/plans/Classic%20Midcentury/thumbs/3-bedroom-2-bath-1-story-1676-sq-ft-2-car-garage-Classic-Midcentury-house-plan-front-image-thumb.jpg",
+      "hover": "/plans/Classic%20Midcentury/hover/3-bedroom-2-bath-1-story-1676-sq-ft-2-car-garage-Classic-Midcentury-house-floor-plan-drawing.jpg",
+      "gallery": [
+        "/plans/Classic%20Midcentury/gallery/3-bedroom-2-bath-1-story-1676-sq-ft-2-car-garage-Classic-Midcentury-house-plan-back-%20elevation-drawing.jpg",
+        "/plans/Classic%20Midcentury/gallery/3-bedroom-2-bath-1-story-1676-sq-ft-2-car-garage-Classic-Midcentury-house-plan-front-%20elevation-drawing.jpg",
+        "/plans/Classic%20Midcentury/gallery/3-bedroom-2-bath-1-story-1676-sq-ft-2-car-garage-Classic-Midcentury-house-plan-front-image.jpg",
+        "/plans/Classic%20Midcentury/gallery/3-bedroom-2-bath-1-story-1676-sq-ft-2-car-garage-Classic-Midcentury-house-plan-left-%20elevation-drawing.jpg",
+        "/plans/Classic%20Midcentury/gallery/3-bedroom-2-bath-1-story-1676-sq-ft-2-car-garage-Classic-Midcentury-house-plan-right-%20elevation-drawing.jpg"
+      ],
+      "floorplan": [
+        "/plans/Classic%20Midcentury/floorplans/3-bedroom-2-bath-1-story-1676-sq-ft-2-car-garage-Classic-Midcentury-house-floor-plan-drawing.jpg"
+      ]
+    },
+    "tags": [],
+    "status": "published"
+  },
+  {
+    "slug": "desert-rain",
+    "name": "Desert Rain",
+    "description": null,
+    "heated_sqft": 2050,
+    "beds": 3,
+    "baths": null,
+    "stories": 1,
+    "garage_bays": null,
+    "width_ft": null,
+    "depth_ft": null,
+    "images": {
+      "hero_desktop": "/plans/Desert%20Rain/thumbs/3-bedroom-transitional-one-story-house-plan-with-two-sided-fireplace-front-view-thumb.jpg",
+      "hero_mobile": "/plans/Desert%20Rain/thumbs/3-bedroom-transitional-one-story-house-plan-with-two-sided-fireplace-front-view-thumb.jpg",
+      "hover": "/plans/Desert%20Rain/hover/3-bedroom-transitional-one-story-house-plan-with-two-sided-fireplace-main-level-floor-plan-architectural-drawing.jpg",
+      "gallery": [
+        "/plans/Desert%20Rain/gallery/3-bedroom-transitional-one-story-house-plan-with-two-sided-fireplace-back-elevation-architectural-drawing.jpg",
+        "/plans/Desert%20Rain/gallery/3-bedroom-transitional-one-story-house-plan-with-two-sided-fireplace-front-elevation-architectural-drawing.jpg",
+        "/plans/Desert%20Rain/gallery/3-bedroom-transitional-one-story-house-plan-with-two-sided-fireplace-front-view.jpg",
+        "/plans/Desert%20Rain/gallery/3-bedroom-transitional-one-story-house-plan-with-two-sided-fireplace-left-elevation-architectural-drawing.jpg",
+        "/plans/Desert%20Rain/gallery/3-bedroom-transitional-one-story-house-plan-with-two-sided-fireplace-right-elevation-architectural-drawing.jpg"
+      ],
+      "floorplan": [
+        "/plans/Desert%20Rain/floorplans/3-bedroom-transitional-one-story-house-plan-with-two-sided-fireplace-main-level-floor-plan-architectural-drawing.jpg"
+      ]
+    },
+    "tags": [],
+    "status": "published"
+  },
+  {
+    "slug": "high-desert",
+    "name": "High Desert",
+    "description": null,
+    "heated_sqft": 2400,
+    "beds": 3,
+    "baths": null,
+    "stories": 1,
+    "garage_bays": 3,
+    "width_ft": null,
+    "depth_ft": null,
+    "images": {
+      "hero_desktop": "/plans/High%20Desert/gallery/high-desert-architectural-design-3-bedroom-contemporary-house-plan-with-office-and-3-car-garage-contemporary-minimalist-3bed-house-plan-front-view-v2.jpg",
+      "hero_mobile": "/plans/High%20Desert/gallery/high-desert-architectural-design-3-bedroom-contemporary-house-plan-with-office-and-3-car-garage-contemporary-minimalist-3bed-house-plan-front-view-v2.jpg",
+      "hover": "/plans/High%20Desert/hover/high-desert-architectural-design-3-bedroom-contemporary-house-plan-with-office-and-3-car-garage-floor-plan-architectural-drawing.jpg",
+      "gallery": [
+        "/plans/High%20Desert/gallery/high-desert-architectural-design-3-bedroom-contemporary-house-plan-with-office-and-3-car-garage-back-elevation-architectural-drawing.jpg",
+        "/plans/High%20Desert/gallery/high-desert-architectural-design-3-bedroom-contemporary-house-plan-with-office-and-3-car-garage-contemporary-ceiling-details.jpg",
+        "/plans/High%20Desert/gallery/high-desert-architectural-design-3-bedroom-contemporary-house-plan-with-office-and-3-car-garage-contemporary-double-glass-barn-doors.jpg",
+        "/plans/High%20Desert/gallery/high-desert-architectural-design-3-bedroom-contemporary-house-plan-with-office-and-3-car-garage-contemporary-glass-barn-door.jpg",
+        "/plans/High%20Desert/gallery/high-desert-architectural-design-3-bedroom-contemporary-house-plan-with-office-and-3-car-garage-contemporary-minimalist-3bed-house-plan-front-view-v2.jpg",
+        "/plans/High%20Desert/gallery/high-desert-architectural-design-3-bedroom-contemporary-house-plan-with-office-and-3-car-garage-contemporary-minimalist-3bed-house-plan-front-view.jpg",
+        "/plans/High%20Desert/gallery/high-desert-architectural-design-3-bedroom-contemporary-house-plan-with-office-and-3-car-garage-contemporary-open-concept-great-room.jpg",
+        "/plans/High%20Desert/gallery/high-desert-architectural-design-3-bedroom-contemporary-house-plan-with-office-and-3-car-garage-contemporary-primary-suite-view.jpg",
+        "/plans/High%20Desert/gallery/high-desert-architectural-design-3-bedroom-contemporary-house-plan-with-office-and-3-car-garage-covered-patio-outdoor-living.jpg",
+        "/plans/High%20Desert/gallery/high-desert-architectural-design-3-bedroom-contemporary-house-plan-with-office-and-3-car-garage-double-glass-barn-door-corner.jpg",
+        "/plans/High%20Desert/gallery/high-desert-architectural-design-3-bedroom-contemporary-house-plan-with-office-and-3-car-garage-double-glass-barn-doors-on-a-corner.jpg",
+        "/plans/High%20Desert/gallery/high-desert-architectural-design-3-bedroom-contemporary-house-plan-with-office-and-3-car-garage-front-elevation-architectural-drawing.jpg",
+        "/plans/High%20Desert/gallery/high-desert-architectural-design-3-bedroom-contemporary-house-plan-with-office-and-3-car-garage-left-elevation-architectural-drawing.jpg",
+        "/plans/High%20Desert/gallery/high-desert-architectural-design-3-bedroom-contemporary-house-plan-with-office-and-3-car-garage-light-night-stand.jpg",
+        "/plans/High%20Desert/gallery/high-desert-architectural-design-3-bedroom-contemporary-house-plan-with-office-and-3-car-garage-modern-home-office-glass-barn-door.jpg",
+        "/plans/High%20Desert/gallery/high-desert-architectural-design-3-bedroom-contemporary-house-plan-with-office-and-3-car-garage-modern-home-pool-view.jpg",
+        "/plans/High%20Desert/gallery/high-desert-architectural-design-3-bedroom-contemporary-house-plan-with-office-and-3-car-garage-modern-living-open-floor-plan.jpg",
+        "/plans/High%20Desert/gallery/high-desert-architectural-design-3-bedroom-contemporary-house-plan-with-office-and-3-car-garage-modern-minimal-craft-room.jpg",
+        "/plans/High%20Desert/gallery/high-desert-architectural-design-3-bedroom-contemporary-house-plan-with-office-and-3-car-garage-open-kitchen-contemporary-layout.jpg",
+        "/plans/High%20Desert/gallery/high-desert-architectural-design-3-bedroom-contemporary-house-plan-with-office-and-3-car-garage-right-elevation-architectural-drawing.jpg",
+        "/plans/High%20Desert/gallery/high-desert-architectural-design-3-bedroom-contemporary-house-plan-with-office-and-3-car-garage-shared-bath-contemporary.jpg",
+        "/plans/High%20Desert/gallery/high-desert-architectural-design-3-bedroom-contemporary-house-plan-with-office-and-3-car-garage-shower-no-door.jpg"
+      ],
+      "floorplan": [
+        "/plans/High%20Desert/floorplans/high-desert-architectural-design-3-bedroom-contemporary-house-plan-with-office-and-3-car-garage-floor-plan-architectural-drawing.jpg"
+      ]
+    },
+    "tags": [],
+    "status": "published"
+  },
+  {
+    "slug": "oak-ridge-side-garage",
+    "name": "Oak Ridge Side Garage",
+    "description": null,
+    "heated_sqft": 2600,
+    "beds": 3,
+    "baths": null,
+    "stories": 1,
+    "garage_bays": 3,
+    "width_ft": null,
+    "depth_ft": null,
+    "images": {
+      "hero_desktop": "/plans/Oak%20Ridge%20Side%20Garage/thumbs/3-bedroom-contemporary-house-plan-with-ofice-and-casita-and-3-car-garage-image-of-front-thumb.jpg",
+      "hero_mobile": "/plans/Oak%20Ridge%20Side%20Garage/thumbs/3-bedroom-contemporary-house-plan-with-ofice-and-casita-and-3-car-garage-image-of-front-thumb.jpg",
+      "hover": "/plans/Oak%20Ridge%20Side%20Garage/hover/3-bedroom-contemporary-house-plan-with-ofice-and-casita-and-3-car-garage-main-level-floor-plan-architectural-drawing.jpg",
+      "gallery": [
+        "/plans/Oak%20Ridge%20Side%20Garage/gallery/3-bedroom-contemporary-house-plan-with-ofice-and-casita-and-3-car-garage-back-elevation-architectural-drawing.jpg",
+        "/plans/Oak%20Ridge%20Side%20Garage/gallery/3-bedroom-contemporary-house-plan-with-ofice-and-casita-and-3-car-garage-front-elevation-architectural-drawing.jpg",
+        "/plans/Oak%20Ridge%20Side%20Garage/gallery/3-bedroom-contemporary-house-plan-with-ofice-and-casita-and-3-car-garage-image-of-front-v1.jpg",
+        "/plans/Oak%20Ridge%20Side%20Garage/gallery/3-bedroom-contemporary-house-plan-with-ofice-and-casita-and-3-car-garage-image-of-front-v2.jpg",
+        "/plans/Oak%20Ridge%20Side%20Garage/gallery/3-bedroom-contemporary-house-plan-with-ofice-and-casita-and-3-car-garage-left-elevation-architectural-drawing.jpg",
+        "/plans/Oak%20Ridge%20Side%20Garage/gallery/3-bedroom-contemporary-house-plan-with-ofice-and-casita-and-3-car-garage-right-elevation-architectural-drawing.jpg",
+        "/plans/Oak%20Ridge%20Side%20Garage/gallery/Aerial%20Front%20Corner%20Elevation.jpg",
+        "/plans/Oak%20Ridge%20Side%20Garage/gallery/Aerial%20Front%20Elevation%202.jpg",
+        "/plans/Oak%20Ridge%20Side%20Garage/gallery/Aerial%20Front%20Elevation%20Evening.jpg",
+        "/plans/Oak%20Ridge%20Side%20Garage/gallery/Aerial%20Front%20Elevation.jpg",
+        "/plans/Oak%20Ridge%20Side%20Garage/gallery/Back%20Elevation%202.jpg",
+        "/plans/Oak%20Ridge%20Side%20Garage/gallery/Back%20Elevation.jpg",
+        "/plans/Oak%20Ridge%20Side%20Garage/gallery/Back%20Patio%20Evening.jpg",
+        "/plans/Oak%20Ridge%20Side%20Garage/gallery/Back%20Patio.jpg",
+        "/plans/Oak%20Ridge%20Side%20Garage/gallery/Bathrrom%202.jpg",
+        "/plans/Oak%20Ridge%20Side%20Garage/gallery/Bathrrom%203.jpg",
+        "/plans/Oak%20Ridge%20Side%20Garage/gallery/Bathrrom%20Vanity.jpg",
+        "/plans/Oak%20Ridge%20Side%20Garage/gallery/Bathrrom.jpg",
+        "/plans/Oak%20Ridge%20Side%20Garage/gallery/Bedroom.jpg",
+        "/plans/Oak%20Ridge%20Side%20Garage/gallery/Dining%20%26%20Kitchen%202.jpg",
+        "/plans/Oak%20Ridge%20Side%20Garage/gallery/Dining%20%26%20Living%202.jpg",
+        "/plans/Oak%20Ridge%20Side%20Garage/gallery/Dining%20%26%20Living.jpg",
+        "/plans/Oak%20Ridge%20Side%20Garage/gallery/Entry%201.jpg",
+        "/plans/Oak%20Ridge%20Side%20Garage/gallery/Entry%202.jpg",
+        "/plans/Oak%20Ridge%20Side%20Garage/gallery/Entry%203.jpg",
+        "/plans/Oak%20Ridge%20Side%20Garage/gallery/Fireplace%202.jpg",
+        "/plans/Oak%20Ridge%20Side%20Garage/gallery/Fireplace.jpg",
+        "/plans/Oak%20Ridge%20Side%20Garage/gallery/Front%20Elevation%202.jpg",
+        "/plans/Oak%20Ridge%20Side%20Garage/gallery/Front%20Elevation%203.jpg",
+        "/plans/Oak%20Ridge%20Side%20Garage/gallery/Front%20Elevation%20Evening%201.jpg",
+        "/plans/Oak%20Ridge%20Side%20Garage/gallery/Front%20Elevation%20Evening%202.jpg",
+        "/plans/Oak%20Ridge%20Side%20Garage/gallery/Front%20Elevation%20Sundown.jpg",
+        "/plans/Oak%20Ridge%20Side%20Garage/gallery/Front%20Elevation.jpg",
+        "/plans/Oak%20Ridge%20Side%20Garage/gallery/Island%20Countertop.jpg",
+        "/plans/Oak%20Ridge%20Side%20Garage/gallery/Kid's%20Room%202.jpg",
+        "/plans/Oak%20Ridge%20Side%20Garage/gallery/Kid's%20Room.jpg",
+        "/plans/Oak%20Ridge%20Side%20Garage/gallery/Kids%20Bathroom.jpg",
+        "/plans/Oak%20Ridge%20Side%20Garage/gallery/Kitchen%202.jpg",
+        "/plans/Oak%20Ridge%20Side%20Garage/gallery/Kitchen%20Island.jpg",
+        "/plans/Oak%20Ridge%20Side%20Garage/gallery/Kitchen%20Sink.jpg",
+        "/plans/Oak%20Ridge%20Side%20Garage/gallery/Master%20Closet%201.jpg",
+        "/plans/Oak%20Ridge%20Side%20Garage/gallery/Modern%20Kitchen%20.jpg",
+        "/plans/Oak%20Ridge%20Side%20Garage/gallery/Open%20Floor%20Plan%202.jpg",
+        "/plans/Oak%20Ridge%20Side%20Garage/gallery/Open%20Floor%20Plan%203.jpg",
+        "/plans/Oak%20Ridge%20Side%20Garage/gallery/Open%20Floor%20Plan.jpg",
+        "/plans/Oak%20Ridge%20Side%20Garage/gallery/Pantry.jpg",
+        "/plans/Oak%20Ridge%20Side%20Garage/gallery/Pool.jpg",
+        "/plans/Oak%20Ridge%20Side%20Garage/gallery/Powder%20Rm.jpg",
+        "/plans/Oak%20Ridge%20Side%20Garage/gallery/Side%20Bar.jpg",
+        "/plans/Oak%20Ridge%20Side%20Garage/gallery/Tub.jpg",
+        "/plans/Oak%20Ridge%20Side%20Garage/gallery/Vanity%20.jpg",
+        "/plans/Oak%20Ridge%20Side%20Garage/gallery/Wet%20Bar.jpg"
+      ],
+      "floorplan": [
+        "/plans/Oak%20Ridge%20Side%20Garage/floorplans/3-bedroom-contemporary-house-plan-with-ofice-and-casita-and-3-car-garage-main-level-floor-plan-architectural-drawing.jpg"
+      ]
+    },
+    "tags": [],
+    "status": "published"
+  },
+  {
+    "slug": "the-metropolitan",
+    "name": "The Metropolitan",
+    "description": null,
+    "heated_sqft": 2000,
+    "beds": 3,
+    "baths": null,
+    "stories": 2,
+    "garage_bays": 2,
+    "width_ft": null,
+    "depth_ft": null,
+    "images": {
+      "hero_desktop": "/plans/The%20Metropolitan/thumbs/3-bedroom-contemporary-house-plan-with-2-car-garage-for-narrow-lot-image-of-front-product-image-thumb.jpg",
+      "hero_mobile": "/plans/The%20Metropolitan/thumbs/3-bedroom-contemporary-house-plan-with-2-car-garage-for-narrow-lot-image-of-front-product-image-thumb.jpg",
+      "hover": "/plans/The%20Metropolitan/hover/3-bedroom-contemporary-house-plan-with-2-car-garage-for-narrow-lot-floor-plan-architectural-drawing-v1.jpg",
+      "gallery": [
+        "/plans/The%20Metropolitan/gallery/3-bedroom-contemporary-house-plan-with-2-car-garage-for-narrow-lot-back-elevation-architectural-drawing.jpg",
+        "/plans/The%20Metropolitan/gallery/3-bedroom-contemporary-house-plan-with-2-car-garage-for-narrow-lot-front-elevation-architectural-drawing.jpg",
+        "/plans/The%20Metropolitan/gallery/3-bedroom-contemporary-house-plan-with-2-car-garage-for-narrow-lot-image-of-front-product-image.jpg",
+        "/plans/The%20Metropolitan/gallery/3-bedroom-contemporary-house-plan-with-2-car-garage-for-narrow-lot-left-elevation-architectural-drawing.jpg",
+        "/plans/The%20Metropolitan/gallery/3-bedroom-contemporary-house-plan-with-2-car-garage-for-narrow-lot-right-elevation-architectural-drawing.jpg"
+      ],
+      "floorplan": [
+        "/plans/The%20Metropolitan/floorplans/3-bedroom-contemporary-house-plan-with-2-car-garage-for-narrow-lot-floor-plan-architectural-drawing-v1.jpg"
+      ]
+    },
+    "tags": [],
+    "status": "published"
+  },
+  {
+    "slug": "tiny-house-adu",
+    "name": "Tiny House ADU",
+    "description": null,
+    "heated_sqft": 700,
+    "beds": 2,
+    "baths": null,
+    "stories": 1,
+    "garage_bays": null,
+    "width_ft": null,
+    "depth_ft": null,
+    "images": {
+      "hero_desktop": "/plans/Tiny%20House%20ADU/thumbs/2-bedroom-farmhouse-adu-under-700-sq-ft-image-of-front-thumb.jpg",
+      "hero_mobile": "/plans/Tiny%20House%20ADU/thumbs/2-bedroom-farmhouse-adu-under-700-sq-ft-image-of-front-thumb.jpg",
+      "hover": "/plans/Tiny%20House%20ADU/hover/2-bedroom-farmhouse-adu-under-700-sq-ft-main-level-floor-plan-architectural-drawing.jpg",
+      "gallery": [
+        "/plans/Tiny%20House%20ADU/gallery/2-bedroom-farmhouse-adu-under-700-sq-ft-back-elevation-architectural-drawing.jpg",
+        "/plans/Tiny%20House%20ADU/gallery/2-bedroom-farmhouse-adu-under-700-sq-ft-front-elevation-architectural-drawing.jpg",
+        "/plans/Tiny%20House%20ADU/gallery/2-bedroom-farmhouse-adu-under-700-sq-ft-image-of-front.jpg",
+        "/plans/Tiny%20House%20ADU/gallery/2-bedroom-farmhouse-adu-under-700-sq-ft-left-elevation-architectural-drawing.jpg",
+        "/plans/Tiny%20House%20ADU/gallery/2-bedroom-farmhouse-adu-under-700-sq-ft-right-elevation-architectural-drawing.jpg"
+      ],
+      "floorplan": [
+        "/plans/Tiny%20House%20ADU/floorplans/2-bedroom-farmhouse-adu-under-700-sq-ft-main-level-floor-plan-architectural-drawing.jpg"
+      ]
+    },
+    "tags": [],
+    "status": "published"
+  }
+]
+
