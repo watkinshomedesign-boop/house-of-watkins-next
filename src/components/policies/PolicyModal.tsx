@@ -30,14 +30,19 @@ export function PolicyModal(props: PolicyModalProps) {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [open, onClose]);
 
-  if (!mounted || !open) return null;
+  // Keep the modal mounted (but hidden) so heavy policy content can preload
+  // before the user clicks to open it. This avoids a blank modal / loading delay.
+  if (!mounted) return null;
 
   return createPortal(
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4"
+      className="fixed inset-0 z-50 items-center justify-center bg-black/40 px-4"
+      style={{ display: open ? "flex" : "none" }}
       onMouseDown={(e) => {
         if (e.target === e.currentTarget) onClose();
       }}
+      role="dialog"
+      aria-modal={open ? true : undefined}
       aria-hidden={!open}
     >
       <div className="relative w-full max-w-3xl rounded-[24px] bg-white shadow-xl">

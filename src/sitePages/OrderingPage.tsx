@@ -364,11 +364,47 @@ export function OrderingPage() {
   const [termsAccepted, setTermsAccepted] = useState(false);
   const [termsScrolledToEnd, setTermsScrolledToEnd] = useState(false);
   const termsScrollRef = useRef<HTMLDivElement | null>(null);
+  const termsPrefetchStartedRef = useRef(false);
 
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
 
   const [showThankYou, setShowThankYou] = useState(false);
+
+  // Preload Terms HTML in the background so opening the modal feels instant.
+  useEffect(() => {
+    let cancelled = false;
+
+    async function run() {
+      if (termsPrefetchStartedRef.current) return;
+      termsPrefetchStartedRef.current = true;
+      if (termsHtml) return;
+      setTermsLoading(true);
+      setTermsError(null);
+      try {
+        const res = await fetch("/api/terms", { method: "GET" });
+        const json = (await res.json()) as any;
+        if (cancelled) return;
+        if (!res.ok) {
+          setTermsError(String(json?.error ?? "Failed to load terms"));
+          return;
+        }
+        setTermsHtml(String(json?.html ?? ""));
+      } catch (e: any) {
+        if (!cancelled) setTermsError(String(e?.message ?? "Failed to load terms"));
+      } finally {
+        if (!cancelled) setTermsLoading(false);
+      }
+    }
+
+    // Let the page render first, then warm the cache.
+    const id = window.setTimeout(run, 0);
+    return () => {
+      cancelled = true;
+      window.clearTimeout(id);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     let cancelled = false;
@@ -376,6 +412,7 @@ export function OrderingPage() {
     async function run() {
       if (!termsOpen) return;
       if (termsHtml) return;
+      if (termsLoading) return;
 
       setTermsLoading(true);
       setTermsError(null);
@@ -399,7 +436,7 @@ export function OrderingPage() {
     return () => {
       cancelled = true;
     };
-  }, [termsOpen, termsHtml]);
+  }, [termsOpen, termsHtml, termsLoading]);
 
   useEffect(() => {
     if (!termsOpen) return;
