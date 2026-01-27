@@ -14,11 +14,34 @@ function imageUrl(source: unknown, width: number) {
   }
 }
 
-export function generateMetadata(): Metadata {
+async function getSiteUrl(): Promise<string> {
+  const url = process.env.NEXT_PUBLIC_SITE_URL || process.env.VERCEL_URL;
+  if (url) {
+    return url.startsWith("http") ? url : `https://${url}`;
+  }
+  return "https://houseofwatkins.com";
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  const baseUrl = await getSiteUrl();
+  const canonicalUrl = `${baseUrl}/about`;
+
   return {
     title: "About Us | House of Watkins",
     description:
       "Meet House of Watkins and learn how we turn ideas into permit-ready house plans with a thoughtful, eco-friendly design process.",
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    openGraph: {
+      title: "About Us | House of Watkins",
+      description:
+        "Meet House of Watkins and learn how we turn ideas into permit-ready house plans with a thoughtful, eco-friendly design process.",
+      url: canonicalUrl,
+      siteName: "House of Watkins",
+      locale: "en_US",
+      type: "website",
+    },
   };
 }
 

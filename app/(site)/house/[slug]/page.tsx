@@ -22,11 +22,22 @@ function defaultDescription(planName: string, description: string | null | undef
   return `Explore ${name}, including square footage, key features, and downloadable plan options.`;
 }
 
+async function getSiteUrl(): Promise<string> {
+  const url = process.env.NEXT_PUBLIC_SITE_URL || process.env.VERCEL_URL;
+  if (url) {
+    return url.startsWith("http") ? url : `https://${url}`;
+  }
+  return "https://houseofwatkins.com";
+}
+
 export async function generateMetadata(props: { params: { slug: string } }): Promise<Metadata> {
   const plan = await getPlanBySlug(props.params.slug);
   if (!plan) {
     notFound();
   }
+
+  const baseUrl = await getSiteUrl();
+  const canonicalUrl = `${baseUrl}/house/${plan.slug}`;
 
   const title = (plan.seo_title || "").trim() || defaultTitle(plan.name);
   const description = (plan.seo_description || "").trim() || defaultDescription(plan.name, plan.description);
@@ -36,16 +47,24 @@ export async function generateMetadata(props: { params: { slug: string } }): Pro
   return {
     title,
     description,
-    openGraph: ogUrl
-      ? {
-          title,
-          description,
-          images: [{ url: ogUrl }],
-        }
-      : {
-          title,
-          description,
-        },
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    openGraph: {
+      title,
+      description,
+      url: canonicalUrl,
+      siteName: "House of Watkins",
+      images: ogUrl ? [{ url: ogUrl }] : undefined,
+      locale: "en_US",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: ogUrl ? [ogUrl] : undefined,
+    },
   };
 }
 
