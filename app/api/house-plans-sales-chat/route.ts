@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import OpenAI from "openai";
 import { getSupabaseAdmin } from "@/lib/supabaseAdmin";
+import { getServerSanityClient, hasSanity } from "@/lib/sanity/serverClient";
 
 export const runtime = "nodejs";
 
@@ -92,6 +93,46 @@ function storagePublicUrl(pathOrUrl: string | null | undefined) {
 function startingPriceUsd(heatedSqft: number) {
   const price = 1250 + 0.65 * heatedSqft;
   return Math.round(price);
+}
+
+type PlanMediaResolved = {
+  planSlug: string;
+  frontThumbnailUrl: string | null;
+  planThumbnailUrl: string | null;
+  galleryUrls: string[];
+};
+
+async function getPlanMediaBySlugs(slugs: string[]): Promise<Record<string, PlanMediaResolved>> {
+  const unique = Array.from(new Set((slugs ?? []).map((s) => String(s || "").trim()).filter(Boolean)));
+  if (!hasSanity() || unique.length === 0) return {};
+
+  const client = getServerSanityClient();
+  const query = `*[_type == "planMedia" && planSlug in $slugs] {
+    planSlug,
+    "frontThumbnailUrl": frontThumbnail.asset->url,
+    "planThumbnailUrl": planThumbnail.asset->url,
+    "galleryUrls": gallery[].asset->url
+  }`;
+
+  try {
+    const items = (await client.fetch(query, { slugs: unique }, { next: { revalidate: 60 } })) as any[];
+    const map: Record<string, PlanMediaResolved> = {};
+    for (const it of items ?? []) {
+      const planSlug = String(it?.planSlug || "").trim();
+      if (!planSlug) continue;
+      map[planSlug] = {
+        planSlug,
+        frontThumbnailUrl: typeof it?.frontThumbnailUrl === "string" ? it.frontThumbnailUrl : null,
+        planThumbnailUrl: typeof it?.planThumbnailUrl === "string" ? it.planThumbnailUrl : null,
+        galleryUrls: Array.isArray(it?.galleryUrls)
+          ? it.galleryUrls.map((u: any) => String(u || "").trim()).filter((u: any) => u)
+          : [],
+      };
+    }
+    return map;
+  } catch {
+    return {};
+  }
 }
 
 async function embedQuery(openai: OpenAI, input: string): Promise<number[]> {
@@ -201,6 +242,9 @@ export async function POST(req: Request) {
       }
     }
 
+    // Fetch plan media from Sanity for better images
+    const planMediaMap = await getPlanMediaBySlugs(slugs);
+
     const candidates = rows
       .map((r) => {
         const slug = String(r.plan_id || "").trim();
@@ -208,9 +252,15 @@ export async function POST(req: Request) {
         const totalSqft = plan && typeof plan.total_sqft === "number" ? plan.total_sqft : null;
         const priceUsd = totalSqft != null ? startingPriceUsd(totalSqft) : 0;
 
+        // Try Sanity media first (frontThumbnail or gallery), then fallback to plan.images
+        const pm = planMediaMap[slug];
+        const sanityImage = pm?.frontThumbnailUrl || pm?.galleryUrls?.[0] || null;
+        
         const hero =
           plan?.images?.hero_desktop || plan?.images?.hero_mobile || plan?.images?.hero || plan?.images?.gallery?.[0] || null;
-        const resolved = storagePublicUrl(hero) || "/placeholders/plan-hero.svg";
+        const fallbackImage = storagePublicUrl(hero) || "/placeholders/plan-hero.svg";
+        
+        const resolved = sanityImage || fallbackImage;
 
         return {
           slug,

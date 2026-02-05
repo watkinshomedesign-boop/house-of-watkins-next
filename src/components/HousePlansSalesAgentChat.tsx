@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { MD_UP_MEDIA_QUERY, useMediaQuery } from "@/lib/useMediaQuery";
+import { useMediaQuery } from "@/lib/useMediaQuery";
 
 type SalesSession = {
   bedrooms?: string;
@@ -86,8 +86,10 @@ type HousePlansSalesAgentChatProps = {
 };
 
 export function HousePlansSalesAgentChat(props: HousePlansSalesAgentChatProps) {
-  const isDesktop = useMediaQuery(MD_UP_MEDIA_QUERY, { serverFallback: true });
-
+  // Desktop: >= 1280px (xl breakpoint) - dialog attached to button
+  // Tablet/Mobile: < 1280px - centered dialog with backdrop
+  const isDesktop = useMediaQuery("(min-width: 1280px)", { serverFallback: true });
+  
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [session, setSession] = useState<SalesSession>({});
@@ -227,23 +229,24 @@ export function HousePlansSalesAgentChat(props: HousePlansSalesAgentChatProps) {
   // Chat dialog render function passed to children
   const renderChatDialog = () => open ? (
     <>
-      {/* Backdrop for mobile */}
+      {/* Backdrop - only on tablet/mobile */}
       {!isDesktop && (
         <div 
           className="fixed inset-0 bg-black/20 z-40"
           onClick={() => setOpen(false)}
         />
       )}
+      {/* Dialog container */}
       <div
-        className={`z-50 ${
-          isDesktop 
-            ? "absolute top-full mt-2 right-0 w-[850px]" 
-            : "fixed top-[140px] left-2 right-2"
-        }`}
+        className={
+          isDesktop
+            ? "absolute top-full mt-2 right-0 w-[850px] z-50"
+            : "z-50 fixed inset-x-0 top-[100px] mx-auto w-[calc(100%-16px)] max-w-[850px] md:top-[140px] md:w-[calc(100%-32px)] lg:w-[calc(100%-64px)]"
+        }
       >
       <div 
         className={`flex flex-col overflow-hidden border border-neutral-200 bg-white shadow-lg rounded-[16px] ${
-          isDesktop ? "h-[460px]" : "h-[calc(100vh-160px)] max-h-[460px]"
+          isDesktop ? "h-[460px]" : "h-[calc(100vh-120px)] max-h-[460px]"
         }`}
       >
         <div className="flex items-center justify-between border-b border-neutral-100 px-4 py-3">
