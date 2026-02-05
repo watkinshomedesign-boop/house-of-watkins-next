@@ -27,6 +27,7 @@ export const ProductCard = (props: ProductCardProps) => {
   } as const;
 
   const show3d = Boolean(String(props.tour3dUrl || "").trim());
+  const renderFavoriteInside = !props.fullCardLink;
 
   const mobileCta =
     props.href && !props.fullCardLink ? (
@@ -72,7 +73,7 @@ export const ProductCard = (props: ProductCardProps) => {
                   draggable={false}
                 />
               ) : null}
-              {props.planSlug ? <FavoriteButton planSlug={props.planSlug} /> : null}
+              {renderFavoriteInside && props.planSlug ? <FavoriteButton planSlug={props.planSlug} /> : null}
             </PlanImage>
 
             <div className="static [align-items:normal] box-content caret-black gap-x-[normal] block flex-row justify-normal min-h-0 min-w-0 outline-black gap-y-[normal] w-auto md:relative md:items-center md:aspect-auto md:box-border md:caret-transparent md:gap-x-[12.416px] md:flex md:justify-between md:min-h-[auto] md:min-w-[auto] md:outline-[oklab(0.708_0_0_/_0.5)] md:overscroll-x-auto md:overscroll-y-auto md:gap-y-[12.416px] md:snap-align-none md:snap-normal md:snap-none md:decoration-auto md:underline-offset-auto md:w-full md:[mask-position:0%] md:bg-left-top md:pt-[17.792px] md:scroll-m-0 md:scroll-p-[auto]">
@@ -223,7 +224,7 @@ export const ProductCard = (props: ProductCardProps) => {
               draggable={false}
             />
           ) : null}
-          {props.planSlug ? <FavoriteButton planSlug={props.planSlug} /> : null}
+          {renderFavoriteInside && props.planSlug ? <FavoriteButton planSlug={props.planSlug} /> : null}
         </PlanImage>
 
         <div className="p-4">
@@ -263,9 +264,16 @@ export const ProductCard = (props: ProductCardProps) => {
 
   if (props.href && props.fullCardLink) {
     return (
-      <Link href={props.href} className="contents">
-        {content}
-      </Link>
+      <div className="relative">
+        <Link href={props.href} className="contents">
+          {content}
+        </Link>
+        {props.planSlug ? (
+          <div className="absolute right-4 top-4 z-30 md:right-[calc(17.792px+4px)] md:top-[calc(17.792px+4px)]">
+            <FavoriteButton planSlug={props.planSlug} layout="inline" />
+          </div>
+        ) : null}
+      </div>
     );
   }
 

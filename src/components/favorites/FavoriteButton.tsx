@@ -51,17 +51,32 @@ function Modal(props: {
   return createPortal(
     <div
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4"
+      onClick={(e) => {
+        e.preventDefault();
+        e.stopPropagation();
+      }}
       onMouseDown={(e) => {
+        e.stopPropagation();
         if (e.target === e.currentTarget) props.onClose();
+      }}
+      onTouchEnd={(e) => {
+        e.stopPropagation();
       }}
       aria-hidden={!props.open}
     >
-      <div className="w-full max-w-md rounded-2xl bg-white shadow-xl">
+      <div 
+        className="w-full max-w-md rounded-2xl bg-white shadow-xl"
+        onClick={(e) => e.stopPropagation()}
+      >
         <div className="flex items-center justify-between border-b border-neutral-200 px-5 py-4">
           <div className="text-base font-semibold">{props.title}</div>
           <button
             type="button"
-            onClick={props.onClose}
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              props.onClose();
+            }}
             className="rounded-full p-2 text-neutral-600 hover:bg-neutral-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-600 focus-visible:ring-offset-2"
             aria-label="Close"
           >
@@ -169,13 +184,17 @@ export function FavoriteButton(props: { planSlug: string; className?: string; la
         type="button"
         aria-pressed={pressed}
         onClick={onToggle}
+        onTouchEnd={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+        }}
         onKeyDown={(e) => {
           if (e.key === "Enter" || e.key === " ") onToggle(e);
         }}
         className={
           (props.layout === "inline"
-            ? "relative z-10 flex h-10 w-10 items-center justify-center rounded-full border border-white/30 bg-neutral-900/30 text-white backdrop-blur-sm transition-colors hover:bg-neutral-900/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-600 focus-visible:ring-offset-2 "
-            : "absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-full border border-white/30 bg-neutral-900/30 text-white backdrop-blur-sm transition-colors hover:bg-neutral-900/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-600 focus-visible:ring-offset-2 ") +
+            ? "relative z-20 pointer-events-auto flex h-10 w-10 items-center justify-center rounded-full border border-white/30 bg-neutral-900/30 text-white backdrop-blur-sm transition-colors hover:bg-neutral-900/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-600 focus-visible:ring-offset-2 "
+            : "absolute right-4 top-4 z-20 pointer-events-auto flex h-10 w-10 items-center justify-center rounded-full border border-white/30 bg-neutral-900/30 text-white backdrop-blur-sm transition-colors hover:bg-neutral-900/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-600 focus-visible:ring-offset-2 ") +
           (props.className ?? "")
         }
       >
