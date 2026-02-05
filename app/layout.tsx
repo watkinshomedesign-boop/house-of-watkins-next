@@ -1,6 +1,7 @@
 import "./globals.css";
 import { CartProvider } from "@/lib/cart/CartContext";
 import { FavoritesProvider } from "@/lib/favorites/useFavorites";
+import { PlansCacheProvider } from "@/lib/plans/PlansCache";
 
 export default function RootLayout({
   children,
@@ -11,7 +12,9 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <CartProvider>
-          <FavoritesProvider>{children}</FavoritesProvider>
+          <FavoritesProvider>
+            <PlansCacheProvider>{children}</PlansCacheProvider>
+          </FavoritesProvider>
         </CartProvider>
       </body>
     </html>

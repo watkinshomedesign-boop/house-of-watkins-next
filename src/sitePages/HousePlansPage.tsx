@@ -13,6 +13,7 @@ import { ProductCard } from "@/sections/ProductGrid/components/ProductCard";
 import { MobileFooter } from "@/sitePages/home/mobile/MobileFooter";
 import { PlanGridSkeleton, PlanListSkeleton } from "@/components/PlanCardsSkeleton";
 import { HousePlansSalesAgentChat, ChatAIButton } from "@/components/HousePlansSalesAgentChat";
+import { usePlansCache } from "@/lib/plans/PlansCache";
 
  import iconX from "../../assets/Final small icon images black svg/Icon X-black.svg";
  import searchIcon from "../../assets/search Icon.png";
@@ -170,9 +171,8 @@ export type HousePlansPageProps = {
 };
 
 function useHousePlansCatalogState() {
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [plans, setPlans] = useState<CatalogPlan[]>([]);
+  const { plans: cachedPlans, loading, error } = usePlansCache();
+  const plans = cachedPlans as CatalogPlan[];
 
   const [query, setQuery] = useState("");
   const [sort, setSort] = useState<SortKey>("popular");
@@ -208,35 +208,6 @@ function useHousePlansCatalogState() {
 
   const [page, setPage] = useState(1);
   const pageSize = desktopFiltersOpen ? 8 : 9;
-
-  useEffect(() => {
-    let mounted = true;
-    setLoading(true);
-    setError(null);
-
-    fetch("/api/catalog/plans?includeStats=1")
-      .then(async (r) => {
-        const j = await r.json();
-        if (!r.ok) throw new Error(j.error || "Failed to load plans");
-        return j;
-      })
-      .then((j) => {
-        if (!mounted) return;
-        setPlans((j.plans ?? []) as CatalogPlan[]);
-      })
-      .catch((e: any) => {
-        if (!mounted) return;
-        setError(e?.message || "Failed to load");
-      })
-      .finally(() => {
-        if (!mounted) return;
-        setLoading(false);
-      });
-
-    return () => {
-      mounted = false;
-    };
-  }, []);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();

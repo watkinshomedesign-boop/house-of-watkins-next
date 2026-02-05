@@ -10,28 +10,17 @@ import { useCart } from "@/lib/cart/CartContext";
 import { cartToCheckoutItems } from "@/lib/cart/toCheckoutItems";
 import { getStoredBuilderCode, normalizeBuilderCode, setStoredBuilderCode } from "@/lib/builderPromo/storage";
 import { useFavorites } from "@/lib/favorites/useFavorites";
+import { usePlansCache, type CachedPlan } from "@/lib/plans/PlansCache";
 
 import { HouseGrid } from "@/sections/HouseGrid";
 import type { Plan } from "@/lib/plans";
 import { FavoriteButton } from "@/components/favorites/FavoriteButton";
 
-type CatalogPlan = {
-  id: string;
-  slug: string;
-  name: string;
-  heated_sqft: number;
-  beds: number | null;
-  baths: number | null;
-  stories: number | null;
-  garage_bays: number | null;
-  cardImages?: { front?: string; plan?: string };
-};
-
 function formatUsdFromCents(cents: number) {
   return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(cents / 100);
 }
 
-function safePlanImage(plan: CatalogPlan | undefined | null) {
+function safePlanImage(plan: CachedPlan | undefined | null) {
   const front = String(plan?.cardImages?.front ?? "").trim();
   const p = String(plan?.cardImages?.plan ?? "").trim();
   return front || p || "/placeholders/plan-hero.svg";
@@ -41,8 +30,9 @@ export function CartPageDesktop() {
   const cart = useCart();
   const fav = useFavorites();
 
-  const [plans, setPlans] = useState<CatalogPlan[]>([]);
-  const [plansLoaded, setPlansLoaded] = useState(false);
+  const { plans: cachedPlans, loading: plansLoading } = usePlansCache();
+  const plans = cachedPlans as CachedPlan[];
+  const plansLoaded = !plansLoading;
 
   const [builderCode, setBuilderCode] = useState("");
   const [promoValue, setPromoValue] = useState("");
@@ -56,36 +46,8 @@ export function CartPageDesktop() {
   const [total, setTotal] = useState("$ 0.00");
   const [lineTotals, setLineTotals] = useState<string[]>([]);
 
-  useEffect(() => {
-    let mounted = true;
-    setPlansLoaded(false);
-
-    fetch("/api/catalog/plans")
-      .then(async (r) => {
-        const j = await r.json();
-        if (!r.ok) throw new Error(j?.error || "Failed to load plans");
-        return j;
-      })
-      .then((j) => {
-        if (!mounted) return;
-        setPlans((j?.plans ?? []) as CatalogPlan[]);
-      })
-      .catch(() => {
-        if (!mounted) return;
-        setPlans([]);
-      })
-      .finally(() => {
-        if (!mounted) return;
-        setPlansLoaded(true);
-      });
-
-    return () => {
-      mounted = false;
-    };
-  }, []);
-
   const planBySlug = useMemo(() => {
-    const m = new Map<string, CatalogPlan>();
+    const m = new Map<string, CachedPlan>();
     for (const p of plans) m.set(String(p.slug), p);
     return m;
   }, [plans]);

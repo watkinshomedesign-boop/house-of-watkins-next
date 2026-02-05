@@ -12,6 +12,7 @@ import { useTypographyStyle } from "@/lib/typographyContext";
 import { getTextStyleCss } from "@/lib/typography";
 import { useCart } from "@/lib/cart/CartContext";
 import { FavoritesProvider } from "@/lib/favorites/useFavorites";
+import { usePlansCache, type CachedPlan } from "@/lib/plans/PlansCache";
 
 import { PlanChangeDescriptionModal } from "@/components/PlanChangeDescriptionModal";
 
@@ -71,20 +72,7 @@ function isUnoptimizedImage(src: string) {
   );
 }
 
-type TrendingCatalogPlan = {
-  id: string;
-  slug: string;
-  name: string;
-  heated_sqft: number;
-  beds: number | null;
-  baths: number | null;
-  stories: number | null;
-  garage_bays: number | null;
-  cardImages: { front: string; plan: string };
-  stats: { views: number; favorites: number; purchases: number };
-};
-
-function trendingScore(p: TrendingCatalogPlan) {
+function trendingScore(p: CachedPlan) {
   return (p.stats?.purchases ?? 0) * 100 + (p.stats?.favorites ?? 0) * 10 + (p.stats?.views ?? 0);
 }
 
@@ -93,45 +81,14 @@ function trendingStartingPriceUsd(heatedSqft: number) {
   return `$${Math.round(price).toLocaleString()}`;
 }
 
-function trendingSafeImageSrc(p: TrendingCatalogPlan) {
+function trendingSafeImageSrc(p: CachedPlan) {
   const front = String(p.cardImages?.front ?? "").trim();
   const plan = String(p.cardImages?.plan ?? "").trim();
   return front || plan || "/placeholders/plan-hero.svg";
 }
 
 function MobileTrendingPlans(props: { excludeSlug?: string }) {
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [plans, setPlans] = useState<TrendingCatalogPlan[]>([]);
-
-  useEffect(() => {
-    let mounted = true;
-    setLoading(true);
-    setError(null);
-
-    fetch("/api/catalog/plans?includeStats=1")
-      .then(async (r) => {
-        const j = await r.json();
-        if (!r.ok) throw new Error(j.error || "Failed to load plans");
-        return j;
-      })
-      .then((j) => {
-        if (!mounted) return;
-        setPlans((j.plans ?? []) as TrendingCatalogPlan[]);
-      })
-      .catch((e: any) => {
-        if (!mounted) return;
-        setError(e?.message || "Failed to load");
-      })
-      .finally(() => {
-        if (!mounted) return;
-        setLoading(false);
-      });
-
-    return () => {
-      mounted = false;
-    };
-  }, []);
+  const { plans, loading, error } = usePlansCache();
 
   const top = useMemo(() => {
     const filtered = (plans ?? []).filter((p) => String(p.slug) && String(p.slug) !== String(props.excludeSlug || ""));

@@ -4,39 +4,21 @@ import { useEffect, useMemo, useState } from "react";
 import { HouseGrid } from "@/sections/HouseGrid";
 import type { Plan } from "@/lib/plans";
 import { PlanGridSkeleton } from "@/components/PlanCardsSkeleton";
+import { usePlansCache, type CachedPlan } from "@/lib/plans/PlansCache";
 
-type CatalogPlan = {
-  id: string;
-  slug: string;
-  name: string;
-  description: string | null;
-  tour3d_url?: string | null;
-  heated_sqft: number;
-  beds: number | null;
-  baths: number | null;
-  stories: number | null;
-  garage_bays: number | null;
-  width_ft: number | null;
-  depth_ft: number | null;
-  tags: string[] | null;
-  filters: any;
-  cardImages: { front: string; plan: string };
-  stats: { views: number; favorites: number; purchases: number };
-};
-
-function popularScore(p: CatalogPlan) {
+function popularScore(p: CachedPlan) {
   return (p.stats?.purchases ?? 0) * 100 + (p.stats?.favorites ?? 0) * 10 + (p.stats?.views ?? 0);
 }
 
-function toHouseGridPlan(p: CatalogPlan): Plan {
+function toHouseGridPlan(p: CachedPlan): Plan {
   const hero = p.cardImages?.front || "/placeholders/plan-hero.svg";
   const plan = p.cardImages?.plan || "/placeholders/floorplan.svg";
 
   return {
-    id: p.id,
+    id: p.id ?? p.slug,
     slug: p.slug,
     name: p.name,
-    description: p.description,
+    description: p.description ?? null,
     tour3d_url: p.tour3d_url ?? null,
     filters: p.filters ?? {},
     heated_sqft: Number(p.heated_sqft ?? 0),
@@ -44,9 +26,9 @@ function toHouseGridPlan(p: CatalogPlan): Plan {
     baths: p.baths,
     stories: p.stories,
     garage_bays: p.garage_bays,
-    width_ft: p.width_ft,
-    depth_ft: p.depth_ft,
-    tags: p.tags,
+    width_ft: p.width_ft ?? null,
+    depth_ft: p.depth_ft ?? null,
+    tags: p.tags ?? null,
     images: {
       hero_desktop: hero,
       hero_mobile: hero,
@@ -58,40 +40,8 @@ function toHouseGridPlan(p: CatalogPlan): Plan {
 }
 
 export const MostPopularPlans = () => {
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [plans, setPlans] = useState<CatalogPlan[]>([]);
+  const { plans, loading, error } = usePlansCache();
   const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    let mounted = true;
-    setLoading(true);
-    setError(null);
-    setVisible(false);
-
-    fetch("/api/catalog/plans?includeStats=1")
-      .then(async (r) => {
-        const j = await r.json();
-        if (!r.ok) throw new Error(j.error || "Failed to load plans");
-        return j;
-      })
-      .then((j) => {
-        if (!mounted) return;
-        setPlans((j.plans ?? []) as CatalogPlan[]);
-      })
-      .catch((e: any) => {
-        if (!mounted) return;
-        setError(e?.message || "Failed to load");
-      })
-      .finally(() => {
-        if (!mounted) return;
-        setLoading(false);
-      });
-
-    return () => {
-      mounted = false;
-    };
-  }, []);
 
   useEffect(() => {
     if (loading || error) return;

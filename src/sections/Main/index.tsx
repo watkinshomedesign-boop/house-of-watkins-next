@@ -9,22 +9,10 @@ import { useCart } from "@/lib/cart/CartContext";
 import { cartToCheckoutItems } from "@/lib/cart/toCheckoutItems";
 import { getStoredBuilderCode } from "@/lib/builderPromo/storage";
 import { useFavorites } from "@/lib/favorites/useFavorites";
+import { usePlansCache, type CachedPlan } from "@/lib/plans/PlansCache";
 
 import { HouseGrid } from "@/sections/HouseGrid";
 import type { Plan } from "@/lib/plans";
-
-type CatalogPlan = {
-  id: string;
-  slug: string;
-  name: string;
-  heated_sqft: number;
-  beds: number | null;
-  baths: number | null;
-  stories: number | null;
-  garage_bays: number | null;
-  images?: any;
-  cardImages?: { front?: string; plan?: string };
-};
 
 function formatUsdFromCents(cents: number) {
   return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(cents / 100);
@@ -34,8 +22,9 @@ export const Main = () => {
   const cart = useCart();
   const fav = useFavorites();
 
-  const [plans, setPlans] = useState<CatalogPlan[]>([]);
-  const [plansLoaded, setPlansLoaded] = useState(false);
+  const { plans: cachedPlans, loading: plansLoading } = usePlansCache();
+  const plans = cachedPlans as CachedPlan[];
+  const plansLoaded = !plansLoading;
 
   const [builderCode, setBuilderCode] = useState("");
   const [quoteSubtotal, setQuoteSubtotal] = useState("$ 0.00");
@@ -46,34 +35,6 @@ export const Main = () => {
 
   const [paymentMethod, setPaymentMethod] = useState<"card" | "paypal" | "stripe">("card");
   const [agreeTerms, setAgreeTerms] = useState(false);
-
-  useEffect(() => {
-    let mounted = true;
-    setPlansLoaded(false);
-
-    fetch("/api/catalog/plans")
-      .then(async (r) => {
-        const j = await r.json();
-        if (!r.ok) throw new Error(j?.error || "Failed to load plans");
-        return j;
-      })
-      .then((j) => {
-        if (!mounted) return;
-        setPlans((j?.plans ?? []) as CatalogPlan[]);
-      })
-      .catch(() => {
-        if (!mounted) return;
-        setPlans([]);
-      })
-      .finally(() => {
-        if (!mounted) return;
-        setPlansLoaded(true);
-      });
-
-    return () => {
-      mounted = false;
-    };
-  }, []);
 
   useEffect(() => {
     setBuilderCode(getStoredBuilderCode());

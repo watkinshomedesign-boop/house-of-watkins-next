@@ -1,19 +1,8 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo } from "react";
 import { ProductCard } from "@/sections/ProductGrid/components/ProductCard";
-
-type CatalogPlan = {
-  slug: string;
-  name: string;
-  heated_sqft: number;
-  beds: number | null;
-  baths: number | null;
-  stories: number | null;
-  garage_bays: number | null;
-  cardImages?: { front: string; plan: string };
-  tour3d_url?: string | null;
-};
+import { usePlansCache } from "@/lib/plans/PlansCache";
 
 function formatSqft(n: number) {
   return n.toLocaleString();
@@ -25,28 +14,7 @@ function startingPriceUsd(heatedSqft: number) {
 }
 
 export const ProductGrid = () => {
-  const [plans, setPlans] = useState<CatalogPlan[]>([]);
-
-  useEffect(() => {
-    let mounted = true;
-    fetch("/api/catalog/plans")
-      .then(async (r) => {
-        const j = await r.json();
-        if (!r.ok) throw new Error(j.error || "Failed");
-        return j;
-      })
-      .then((j) => {
-        if (!mounted) return;
-        setPlans((j.plans ?? []) as CatalogPlan[]);
-      })
-      .catch(() => {
-        if (!mounted) return;
-        setPlans([]);
-      });
-    return () => {
-      mounted = false;
-    };
-  }, []);
+  const { plans } = usePlansCache();
 
   const featured = useMemo(() => plans.slice(0, 6), [plans]);
   if (featured.length === 0) return null;

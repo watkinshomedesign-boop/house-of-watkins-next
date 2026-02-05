@@ -3,22 +3,9 @@
 import { useEffect, useMemo, useState } from "react";
 import { ProductCard } from "@/sections/ProductGrid/components/ProductCard";
 import { PlanListSkeleton } from "@/components/PlanCardsSkeleton";
+import { usePlansCache, type CachedPlan } from "@/lib/plans/PlansCache";
 
-type CatalogPlan = {
-  id?: string;
-  slug: string;
-  name: string;
-  heated_sqft: number;
-  beds: number | null;
-  baths: number | null;
-  stories: number | null;
-  garage_bays: number | null;
-  cardImages?: { front: string; plan: string };
-  tour3d_url?: string | null;
-  stats: { views: number; favorites: number; purchases: number };
-};
-
-function popularScore(p: CatalogPlan) {
+function popularScore(p: CachedPlan) {
   return (p.stats?.purchases ?? 0) * 100 + (p.stats?.favorites ?? 0) * 10 + (p.stats?.views ?? 0);
 }
 
@@ -31,47 +18,9 @@ function startingPriceUsd(heatedSqft: number) {
   return `$ ${Math.round(price)}`;
 }
 
-function safeImageSrc(p: CatalogPlan) {
-  const front = String(p.cardImages?.front ?? "").trim();
-  const plan = String(p.cardImages?.plan ?? "").trim();
-  return front || plan || "/placeholders/plan-hero.svg";
-}
-
 export function MobilePopularPlans() {
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [plans, setPlans] = useState<CatalogPlan[]>([]);
+  const { plans, loading, error } = usePlansCache();
   const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    let mounted = true;
-    setLoading(true);
-    setError(null);
-    setVisible(false);
-
-    fetch("/api/catalog/plans?includeStats=1")
-      .then(async (r) => {
-        const j = await r.json();
-        if (!r.ok) throw new Error(j.error || "Failed to load plans");
-        return j;
-      })
-      .then((j) => {
-        if (!mounted) return;
-        setPlans((j.plans ?? []) as CatalogPlan[]);
-      })
-      .catch((e: any) => {
-        if (!mounted) return;
-        setError(e?.message || "Failed to load");
-      })
-      .finally(() => {
-        if (!mounted) return;
-        setLoading(false);
-      });
-
-    return () => {
-      mounted = false;
-    };
-  }, []);
 
   useEffect(() => {
     if (loading || error) return;
