@@ -12,7 +12,7 @@ import { SearchBar } from "@/sections/Hero/components/SearchBar";
 import { ProductCard } from "@/sections/ProductGrid/components/ProductCard";
 import { MobileFooter } from "@/sitePages/home/mobile/MobileFooter";
 import { PlanGridSkeleton, PlanListSkeleton } from "@/components/PlanCardsSkeleton";
-import { HousePlansSalesAgentChat } from "@/components/HousePlansSalesAgentChat";
+import { HousePlansSalesAgentChat, ChatAIButton } from "@/components/HousePlansSalesAgentChat";
 
  import iconX from "../../assets/Final small icon images black svg/Icon X-black.svg";
  import searchIcon from "../../assets/search Icon.png";
@@ -383,6 +383,7 @@ export function HousePlansPageMobile(props: HousePlansPageProps) {
           </div>
 
           <HousePlansSalesAgentChat>
+            {({ open, toggle, renderChatDialog }) => (
             <div>
               <div className="mt-6">
                 <SearchBar
@@ -394,6 +395,7 @@ export function HousePlansPageMobile(props: HousePlansPageProps) {
                   buttonLabel="search"
                   iconSrc={props.searchIconSrc ?? undefined}
                   iconAlt={props.searchIconAlt ?? undefined}
+                  chatButton={<ChatAIButton open={open} toggle={toggle} renderChatDialog={renderChatDialog} />}
                 />
               </div>
 
@@ -492,6 +494,7 @@ export function HousePlansPageMobile(props: HousePlansPageProps) {
                 ) : null}
               </div>
             </div>
+            )}
           </HousePlansSalesAgentChat>
         </main>
 
@@ -663,6 +666,7 @@ export function HousePlansPageDesktop(props: HousePlansPageProps) {
           </div>
 
           <HousePlansSalesAgentChat>
+            {({ open, toggle, renderChatDialog }) => (
             <div>
               <div className="hidden lg:flex mt-[50px] pb-[30px] items-center justify-between gap-10">
                 <h1 className="min-w-0 text-[52px] leading-[56px] font-semibold tracking-tight text-[#1A1A1A] lg:origin-left lg:scale-[1.1] lg:-translate-y-[6px]">
@@ -670,7 +674,7 @@ export function HousePlansPageDesktop(props: HousePlansPageProps) {
                 </h1>
 
                 <div className="flex w-full max-w-[850px] items-center gap-4">
-                  <div className="relative flex-1">
+                  <div className="relative flex-1 flex items-center h-[50px] rounded-full border border-[#E0E0E0] bg-white">
                     <div className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2">
                     <img src={imgSrc(searchIcon)} alt={props.searchIconAlt ?? "Search"} className="h-4 w-4" />
                     </div>
@@ -679,8 +683,11 @@ export function HousePlansPageDesktop(props: HousePlansPageProps) {
                       placeholder="Search plans"
                       value={s.query}
                       onChange={(e) => s.setQuery(e.target.value)}
-                      className="h-[50px] w-full rounded-full border border-[#E0E0E0] bg-white pl-11 pr-4 text-[14px] leading-[20px] text-[#1A1A1A] placeholder:text-[#999]"
+                      className="h-full flex-1 rounded-full bg-transparent pl-11 pr-4 text-[14px] leading-[20px] text-[#1A1A1A] placeholder:text-[#999] outline-none"
                     />
+                    <div className="pr-2">
+                      <ChatAIButton open={open} toggle={toggle} renderChatDialog={renderChatDialog} />
+                    </div>
                   </div>
                   <button
                     type="button"
@@ -705,6 +712,7 @@ export function HousePlansPageDesktop(props: HousePlansPageProps) {
                     buttonLabel="search"
                     iconSrc={props.searchIconSrc ?? undefined}
                     iconAlt={props.searchIconAlt ?? undefined}
+                    chatButton={<ChatAIButton open={open} toggle={toggle} renderChatDialog={renderChatDialog} />}
                   />
                 </div>
               </div>
@@ -954,6 +962,7 @@ export function HousePlansPageDesktop(props: HousePlansPageProps) {
                 </div>
               </div>
             </div>
+            )}
           </HousePlansSalesAgentChat>
         </main>
         <Footer />

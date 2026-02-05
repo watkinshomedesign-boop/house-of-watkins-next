@@ -7,6 +7,7 @@ export type SearchBarProps = {
   buttonLabel?: string;
   iconSrc?: string;
   iconAlt?: string;
+  chatButton?: React.ReactNode;
 };
 
  export const SearchBar = (props: SearchBarProps) => {
@@ -41,6 +42,7 @@ export type SearchBarProps = {
                 className="text-stone-400 text-[14.325px] bg-transparent box-border caret-black block basis-0 grow leading-[21px] min-h-px min-w-px outline-[oklab(0.708_0_0_/_0.5)] text-start w-full p-0 focus:outline-none md:text-base md:leading-[24.832px]"
               />
             </div>
+            {props.chatButton}
           </div>
         </div>
         <div className="absolute text-[15.2625px] box-border caret-transparent leading-[22.8937px] outline-[oklab(0.708_0_0_/_0.5)] pointer-events-none border border-stone-200 rounded-[33.4125px] border-solid inset-0 md:text-[14.208px] md:leading-[21.312px] md:rounded-[35.584px]"></div>
