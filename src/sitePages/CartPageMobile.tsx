@@ -171,7 +171,7 @@ export function CartPageMobile() {
 
   const favoritePlans = useMemo(() => {
     const slugs = fav.favorites;
-    const out: CatalogPlan[] = [];
+    const out: CachedPlan[] = [];
     for (const p of plans) {
       if (slugs.has(String(p.slug))) out.push(p);
     }
