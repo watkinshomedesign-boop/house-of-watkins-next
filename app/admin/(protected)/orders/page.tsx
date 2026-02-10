@@ -29,7 +29,7 @@ export default async function AdminOrdersPage() {
     .order("created_at", { ascending: false })
     .limit(100);
 
-  const orders = ((data ?? []) as OrderRow[]).map((o) => ({ ...o, builder_profile: null }));
+  const orders = ((data ?? []) as OrderRow[]).map<OrderRow>((o) => ({ ...o, builder_profile: null }));
 
   const builderCodes = [...new Set(orders.map((o) => String(o.builder_code ?? "").trim().toUpperCase()).filter(Boolean))];
 
