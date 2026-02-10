@@ -55,7 +55,7 @@ export default async function AdminOrdersPage() {
           .in("id", profileIds);
 
         if (!profErr) {
-          const profileById = new Map<string, { first_name: string | null; last_name: string | null; email: string | null }>();
+          const profileById = new Map<string, NonNullable<OrderRow["builder_profile"]>>();
           for (const p of (profiles ?? []) as any[]) {
             const id = p?.id ? String(p.id) : "";
             if (!id) continue;
