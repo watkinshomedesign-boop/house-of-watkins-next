@@ -24,10 +24,59 @@ export default async function AdminOrdersPage() {
   const { data, error } = await supabase
     .from("orders")
     .select(
-      "id, email, status, subtotal_cents, shipping_cents, total_cents, currency, created_at, builder_code, builder_profile:builder_profiles(first_name,last_name,email)"
+      "id, email, status, subtotal_cents, shipping_cents, total_cents, currency, created_at, builder_code"
     )
     .order("created_at", { ascending: false })
     .limit(100);
+
+  const orders = ((data ?? []) as OrderRow[]).map((o) => ({ ...o, builder_profile: null }));
+
+  const builderCodes = [...new Set(orders.map((o) => String(o.builder_code ?? "").trim().toUpperCase()).filter(Boolean))];
+
+  if (builderCodes.length > 0) {
+    const { data: codeRows, error: codeErr }: any = await supabase
+      .from("builder_discount_codes")
+      .select("code,builder_profile_id")
+      .in("code", builderCodes);
+
+    if (!codeErr) {
+      const codeToProfileId = new Map<string, string>();
+      for (const r of (codeRows ?? []) as any[]) {
+        const code = String(r?.code ?? "").trim().toUpperCase();
+        const profileId = r?.builder_profile_id ? String(r.builder_profile_id) : "";
+        if (code && profileId) codeToProfileId.set(code, profileId);
+      }
+
+      const profileIds = [...new Set([...codeToProfileId.values()])];
+      if (profileIds.length > 0) {
+        const { data: profiles, error: profErr }: any = await supabase
+          .from("builder_profiles")
+          .select("id,first_name,last_name,email")
+          .in("id", profileIds);
+
+        if (!profErr) {
+          const profileById = new Map<string, { first_name: string | null; last_name: string | null; email: string | null }>();
+          for (const p of (profiles ?? []) as any[]) {
+            const id = p?.id ? String(p.id) : "";
+            if (!id) continue;
+            profileById.set(id, {
+              first_name: p?.first_name ?? null,
+              last_name: p?.last_name ?? null,
+              email: p?.email ?? null,
+            });
+          }
+
+          for (const o of orders) {
+            const code = String(o.builder_code ?? "").trim().toUpperCase();
+            if (!code) continue;
+            const profId = codeToProfileId.get(code);
+            if (!profId) continue;
+            o.builder_profile = profileById.get(profId) ?? null;
+          }
+        }
+      }
+    }
+  }
 
   const { count: builderOrdersCount }: any = await supabase
     .from("orders")
@@ -122,7 +171,7 @@ export default async function AdminOrdersPage() {
             </tr>
           </thead>
           <tbody>
-            {((data ?? []) as OrderRow[]).map((o) => (
+            {orders.map((o) => (
               <tr key={o.id}>
                 <td className="p-2 border">{new Date(o.created_at).toLocaleString()}</td>
                 <td className="p-2 border">{o.email}</td>

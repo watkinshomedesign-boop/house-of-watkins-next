@@ -11,22 +11,46 @@ export default async function AdminOrderDetailPage(props: { params: { id: string
   const { data: order, error: orderErr }: any = await supabase
     .from("orders")
     .select(
-      "id, email, phone, status, subtotal_cents, shipping_cents, total_cents, currency, created_at, stripe_checkout_session_id, stripe_payment_intent_id, billing_address, shipping_address, shipping_required, builder_code, builder_profile:builder_profiles(first_name,last_name,email,company)"
+      "id, email, phone, status, subtotal_cents, shipping_cents, total_cents, currency, created_at, stripe_checkout_session_id, stripe_payment_intent_id, billing_address, shipping_address, shipping_required, builder_code"
     )
     .eq("id", props.params.id)
     .maybeSingle();
 
+  const orderWithBuilderProfile = { ...order, builder_profile: null as null | any };
+
+  const builderCode = String(orderWithBuilderProfile?.builder_code ?? "").trim().toUpperCase();
+  if (builderCode) {
+    const { data: codeRow, error: codeErr }: any = await supabase
+      .from("builder_discount_codes")
+      .select("builder_profile_id")
+      .eq("code", builderCode)
+      .maybeSingle();
+
+    if (!codeErr && codeRow?.builder_profile_id) {
+      const builderProfileId = String(codeRow.builder_profile_id);
+      const { data: prof, error: profErr }: any = await supabase
+        .from("builder_profiles")
+        .select("first_name,last_name,email,company")
+        .eq("id", builderProfileId)
+        .maybeSingle();
+
+      if (!profErr && prof) {
+        orderWithBuilderProfile.builder_profile = prof;
+      }
+    }
+  }
+
   if (orderErr) {
     return <div className="text-sm text-red-600">{orderErr.message}</div>;
   }
-  if (!order) {
+  if (!orderWithBuilderProfile) {
     return <div className="text-sm">Order not found.</div>;
   }
 
   const { data: items }: any = await supabase
     .from("order_items")
     .select("id, slug, name, license_type, rush, paper_sets, addons, unit_price_cents, line_total_cents")
-    .eq("order_id", order.id);
+    .eq("order_id", orderWithBuilderProfile.id);
 
   return (
     <div className="space-y-6">
@@ -57,12 +81,12 @@ export default async function AdminOrderDetailPage(props: { params: { id: string
             <span className="text-zinc-400">—</span>
           )}
         </div>
-        {order.builder_profile ? (
+        {orderWithBuilderProfile.builder_profile ? (
           <div>
             <span className="font-medium">Builder profile:</span>{" "}
-            {`${order.builder_profile?.first_name ?? ""} ${order.builder_profile?.last_name ?? ""}`.trim()}
-            {order.builder_profile?.email ? ` • ${order.builder_profile.email}` : ""}
-            {order.builder_profile?.company ? ` • ${order.builder_profile.company}` : ""}
+            {`${orderWithBuilderProfile.builder_profile?.first_name ?? ""} ${orderWithBuilderProfile.builder_profile?.last_name ?? ""}`.trim()}
+            {orderWithBuilderProfile.builder_profile?.email ? ` • ${orderWithBuilderProfile.builder_profile.email}` : ""}
+            {orderWithBuilderProfile.builder_profile?.company ? ` • ${orderWithBuilderProfile.builder_profile.company}` : ""}
           </div>
         ) : null}
         <div>
