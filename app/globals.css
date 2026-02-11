@@ -1,4 +1,4 @@
-﻿@tailwind base;
+@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
@@ -60,5 +60,16 @@
   .page-fade {
     opacity: 1 !important;
     transition: none !important;
+  }
+}
+
+/* Hero mask: prevent clipping on desktop */
+@media (min-width: 768px) {
+  [data-hero-right-panel],
+  [data-hero-masked-panel] {
+    overflow: visible !important;
+  }
+  [data-hero-masked-panel] svg {
+    overflow: visible !important;
   }
 }

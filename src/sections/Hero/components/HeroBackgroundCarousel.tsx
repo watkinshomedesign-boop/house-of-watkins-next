@@ -102,9 +102,7 @@ export function HeroBackgroundCarousel(props: HeroBackgroundCarouselProps) {
         setPaused(false);
       }}
     >
-      <div
-        className={`${styles.masked} min-[1440px]:!w-[calc(100%+(100vw-1440px)/2)] min-[1440px]:!ml-[calc((100vw-1440px)/-2)] min-[1440px]:origin-bottom-right min-[1440px]:scale-[1.05]`}
-      >
+      <div className={styles.masked}>
         {layer}
         {debugMask ? <div className={styles.debugOverlay} /> : null}
       </div>

@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { FavoriteButton } from "@/components/favorites/FavoriteButton";
+import { Tour3dIcon } from "@/components/icons/Tour3dIcon";
 import { PlanImage } from "@/components/media/PlanImage";
 
 export type HouseImageProps = {
@@ -52,8 +53,9 @@ export const HouseImage = (props: HouseImageProps) => {
     <PlanImage
       src={backgroundVariant}
       alt=""
-      sizes="(min-width: 768px) 50vw, 100vw"
-      className="rounded-none md:rounded-[28.416px]"
+      sizes="(min-width: 768px) 384px, 100vw"
+      className="rounded-none md:h-[268px] md:w-[384px] md:rounded-[28.416px] md:shrink-0"
+      aspect="auto"
       rounded={false}
     >
       <div
@@ -61,13 +63,17 @@ export const HouseImage = (props: HouseImageProps) => {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       />
-      {show3d ? (
-        <img
-          src="/assets/Final%20small%20icon%20images%20black%20svg/3D%20Tour.svg"
-          alt="3D Tour Available"
-          className="pointer-events-none absolute inset-0 z-10 h-full w-full object-cover"
-          draggable={false}
-        />
+      {show3d && props.tour3dUrl ? (
+        <a
+          href={props.tour3dUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="absolute left-4 top-[19px] z-10 inline-flex h-[38px] min-w-0 max-w-[calc(100%-2rem)] shrink-0 items-center gap-1.5 rounded-[50px] border border-[#FF5C02] bg-white px-4 py-2 font-gilroy font-medium leading-[22px] text-[15px] text-black no-underline outline-none hover:bg-neutral-50 focus-visible:ring-2 focus-visible:ring-[#FF5C02] md:left-[18px]"
+          aria-label="Open 3D tour"
+        >
+          <Tour3dIcon className="h-5 w-5 shrink-0" />
+          <span className="truncate">3D tour</span>
+        </a>
       ) : null}
       {props.planSlug ? <FavoriteButton planSlug={props.planSlug} /> : null}
     </PlanImage>

@@ -17,14 +17,10 @@ type HouseGridProps = {
 };
 
 export const HouseGrid = (props: HouseGridProps) => {
-  const desktopCols = props.desktopCols ?? 2;
+  if (props.plans.length === 0) return null;
 
   return (
-    <div
-      className={`relative text-[15.2625px] box-border caret-transparent gap-x-[22.875px] grid grid-cols-[repeat(1,1fr)] leading-[22.8937px] outline-[oklab(0.708_0_0_/_0.5)] gap-y-[22.875px] w-full overflow-hidden md:text-[14.208px] md:gap-x-[17.792px] md:grid-cols-[repeat(2,1fr)] md:leading-[21.312px] md:gap-y-[17.792px] md:overflow-visible ${
-        desktopCols === 3 ? "lg:grid-cols-[repeat(3,1fr)]" : "lg:grid-cols-[repeat(2,1fr)]"
-      }`}
-    >
+    <div className="flex w-full flex-wrap gap-6 text-[15.2625px] leading-[22.8937px] md:text-[14.208px] md:leading-[21.312px]">
       {props.plans.map((p) => (
         <Link key={p.slug} href={`/house/${p.slug}`} className="contents">
           <HouseCard

@@ -150,8 +150,8 @@ export const InteriorHeader = () => {
 
   return (
     <header className="w-full bg-[#FAF9F7]">
-      <div className="mx-auto w-full max-w-[1440px] px-4 md:px-[50px]">
-        <div className="flex h-[72px] items-center justify-between">
+      <div className="mx-auto w-full px-4 md:px-[50px] min-[1440px]:px-[56px]">
+        <div className="flex h-[72px] w-full items-center justify-between">
           <div className="flex items-center gap-[56px]">
             <Link href="/" className="block">
               <img

@@ -12,16 +12,18 @@ function isValidEmail(email: string) {
 
 const IconHeart = (props: { filled: boolean; className?: string }) => (
   <svg
+    width="24"
+    height="24"
     viewBox="0 0 24 24"
-    className={props.className}
-    aria-hidden="true"
-    fill={props.filled ? "currentColor" : "none"}
-    stroke="currentColor"
-    strokeWidth="2"
+    fill={props.filled ? "#EA580C" : "none"}
+    stroke="white"
+    strokeWidth="1.5"
     strokeLinecap="round"
     strokeLinejoin="round"
+    className={props.className}
+    aria-hidden="true"
   >
-    <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21.2l7.8-7.8 1-1a5.5 5.5 0 0 0 0-7.8z" />
+    <path d="M12.62 20.8101C12.28 20.9301 11.72 20.9301 11.38 20.8101C8.48 19.8201 2 15.6901 2 8.6901C2 5.6001 4.49 3.1001 7.56 3.1001C9.38 3.1001 10.99 3.9801 12 5.3401C13.01 3.9801 14.63 3.1001 16.44 3.1001C19.51 3.1001 22 5.6001 22 8.6901C22 15.6901 15.52 19.8201 12.62 20.8101Z" />
   </svg>
 );
 
@@ -193,12 +195,12 @@ export function FavoriteButton(props: { planSlug: string; className?: string; la
         }}
         className={
           (props.layout === "inline"
-            ? "relative z-20 pointer-events-auto flex h-10 w-10 items-center justify-center rounded-full border border-white/30 bg-neutral-900/30 text-white backdrop-blur-sm transition-colors hover:bg-neutral-900/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-600 focus-visible:ring-offset-2 "
-            : "absolute right-4 top-4 z-20 pointer-events-auto flex h-10 w-10 items-center justify-center rounded-full border border-white/30 bg-neutral-900/30 text-white backdrop-blur-sm transition-colors hover:bg-neutral-900/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-600 focus-visible:ring-offset-2 ") +
+            ? "relative z-20 pointer-events-auto flex h-10 w-10 items-center justify-center rounded-full bg-neutral-900/30 text-white backdrop-blur-sm transition-colors hover:bg-neutral-900/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-600 focus-visible:ring-offset-2 "
+            : "absolute right-4 top-4 z-20 pointer-events-auto flex h-10 w-10 items-center justify-center rounded-full bg-neutral-900/30 text-white backdrop-blur-sm transition-colors hover:bg-neutral-900/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-600 focus-visible:ring-offset-2 ") +
           (props.className ?? "")
         }
       >
-        <IconHeart filled={pressed} className={"h-5 w-5 " + (pressed ? "text-orange-600" : "text-white")} />
+        <IconHeart filled={pressed} className="h-6 w-6" />
       </button>
 
       <Modal

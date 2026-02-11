@@ -50,23 +50,28 @@ export const Hero = (props: { cms?: HomePageHeroSlot; media?: HomePageMediaSlots
   const maskUrl = props.media?.heroMaskUrl ? "/api/hero-mask" : "/masks/home-hero-mask.png";
 
   return (
-    <div className="static box-content caret-black h-auto min-h-0 min-w-0 outline-black w-auto md:relative md:aspect-auto md:box-border md:caret-transparent md:h-[700px] md:min-h-[auto] md:min-w-[auto] md:outline-[oklab(0.708_0_0_/_0.5)] md:w-full">
-      <div className="md:mx-auto md:grid md:h-full md:max-w-[1440px] md:grid-cols-[880px_560px]">
-        <div className="relative md:h-full md:overflow-visible md:mr-[-84px]">
+    <div className="static box-content caret-black h-auto min-h-0 min-w-0 outline-black w-auto md:relative md:aspect-auto md:box-border md:caret-transparent md:h-[700px] md:min-h-[auto] md:min-w-[auto] md:overflow-visible md:outline-[oklab(0.708_0_0_/_0.5)] md:w-full">
+        <div className="md:grid md:h-full md:overflow-visible md:grid-cols-[910px_560px] min-[1440px]:grid-cols-[1fr_560px] ">
+        <div className="relative md:h-full md:overflow-visible md:mr-[-165px]">
           <HeroBackgroundCarousel imageUrls={carouselUrls} alt={bgAlt} maskUrl={maskUrl} intervalMs={5000} />
         </div>
 
-        <div className="relative md:z-30 md:h-full md:-ml-[40px] md:w-[640px]">
+        <div className="relative md:z-30 md:h-full md:ml-[40px] md:w-[640px] md:overflow-visible min-[1440px]:w-[calc(100%+40px)]" data-hero-right-panel>
           {debugMask ? (
             <div className="absolute left-2 top-2 z-[999] bg-black/80 px-2 py-1 text-[11px] font-semibold tracking-wide text-white">
               DEBUG MASK
             </div>
           ) : null}
+          {/* White fill for the area beyond the SVG mask on wide screens */}
+          <div
+            className="hidden min-[1440px]:block absolute inset-y-0 right-0 bg-white z-[5]"
+            style={{ left: "400px" }}
+          />
           <div className="absolute inset-0 z-50" data-hero-cta>
             <HeroCallToAction cms={{ label: ctaLabel, href: ctaUrl }} />
           </div>
           <div
-            className={`absolute inset-0 z-10 ${styles.maskedPanel}`}
+            className={`absolute inset-0 z-10 overflow-visible ${styles.maskedPanel}`}
             data-hero-masked-panel
           >
             <svg
@@ -97,7 +102,7 @@ export const Hero = (props: { cms?: HomePageHeroSlot; media?: HomePageMediaSlots
               </g>
             </svg>
 
-            <div className="relative z-10">
+            <div className="relative z-10 md:-translate-x-[30px]">
               <HeroHeading cms={{ line1: headlineLine1, line2: headlineLine2 }} />
               <HeroDescription cms={{ subhead }} />
               <HeroFeatureImage cms={{ src: headshotSrc, alt: headshotAlt }} />
