@@ -30,6 +30,7 @@ function resolvePublicImageUrl(pathOrUrl: string | null | undefined) {
   const s = String(pathOrUrl || "").trim();
   if (!s) return null;
   if (s.startsWith("http://") || s.startsWith("https://")) return s;
+  if (s.includes("cloudpano.com")) return `https://${s.replace(/^\/+/, "")}`;
   if (s.startsWith("/")) return s;
   const base = String(process.env.NEXT_PUBLIC_SUPABASE_URL || "").replace(/\/$/, "");
   if (!base) return null;
@@ -398,28 +399,31 @@ function ProductDetailsMobileInner() {
     plan.images?.gallery?.[0] ||
     "/placeholders/plan-hero.svg";
 
-  const images = useMemo(() => {
+  const viewAllMedia = useMemo(() => {
     const gResolved = Array.isArray((plan as any).galleryImages) ? (((plan as any).galleryImages ?? []) as any[]) : [];
     const fpResolved = Array.isArray((plan as any).floorplanImages) ? (((plan as any).floorplanImages ?? []) as any[]) : [];
     const gLegacy = Array.isArray(plan.images?.gallery) ? (plan.images?.gallery ?? []) : [];
     const fpLegacy = Array.isArray(plan.images?.floorplan) ? (plan.images?.floorplan ?? []) : [];
-    const raw = [...gResolved, ...gLegacy, ...fpResolved, ...fpLegacy];
+    const extraPlanMedia = [
+      (plan as any).tour3d_url,
+      (plan as any).planThumbnailUrl,
+      plan.images?.hover,
+      (plan as any).buildFeatureFloorplanUrl,
+      (plan as any).buildFeatureFloorplan,
+    ];
+    const raw = [...gResolved, ...gLegacy, ...fpResolved, ...fpLegacy, ...extraPlanMedia];
     const resolved = raw.map(resolvePublicImageUrl).filter(Boolean) as string[];
     const unique = Array.from(new Set(resolved));
     return unique.length > 0 ? unique : ["/placeholders/plan-hero.svg"];
-  }, [hero, plan]);
-
-  const galleryTabImages = useMemo(() => {
-    const gResolved = Array.isArray((plan as any).galleryImages) ? (((plan as any).galleryImages ?? []) as any[]) : [];
-    const fpResolved = Array.isArray((plan as any).floorplanImages) ? (((plan as any).floorplanImages ?? []) as any[]) : [];
-    const gLegacy = Array.isArray(plan.images?.gallery) ? (plan.images?.gallery ?? []) : [];
-    const fpLegacy = Array.isArray(plan.images?.floorplan) ? (plan.images?.floorplan ?? []) : [];
-
-    const resolvedPrimary = [...gResolved, ...fpResolved].map(resolvePublicImageUrl).filter(Boolean) as string[];
-    const resolvedFallback = [...gLegacy, ...fpLegacy].map(resolvePublicImageUrl).filter(Boolean) as string[];
-    const base = resolvedPrimary.length > 0 ? resolvedPrimary : resolvedFallback;
-    return Array.from(new Set(base));
   }, [plan]);
+
+  const imageIndexBySrc = useMemo(() => {
+    const map = new Map<string, number>();
+    viewAllMedia.forEach((src, idx) => {
+      if (!map.has(src)) map.set(src, idx);
+    });
+    return map;
+  }, [viewAllMedia]);
 
   const buildExteriorImageSrc =
     (plan as any).buildFeatureExteriorUrl || (plan as any).buildFeatureExterior || "/build/build-feature-exterior.jpg";
@@ -442,9 +446,9 @@ function ProductDetailsMobileInner() {
     return resolvePublicImageUrl(first) || null;
   }, [plan]);
 
-  const frontSrc = images[0] || "/placeholders/plan-hero.svg";
-  const frontIndex = Math.max(0, images.findIndex((s) => s === frontSrc));
-  const floorIndex = Math.max(0, images.findIndex((s) => s === floorplanSrc));
+  const frontSrc = viewAllMedia[0] || "/placeholders/plan-hero.svg";
+  const frontIndex = imageIndexBySrc.get(frontSrc) ?? 0;
+  const floorIndex = floorplanSrc ? (imageIndexBySrc.get(floorplanSrc) ?? frontIndex) : frontIndex;
 
   const currentPrice = quote?.subtotalCents ? formatUsdFromCents(quote.subtotalCents) : startingPriceUsdFallback(plan.heated_sqft);
 
@@ -454,7 +458,7 @@ function ProductDetailsMobileInner() {
 
       <ImageLightbox
         open={lightboxOpen}
-        images={tab === "gallery" ? galleryTabImages : images}
+        images={viewAllMedia}
         index={lightboxIndex}
         onClose={() => setLightboxOpen(false)}
         onIndexChange={setLightboxIndex}
@@ -541,7 +545,7 @@ function ProductDetailsMobileInner() {
                 setLightboxOpen(true);
               }}
             >
-              VIEW ALL ({images.length})
+              VIEW ALL ({viewAllMedia.length})
             </button>
           </section>
 
@@ -846,7 +850,7 @@ function ProductDetailsMobileInner() {
             ) : tab === "gallery" ? (
               <div className="pt-5">
                 <div className="grid grid-cols-2 gap-2">
-                  {galleryTabImages.map((src, i) => (
+                  {viewAllMedia.map((src, i) => (
                     <button
                       key={`${src}-${i}`}
                       type="button"

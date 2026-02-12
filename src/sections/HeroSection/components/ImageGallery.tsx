@@ -79,6 +79,7 @@ export const ImageGallery = () => {
     const s = String(pathOrUrl || "").trim();
     if (!s) return null;
     if (s.startsWith("http://") || s.startsWith("https://")) return s;
+    if (s.includes("cloudpano.com")) return `https://${s.replace(/^\/+/, "")}`;
     if (s.startsWith("/")) return s;
     const base = String(process.env.NEXT_PUBLIC_SUPABASE_URL || "").replace(/\/$/, "");
     if (!base) return null;
@@ -98,24 +99,43 @@ export const ImageGallery = () => {
 
   const galleryHref = `/house/${plan.slug}#gallery`;
 
-  const images = useMemo(() => {
+  const viewAllMedia = useMemo(() => {
     const gResolved = Array.isArray((plan as any).galleryImages) ? (((plan as any).galleryImages ?? []) as any[]) : [];
     const fpResolved = Array.isArray((plan as any).floorplanImages) ? (((plan as any).floorplanImages ?? []) as any[]) : [];
     const gLegacy = Array.isArray(plan.images?.gallery) ? (plan.images?.gallery ?? []) : [];
     const fpLegacy = Array.isArray(plan.images?.floorplan) ? (plan.images?.floorplan ?? []) : [];
-    return [...gResolved, ...gLegacy, ...fpResolved, ...fpLegacy].map(resolvePublicImageUrl).filter(Boolean) as string[];
-  }, [(plan as any).galleryImages, (plan as any).floorplanImages, plan.images?.gallery, plan.images?.floorplan]);
+    const extraPlanMedia = [
+      (plan as any).tour3d_url,
+      (plan as any).planThumbnailUrl,
+      plan.images?.hover,
+      (plan as any).buildFeatureFloorplanUrl,
+      (plan as any).buildFeatureFloorplan,
+    ];
+    const resolved = [...gResolved, ...gLegacy, ...fpResolved, ...fpLegacy, ...extraPlanMedia]
+      .map(resolvePublicImageUrl)
+      .filter(Boolean) as string[];
+    const unique = Array.from(new Set(resolved));
+    return unique.length > 0 ? unique : ["/placeholders/plan-hero.svg"];
+  }, [plan]);
+
+  const imageIndexBySrc = useMemo(() => {
+    const map = new Map<string, number>();
+    viewAllMedia.forEach((src, idx) => {
+      if (!map.has(src)) map.set(src, idx);
+    });
+    return map;
+  }, [viewAllMedia]);
 
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
 
-  const viewAllCount = images.length;
+  const viewAllCount = viewAllMedia.length;
 
   return (
     <>
       <ImageLightbox
         open={lightboxOpen}
-        images={images}
+        images={viewAllMedia}
         index={lightboxIndex}
         onClose={() => setLightboxOpen(false)}
         onIndexChange={setLightboxIndex}
@@ -154,7 +174,7 @@ export const ImageGallery = () => {
           aria-label="Open image"
           className={`relative md:row-span-2 md:overflow-hidden ${showTourInHero ? "md:hidden" : ""}`}
           onClick={() => {
-            const idx = images.findIndex((s) => s === gallery1Url);
+            const idx = imageIndexBySrc.get(gallery1Url) ?? 0;
             setLightboxIndex(Math.max(0, idx));
             setLightboxOpen(true);
           }}
@@ -179,7 +199,7 @@ export const ImageGallery = () => {
           className="relative"
           onClick={() => {
             const src = showTourInHero ? gallery1Url : gallery2Url;
-            const idx = images.findIndex((s) => s === src);
+            const idx = imageIndexBySrc.get(src) ?? 0;
             setLightboxIndex(Math.max(0, idx));
             setLightboxOpen(true);
           }}
