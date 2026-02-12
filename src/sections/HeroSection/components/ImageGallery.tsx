@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { usePlan } from "@/lib/planContext";
 import { ImageLightbox } from "@/components/ImageLightbox";
@@ -96,8 +95,6 @@ export const ImageGallery = () => {
     resolvePublicImageUrl((plan as any).floorplanImages?.[0]) ||
     resolvePublicImageUrl(plan.images?.floorplan?.[0]) ||
     "/placeholders/floorplan.svg";
-
-  const galleryHref = `/house/${plan.slug}#gallery`;
 
   const viewAllMedia = useMemo(() => {
     const gResolved = Array.isArray((plan as any).galleryImages) ? (((plan as any).galleryImages ?? []) as any[]) : [];
@@ -218,15 +215,21 @@ export const ImageGallery = () => {
           sizes="(min-width: 768px) 20vw, 100vw"
           className="rounded-br-none md:rounded-br-[35.584px] rounded-tl-none rounded-tr-none rounded-bl-none md:rounded-tl-none md:rounded-tr-none md:rounded-bl-none"
         />
-        <Link href={galleryHref} className="contents">
-          <button className="static [align-items:normal] self-auto bg-zinc-100 shadow-none caret-black gap-x-[normal] inline-block justify-normal outline-black gap-y-[normal] px-1.5 py-px rounded-none right-auto bottom-auto md:absolute md:items-center md:self-stretch md:aspect-auto md:bg-zinc-800 md:shadow-[rgba(0,0,0,0)_0px_0px_0px_0px,rgba(0,0,0,0)_0px_0px_0px_0px,rgba(0,0,0,0)_0px_0px_0px_0px,rgba(0,0,0,0)_0px_0px_0px_0px,rgba(0,0,0,0.07)_0px_4px_4px_0px] md:caret-transparent md:gap-x-[8.832px] md:flex md:justify-center md:outline-[oklab(0.708_0_0_/_0.5)] md:overscroll-x-auto md:overscroll-y-auto md:gap-y-[8.832px] md:snap-align-none md:snap-normal md:snap-none md:decoration-auto md:underline-offset-auto md:[mask-position:0%] md:bg-left-top md:px-[17.792px] md:py-[8.832px] md:scroll-m-0 md:scroll-p-[auto] md:rounded-[31.104px] md:right-[17.792px] md:bottom-[17.792px]">
-            <div className="static text-black text-base font-normal box-content caret-black block flex-row shrink justify-normal tracking-[normal] leading-[normal] min-h-0 min-w-0 outline-black normal-case text-wrap md:relative md:text-white md:text-[13.312px] md:font-semibold md:aspect-auto md:box-border md:caret-transparent md:flex md:flex-col md:shrink-0 md:justify-center md:tracking-[0.128px] md:leading-[0px] md:min-h-[auto] md:min-w-[auto] md:outline-[oklab(0.708_0_0_/_0.5)] md:overscroll-x-auto md:overscroll-y-auto md:snap-align-none md:snap-normal md:snap-none md:decoration-auto md:underline-offset-auto md:uppercase md:text-nowrap md:[mask-position:0%] md:bg-left-top md:scroll-m-0 md:scroll-p-[auto]">
-              <p className="box-content caret-black leading-[normal] min-h-0 min-w-0 outline-black text-wrap md:aspect-auto md:box-border md:caret-transparent md:leading-[21.376px] md:min-h-[auto] md:min-w-[auto] md:outline-[oklab(0.708_0_0_/_0.5)] md:overscroll-x-auto md:overscroll-y-auto md:snap-align-none md:snap-normal md:snap-none md:decoration-auto md:underline-offset-auto md:text-nowrap md:[mask-position:0%] md:bg-left-top md:scroll-m-0 md:scroll-p-[auto]">
-                view all ({viewAllCount})
-              </p>
-            </div>
-          </button>
-        </Link>
+        <button
+          type="button"
+          aria-label="View all photos"
+          onClick={() => {
+            setLightboxIndex(0);
+            setLightboxOpen(true);
+          }}
+          className="static [align-items:normal] self-auto bg-zinc-100 shadow-none caret-black gap-x-[normal] inline-block justify-normal outline-black gap-y-[normal] px-1.5 py-px rounded-none right-auto bottom-auto md:absolute md:items-center md:self-stretch md:aspect-auto md:bg-zinc-800 md:shadow-[rgba(0,0,0,0)_0px_0px_0px_0px,rgba(0,0,0,0)_0px_0px_0px_0px,rgba(0,0,0,0)_0px_0px_0px_0px,rgba(0,0,0,0)_0px_0px_0px_0px,rgba(0,0,0,0.07)_0px_4px_4px_0px] md:caret-transparent md:gap-x-[8.832px] md:flex md:justify-center md:outline-[oklab(0.708_0_0_/_0.5)] md:overscroll-x-auto md:overscroll-y-auto md:gap-y-[8.832px] md:snap-align-none md:snap-normal md:snap-none md:decoration-auto md:underline-offset-auto md:[mask-position:0%] md:bg-left-top md:px-[17.792px] md:py-[8.832px] md:scroll-m-0 md:scroll-p-[auto] md:rounded-[31.104px] md:right-[17.792px] md:bottom-[17.792px]"
+        >
+          <div className="static text-black text-base font-normal box-content caret-black block flex-row shrink justify-normal tracking-[normal] leading-[normal] min-h-0 min-w-0 outline-black normal-case text-wrap md:relative md:text-white md:text-[13.312px] md:font-semibold md:aspect-auto md:box-border md:caret-transparent md:flex md:flex-col md:shrink-0 md:justify-center md:tracking-[0.128px] md:leading-[0px] md:min-h-[auto] md:min-w-[auto] md:outline-[oklab(0.708_0_0_/_0.5)] md:overscroll-x-auto md:overscroll-y-auto md:snap-align-none md:snap-normal md:snap-none md:decoration-auto md:underline-offset-auto md:uppercase md:text-nowrap md:[mask-position:0%] md:bg-left-top md:scroll-m-0 md:scroll-p-[auto]">
+            <p className="box-content caret-black leading-[normal] min-h-0 min-w-0 outline-black text-wrap md:aspect-auto md:box-border md:caret-transparent md:leading-[21.376px] md:min-h-[auto] md:min-w-[auto] md:outline-[oklab(0.708_0_0_/_0.5)] md:overscroll-x-auto md:overscroll-y-auto md:snap-align-none md:snap-normal md:snap-none md:decoration-auto md:underline-offset-auto md:text-nowrap md:[mask-position:0%] md:bg-left-top md:scroll-m-0 md:scroll-p-[auto]">
+              view all ({viewAllCount})
+            </p>
+          </div>
+        </button>
       </div>
       </div>
     </>

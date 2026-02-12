@@ -194,7 +194,7 @@ function MobilePdpTabs() {
   const { tab, setTab } = usePdp();
 
   return (
-    <div className="flex w-full items-center gap-6 overflow-x-auto border-b border-stone-200 pb-3">
+    <div className="flex w-full items-center justify-between overflow-x-auto border-b border-stone-200 pb-3">
       {MOBILE_PDP_TABS.map((t) => {
         const active = tab === t.id;
         return (
