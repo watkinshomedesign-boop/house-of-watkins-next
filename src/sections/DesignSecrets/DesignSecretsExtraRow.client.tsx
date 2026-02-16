@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import type { HomePageSlots } from "@/lib/homePage/types";
 import { urlForImage } from "@/lib/sanity/image";
 import { DesignFeatureCard } from "@/sections/DesignSecrets/components/DesignFeatureCard";
@@ -58,19 +58,43 @@ export const DesignSecretsExtraRow = (props: { cms?: HomePageSlots }) => {
     props.cms?.secretExtraBody3,
   ]);
 
+  const hasExtra = extra.some(
+    (item) =>
+      Boolean((item.title ?? "").trim()) ||
+      Boolean((item.body ?? "").trim()) ||
+      Boolean(item.iconUrl),
+  );
+  const [expanded, setExpanded] = useState(false);
+
+  if (!hasExtra && !expanded) {
+    return null;
+  }
+
   return (
-    <>
-      <div className="static [align-items:normal] box-content caret-black gap-x-[normal] block shrink justify-normal min-h-0 min-w-0 outline-black gap-y-[normal] w-auto md:relative md:items-center md:aspect-auto md:box-border md:caret-transparent md:gap-x-[35.584px] md:flex md:shrink-0 md:justify-center md:min-h-[auto] md:min-w-[auto] md:outline-[oklab(0.708_0_0_/_0.5)] md:overscroll-x-auto md:overscroll-y-auto md:gap-y-[35.584px] md:snap-align-none md:snap-normal md:snap-none md:decoration-auto md:underline-offset-auto md:w-full md:[mask-position:0%] md:bg-left-top md:scroll-m-0 md:scroll-p-[auto]">
-        {extra.map((item, idx) => (
-          <DesignFeatureCard
-            key={idx}
-            title={String(item.title ?? " ")}
-            description={String(item.body ?? " ")}
-            iconVariant=""
-            iconUrl={item.iconUrl ?? ((iconFallback as any).src ?? (iconFallback as any))}
-          />
-        ))}
-      </div>
-    </>
+    <div className="flex flex-col gap-y-[35.584px]">
+      {!expanded && hasExtra && (
+        <button
+          type="button"
+          onClick={() => setExpanded(true)}
+          className="font-gilroy inline-flex items-center justify-center self-start h-11 w-full max-w-[230px] rounded-[35px] bg-[#FF5C02] px-8 py-2 text-[14px] font-semibold leading-5 uppercase tracking-[0.01em] tabular-nums text-white sm:h-12 sm:w-[230px] sm:px-10 sm:py-2.5 sm:text-[15px] sm:leading-6"
+          style={{ fontVariantNumeric: "tabular-nums lining-nums" }}
+        >
+          SEE ALL
+        </button>
+      )}
+      {expanded && (
+        <div className="static [align-items:normal] box-content caret-black gap-x-[normal] block shrink justify-normal min-h-0 min-w-0 outline-black gap-y-[normal] w-auto md:relative md:items-center md:aspect-auto md:box-border md:caret-transparent md:gap-x-[35.584px] md:flex md:shrink-0 md:justify-center md:min-h-[auto] md:min-w-[auto] md:outline-[oklab(0.708_0_0_/_0.5)] md:overscroll-x-auto md:overscroll-y-auto md:gap-y-[35.584px] md:snap-align-none md:snap-normal md:snap-none md:decoration-auto md:underline-offset-auto md:w-full md:[mask-position:0%] md:bg-left-top md:scroll-m-0 md:scroll-p-[auto]">
+          {extra.map((item, idx) => (
+            <DesignFeatureCard
+              key={idx}
+              title={String(item.title ?? " ")}
+              description={String(item.body ?? " ")}
+              iconVariant=""
+              iconUrl={item.iconUrl ?? ((iconFallback as any).src ?? (iconFallback as any))}
+            />
+          ))}
+        </div>
+      )}
+    </div>
   );
 };
