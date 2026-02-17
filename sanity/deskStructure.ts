@@ -67,6 +67,14 @@ export const deskStructure = (S: StructureBuilder) =>
                   .documentId("contactPage")
                   .views([S.view.form(), S.view.component(PreviewPane).title("Preview").options({ path: "/contact-us" })]),
               ),
+              S.listItem()
+                .title("Builder Landing Page")
+                .child(
+                  S.document()
+                    .schemaType("builderLandingPage")
+                    .documentId("builderLandingPage")
+                    .views([S.view.form(), S.view.component(PreviewPane).title("Preview").options({ path: "/builder" })]),
+                ),
 
               S.divider(),
 
