@@ -1,0 +1,150 @@
+import { NextResponse } from "next/server";
+
+import { COMMERCE } from "@/config/commerce";
+import { quoteCartWithPricing } from "@/lib/pricing";
+import { loadPricingSettingsServer } from "@/lib/pricingSettingsServer";
+import { getPublishedPlans, type Plan } from "@/lib/plans";
+
+export const revalidate = 60 * 60;
+
+async function getSiteUrl(req: Request): Promise<string> {
+  const url = process.env.NEXT_PUBLIC_SITE_URL || process.env.VERCEL_URL;
+  if (url) return url.startsWith("http") ? url : `https://${url}`;
+  try {
+    const u = new URL(req.url);
+    return u.origin;
+  } catch {
+    return "https://houseofwatkins.com";
+  }
+}
+
+function toAbsoluteUrl(baseUrl: string, maybeUrl: string | null | undefined) {
+  const s = String(maybeUrl ?? "").trim();
+  if (!s) return null;
+  if (s.startsWith("http://") || s.startsWith("https://")) return s;
+  if (s.startsWith("//")) return `https:${s}`;
+  if (s.startsWith("/")) return `${baseUrl}${s}`;
+  return `${baseUrl}/${s}`;
+}
+
+function pickMainImageUrl(plan: Plan) {
+  const fromThumb = plan.frontThumbnailUrl || plan.buildFeatureExteriorUrl || null;
+  const fromGallery =
+    plan.galleryImages?.[0] ||
+    plan.images?.hero_desktop ||
+    plan.images?.hero_mobile ||
+    plan.images?.hero ||
+    plan.images?.gallery?.[0] ||
+    null;
+  return fromThumb || fromGallery || null;
+}
+
+function formatPrice(cents: number, currency: string) {
+  const amt = (cents / 100).toFixed(2);
+  return `${amt} ${currency.toUpperCase()}`;
+}
+
+function computeBaseSingleLicensePriceCents(plan: { id?: string; name: string; heated_sqft: number }, pricing: any) {
+  const quote = quoteCartWithPricing(
+    [
+      {
+        planId: String(plan.id ?? plan.name),
+        name: plan.name,
+        heatedSqFt: Number(plan.heated_sqft ?? 0),
+        license: "single" as const,
+        qty: 1,
+        addOns: {},
+        rush: false,
+        paperSets: 0,
+      },
+    ],
+    pricing
+  );
+  return quote.totalCents;
+}
+
+function csvCell(value: unknown) {
+  const s = String(value ?? "");
+  return `"${s.replace(/\"/g, '""').replace(/\r\n|\r|\n/g, " ")}"`;
+}
+
+export async function GET(req: Request) {
+  const baseUrl = await getSiteUrl(req);
+
+  const [plans, pricingSettings] = await Promise.all([getPublishedPlans(), loadPricingSettingsServer()]);
+
+  const pricing = {
+    baseCents: pricingSettings.base_price_cents,
+    heatedSqFtRateCents: pricingSettings.per_heated_sqft_cents,
+    rushRate: Math.max(0, Number(pricingSettings.rush_percent ?? 0)) / 100,
+    shippingFlatRateCents: pricingSettings.paper_plan_shipping_cents,
+    paperHandlingCents: COMMERCE.paperHandlingCents,
+    paperExtraSetCents: pricingSettings.paper_set_price_cents,
+    licenseMultipliers: COMMERCE.pricing.licenseMultipliers as any,
+    addOnsCents: {
+      readableReverse: pricingSettings.mirrored_addon_cents,
+      cad: pricingSettings.cad_addon_cents,
+      sitePlan: pricingSettings.site_plan_addon_cents,
+      smallAdjustments: pricingSettings.small_adjustments_addon_cents,
+      minorChanges: pricingSettings.minor_changes_addon_cents,
+      additions: pricingSettings.additions_addon_cents,
+    },
+  };
+
+  const header = [
+    "id",
+    "title",
+    "description",
+    "link",
+    "image_link",
+    "price",
+    "availability",
+    "brand",
+    "condition",
+    "product_type",
+    "google_product_category",
+  ];
+
+  const rows = (plans ?? []).map((p) => {
+    const id = String(p.id ?? p.slug);
+    const title = String(p.name ?? p.slug);
+    const description = String(p.seo_description ?? p.description ?? "");
+    const link = `${baseUrl}/house/${encodeURIComponent(String(p.slug))}`;
+
+    const imgRaw = pickMainImageUrl(p);
+    const imageLink = toAbsoluteUrl(baseUrl, imgRaw) ?? "";
+
+    const priceCents = computeBaseSingleLicensePriceCents(
+      { id: p.id, name: title, heated_sqft: Number((p as any).heated_sqft ?? 0) },
+      pricing
+    );
+
+    const productType = Array.isArray(p.tags) && p.tags.length > 0 ? p.tags.join(" > ") : "House Plans";
+
+    const values = [
+      id,
+      title,
+      description,
+      link,
+      imageLink,
+      formatPrice(priceCents, COMMERCE.currency),
+      "in stock",
+      "House of Watkins",
+      "new",
+      productType,
+      "632",
+    ];
+
+    return values.map(csvCell).join(",");
+  });
+
+  const csv = `${header.map(csvCell).join(",")}\n${rows.join("\n")}\n`;
+
+  return new NextResponse(csv, {
+    status: 200,
+    headers: {
+      "content-type": "text/csv; charset=utf-8",
+      "cache-control": "public, max-age=0, s-maxage=3600, stale-while-revalidate=86400",
+    },
+  });
+}

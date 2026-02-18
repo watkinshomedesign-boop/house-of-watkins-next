@@ -14,6 +14,7 @@ import { contractorsPage } from "./contractorsPage";
 import { contactPage } from "./contactPage";
 import { housePlansPage } from "./housePlansPage";
 import { planMedia } from "./planMedia";
+import { builderLandingPage } from "./builderLandingPage";
 
 export const schemaTypes = [
   imageBlock,
@@ -34,4 +35,5 @@ export const schemaTypes = [
   siteSettings,
   sitePage,
   redirect,
+  builderLandingPage,
 ];

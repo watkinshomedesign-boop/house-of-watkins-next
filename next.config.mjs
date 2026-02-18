@@ -6,6 +6,18 @@ const nextConfig = {
       { protocol: "https", hostname: "cdn.sanity.io" },
     ],
   },
+  async rewrites() {
+    return [
+      {
+        source: "/pinterest-feed.xml",
+        destination: "/api/pinterest-feed-xml",
+      },
+      {
+        source: "/pinterest-feed.csv",
+        destination: "/api/pinterest-feed-csv",
+      },
+    ];
+  },
   async redirects() {
     return [
       {
