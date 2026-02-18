@@ -67,6 +67,9 @@ export default async function AdminProtectedLayout(props: { children: ReactNode 
         <Link className="underline" href="/admin/orders">
           Orders
         </Link>
+        <Link className="underline" href="/admin/shopify-sync">
+          Shopify Sync
+        </Link>
       </div>
       {props.children}
     </div>
