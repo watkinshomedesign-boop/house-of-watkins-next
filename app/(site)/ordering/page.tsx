@@ -2,19 +2,14 @@
 
 import { OrderingPage } from "@/sitePages/OrderingPage";
 import { InteriorHeader } from "@/sections/InteriorHeader";
-import { MD_UP_MEDIA_QUERY, useMediaQuery } from "@/lib/useMediaQuery";
 
 export default function OrderingRoutePage() {
-  const isDesktop = useMediaQuery(MD_UP_MEDIA_QUERY, { serverFallback: true });
-
-  if (isDesktop) {
-    return (
-      <>
+  return (
+    <>
+      <div className="hidden md:block">
         <InteriorHeader />
-        <OrderingPage />
-      </>
-    );
-  }
-
-  return <OrderingPage />;
+      </div>
+      <OrderingPage />
+    </>
+  );
 }

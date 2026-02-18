@@ -330,6 +330,8 @@ function formatUsdFromCents(cents: number) {
 export function OrderingPage() {
   const cart = useCart();
 
+  const [enableDisplayNames, setEnableDisplayNames] = useState(false);
+
   const [builderCode, setBuilderCode] = useState("");
   const quoteItems = useMemo(() => cartToCheckoutItems(cart.items), [cart.items]);
 
@@ -368,6 +370,11 @@ export function OrderingPage() {
 
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const submitErrorRef = useRef<HTMLDivElement | null>(null);
+  const orderSummaryRef = useRef<HTMLElement | null>(null);
+  const emailInputRef = useRef<HTMLInputElement | null>(null);
+  const termsCheckboxRef = useRef<HTMLInputElement | null>(null);
+  const lastErrorTargetRef = useRef<"cart" | "email" | "terms" | null>(null);
 
   const [showThankYou, setShowThankYou] = useState(false);
 
@@ -446,6 +453,10 @@ export function OrderingPage() {
       if (el) el.scrollTop = 0;
     }, 0);
   }, [termsOpen]);
+
+  useEffect(() => {
+    setEnableDisplayNames(true);
+  }, []);
 
   useEffect(() => {
     setBuilderCode(getStoredBuilderCode());
@@ -564,9 +575,10 @@ export function OrderingPage() {
 
   const countryOptions = useMemo<SelectOption[]>(
     () => {
-      const display = typeof Intl !== "undefined" && (Intl as any).DisplayNames
-        ? new (Intl as any).DisplayNames(["en"], { type: "region" })
-        : null;
+      const display =
+        enableDisplayNames && typeof Intl !== "undefined" && (Intl as any).DisplayNames
+          ? new (Intl as any).DisplayNames(["en"], { type: "region" })
+          : null;
 
       const opts = COUNTRY_CODES.map((code) => ({
         value: code,
@@ -576,7 +588,7 @@ export function OrderingPage() {
       opts.sort((a, b) => a.label.localeCompare(b.label));
       return opts;
     },
-    []
+    [enableDisplayNames]
   );
 
   const selectArrowStyle = useMemo(
@@ -640,21 +652,46 @@ export function OrderingPage() {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
   }
 
+  function scrollToRef(el: HTMLElement | null, focus?: boolean) {
+    if (!el) return;
+    el.scrollIntoView({ behavior: "smooth", block: "center" });
+    if (focus) {
+      setTimeout(() => {
+        try {
+          el.focus();
+        } catch {
+          // ignore focus errors
+        }
+      }, 0);
+    }
+  }
+
   async function placeOrder() {
     setSubmitError(null);
 
     if (quoteItems.length === 0) {
+      lastErrorTargetRef.current = "cart";
       setSubmitError("Your cart is empty.");
-      return;
-    }
-
-    if (!agreeTerms) {
-      setSubmitError("Please agree to the terms and conditions.");
+      scrollToRef(orderSummaryRef.current);
       return;
     }
 
     if (!email.trim() || !isValidEmail(email.trim())) {
+      lastErrorTargetRef.current = "email";
       setSubmitError("Please enter a valid email address.");
+      scrollToRef(emailInputRef.current, true);
+      return;
+    }
+
+    if (!termsAccepted) {
+      setTermsOpen(true);
+      return;
+    }
+
+    if (!agreeTerms) {
+      lastErrorTargetRef.current = "terms";
+      setSubmitError("Please agree to the terms and conditions.");
+      scrollToRef(termsCheckboxRef.current, true);
       return;
     }
 
@@ -732,6 +769,17 @@ export function OrderingPage() {
 
   const showTopError = Boolean(submitError);
 
+  useEffect(() => {
+    if (!submitError) return;
+    if (lastErrorTargetRef.current) {
+      lastErrorTargetRef.current = null;
+      return;
+    }
+    const el = submitErrorRef.current;
+    if (!el) return;
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, [submitError]);
+
   return (
     <main className="w-full bg-[#FAF9F7] text-zinc-800">
       <div className="mx-auto w-full max-w-[1400px] px-4 md:px-14">
@@ -745,7 +793,9 @@ export function OrderingPage() {
               <h1 className="text-[28px] font-semibold leading-[34px] text-neutral-900">Billing Details</h1>
 
               {showTopError ? (
-                <div className="mt-4 text-[13px] text-red-600">{submitError}</div>
+                <div ref={submitErrorRef} className="mt-4 text-[13px] text-red-600">
+                  {submitError}
+                </div>
               ) : null}
 
               <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-5 md:grid-cols-2">
@@ -754,6 +804,7 @@ export function OrderingPage() {
                     Email address <span className="text-red-500">*</span>
                   </div>
                   <input
+                    ref={emailInputRef}
                     type="email"
                     placeholder="example@mail.com"
                     value={email}
@@ -904,7 +955,7 @@ export function OrderingPage() {
               </div>
             </section>
 
-            <aside>
+            <aside ref={orderSummaryRef}>
               <h2 className="text-[28px] font-semibold leading-[34px] text-neutral-900">Your Order</h2>
 
               <div className="mt-6 rounded-[32px] bg-[#F7F3EE] p-8">
@@ -1048,8 +1099,15 @@ export function OrderingPage() {
                   <input
                     type="checkbox"
                     checked={agreeTerms}
-                    onChange={(e) => setAgreeTerms(e.target.checked)}
-                    disabled={!termsAccepted}
+                    onChange={(e) => {
+                      if (!termsAccepted) {
+                        setSubmitError(null);
+                        setTermsOpen(true);
+                        return;
+                      }
+                      setAgreeTerms(e.target.checked);
+                    }}
+                    ref={termsCheckboxRef}
                     className="mt-[2px] h-4 w-4 accent-orange-600"
                   />
                   <span>
@@ -1117,6 +1175,8 @@ export function OrderingPage() {
                   type="button"
                   onClick={() => {
                     setTermsAccepted(true);
+                    setAgreeTerms(true);
+                    setSubmitError(null);
                     setTermsOpen(false);
                   }}
                   disabled={!termsScrolledToEnd}
