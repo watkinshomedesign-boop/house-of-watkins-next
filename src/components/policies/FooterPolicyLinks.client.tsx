@@ -8,7 +8,7 @@ import { TermsOfServiceContent } from "@/components/policies/TermsOfServiceConte
 import { PrivacyPolicyContent } from "@/components/policies/PrivacyPolicyContent";
 import { ReturnPolicyContent } from "@/components/policies/ReturnPolicyContent";
 
-type Variant = "desktop" | "mobile" | "footerColumnDesktop" | "footerColumnMobile";
+type Variant = "desktop" | "mobile" | "footerColumnDesktop" | "footerColumnMobile" | "footerLegacyDesktop";
 
 export function FooterPolicyLinks(props: { variant: Variant }) {
   const [termsOpen, setTermsOpen] = useState(false);
@@ -24,6 +24,9 @@ export function FooterPolicyLinks(props: { variant: Variant }) {
   const linkClassFooterColumnDesktop =
     "bg-transparent p-0 text-[14px] text-[#8F8E8C] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-600 focus-visible:ring-offset-2 focus-visible:ring-offset-[#2B2A28]";
 
+  const linkClassFooterLegacyDesktop =
+    "bg-transparent p-0 text-[15px] leading-[22px] text-[#8F8E8C] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-600 focus-visible:ring-offset-2 focus-visible:ring-offset-[#2B2A28]";
+
   const linkClassFooterColumnMobile =
     "bg-transparent p-0 text-[14px] font-normal text-white/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-600 focus-visible:ring-offset-2 focus-visible:ring-offset-[#2B2A28]";
 
@@ -34,7 +37,9 @@ export function FooterPolicyLinks(props: { variant: Variant }) {
         ? linkClassMobile
         : props.variant === "footerColumnDesktop"
           ? linkClassFooterColumnDesktop
-          : linkClassFooterColumnMobile;
+          : props.variant === "footerLegacyDesktop"
+            ? linkClassFooterLegacyDesktop
+            : linkClassFooterColumnMobile;
 
   const TermsButton = (
     <button type="button" className={linkClass} onClick={() => setTermsOpen(true)}>
@@ -95,6 +100,12 @@ export function FooterPolicyLinks(props: { variant: Variant }) {
             {WhatsIncludedLink}
             {ContactLink}
           </div>
+        </div>
+      ) : props.variant === "footerLegacyDesktop" ? (
+        <div className="flex flex-col items-start gap-4">
+          {PrivacyButton}
+          {TermsButton}
+          {ReturnButton}
         </div>
       ) : (
         <div className="flex flex-col items-start gap-3">

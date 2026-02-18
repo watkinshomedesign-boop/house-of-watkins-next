@@ -39,7 +39,7 @@ export function HomePage(props: { cms?: HomePageSlots }) {
                 ></section>
                 <div className="text-[15.2625px] box-border caret-transparent leading-[22.8937px] outline-[oklab(0.708_0_0_/_0.5)] w-full md:text-[14.208px] md:leading-[21.312px]">
                   <div className="text-base box-content caret-black gap-x-[normal] block flex-row leading-[normal] outline-black gap-y-[normal] w-auto md:text-[14.208px] md:aspect-auto md:box-border md:caret-transparent md:gap-x-[71.168px] md:flex md:flex-col md:leading-[21.312px] md:outline-[oklab(0.708_0_0_/_0.5)] md:overscroll-x-auto md:overscroll-y-auto md:gap-y-[71.168px] md:snap-align-none md:snap-normal md:snap-none md:decoration-auto md:underline-offset-auto md:w-full md:[mask-position:0%] md:bg-left-top md:scroll-m-0 md:scroll-p-[auto]">
-                    <div className="relative z-50 md:[&_a[aria-label='Cart']]:hidden">
+                    <div className="relative z-50">
                       <InteriorHeader />
                     </div>
                     <div className="relative z-0 md:mt-[-71.168px]">
