@@ -8,11 +8,11 @@ export function MobileFooter() {
       <div className="mx-auto w-full max-w-[420px]">
         <div>
           <Image
-            src="/brand/Logo%20Images/House-of-Watkins-Logo-white.png"
+            src="/brand/Logo%20Images/Logo%20Stacked.png"
             alt="House of Watkins"
             width={260}
             height={28}
-            className="h-auto w-[260px] object-contain"
+            className="h-auto w-[260px] object-contain invert"
           />
           <div className="mt-3 text-[16px] font-semibold text-white/50">© {new Date().getFullYear()}</div>
         </div>

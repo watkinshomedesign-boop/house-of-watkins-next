@@ -5,93 +5,87 @@ import { FooterPolicyLinks } from "@/components/policies/FooterPolicyLinks.clien
 export const FooterContent = () => {
   return (
     <footer className="relative w-full bg-[#2B2A28] text-white">
-      <div className="mx-auto w-full max-w-[1440px] px-[64px] py-[40px]">
+      <div className="w-full px-[64px] py-[40px]">
         <div className="flex items-start gap-[80px]">
-          <div className="shrink-0">
-            <Link href="/" className="block">
-              <img
-                src="/brand/Logo%20Images/House-of-Watkins-Logo-white.png"
-                alt="House of Watkins"
-                className="h-[18px] w-auto"
-              />
-            </Link>
-            <div className="mt-3 text-[12px] text-[#8F8E8C]">© {new Date().getFullYear()}</div>
+          <div className="flex w-[313px] flex-col gap-[40px]">
+            <div className="flex items-start justify-between">
+              <Link href="/" className="block">
+                <img
+                  src="/brand/Logo%20Images/Logo%20Stacked.png"
+                  alt="House of Watkins"
+                  className="h-[49px] w-[106px] object-contain invert"
+                />
+              </Link>
+              <div className="flex flex-col gap-4">
+                <div className="text-[16px] font-semibold leading-[24px] text-white">Company</div>
+                <Link href="/about" className="text-[15px] leading-[22px] text-[#8F8E8C] hover:text-white">
+                  About us
+                </Link>
+                <Link href="/whats-included" className="text-[15px] leading-[22px] text-[#8F8E8C] hover:text-white">
+                  {"What's Included"}
+                </Link>
+                <Link href="/catalog" className="text-[15px] leading-[22px] text-[#8F8E8C] hover:text-white">
+                  All Houses
+                </Link>
+              </div>
+            </div>
+            <div className="text-[14px] font-semibold leading-[19px] text-white">© {new Date().getFullYear()}</div>
           </div>
 
-          <div className="flex flex-1 items-start gap-[80px]">
-            <div className="min-w-[140px]">
-              <div className="text-[14px] font-semibold text-white">Company</div>
-              <div className="mt-3 flex flex-col gap-2 text-[14px] text-[#8F8E8C]">
-                <Link href="/about" className="w-fit hover:text-white">
-                  About Us
-                </Link>
-                <Link href="/catalog" className="w-fit hover:text-white">
-                  Houses
-                </Link>
-              </div>
-            </div>
+          <div className="flex w-[81px] flex-col gap-4">
+            <div className="text-[16px] font-semibold leading-[24px] text-white">Follow us</div>
+            <a
+              href="https://www.instagram.com/house.of.watkins/"
+              target="_blank"
+              rel="noreferrer"
+              className="text-[15px] leading-[22px] text-[#8F8E8C] hover:text-white"
+            >
+              Instagram
+            </a>
+            <a
+              href="https://www.pinterest.com/HouseOfWatkinsLLC/"
+              target="_blank"
+              rel="noreferrer"
+              className="text-[15px] leading-[22px] text-[#8F8E8C] hover:text-white"
+            >
+              Pinterest
+            </a>
+            <a
+              href="https://www.facebook.com/House.of.Watkins/"
+              target="_blank"
+              rel="noreferrer"
+              className="text-[15px] leading-[22px] text-[#8F8E8C] hover:text-white"
+            >
+              Facebook
+            </a>
+            <a
+              href="https://www.linkedin.com/in/houseofwatkins/"
+              target="_blank"
+              rel="noreferrer"
+              className="text-[15px] leading-[22px] text-[#8F8E8C] hover:text-white"
+            >
+              LinkedIn
+            </a>
+          </div>
 
-            <div className="min-w-[140px]">
-              <div className="text-[14px] font-semibold text-white">Follow Us</div>
-              <div className="mt-3 flex flex-col gap-2 text-[14px] text-[#8F8E8C]">
-                <a
-                  href="https://www.instagram.com/house.of.watkins/"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="w-fit hover:text-white"
-                >
-                  Instagram
-                </a>
-                <a
-                  href="https://www.pinterest.com/HouseOfWatkinsLLC/"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="w-fit hover:text-white"
-                >
-                  Pinterest
-                </a>
-                <a
-                  href="https://www.facebook.com/House.of.Watkins/"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="w-fit hover:text-white"
-                >
-                  Facebook
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/houseofwatkins/"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="w-fit hover:text-white"
-                >
-                  LinkedIn
-                </a>
-              </div>
-            </div>
+          <div className="flex flex-1 flex-col gap-4">
+            <div className="text-[16px] font-semibold leading-[24px] text-white">Legacy</div>
+            <FooterPolicyLinks variant="footerLegacyDesktop" />
+          </div>
 
-            <div className="min-w-[200px]">
-              <Link href="/faq" className="text-[14px] font-semibold text-white">
-                FAQ
-              </Link>
-              <div className="mt-3">
-                <FooterPolicyLinks variant="footerColumnDesktop" />
-              </div>
-            </div>
-
-            <div className="ml-auto min-w-[260px]">
-              <Link href="/contact-us" className="text-[14px] font-semibold text-white">
-                Contact Us
-              </Link>
-              <div className="mt-3 flex flex-col gap-2 text-[14px] text-[#8F8E8C]">
-                <a href="tel://+15412191673" className="w-fit hover:text-white">
-                  +1 541 219 1673
-                </a>
-                <a href="mailto://david@houseofwatkins.com" className="w-fit hover:text-white">
-                  david@houseofwatkins.com
-                </a>
-                <div className="text-[#8F8E8C]">16673 E Mansfield Circle,</div>
-                <div className="text-[#8F8E8C]">Aurora, Colorado 80013</div>
-              </div>
+          <div className="flex w-[240px] flex-col gap-4">
+            <div className="text-[16px] font-semibold leading-[24px] text-white">Contact us</div>
+            <a href="tel://+15412191673" className="text-[15px] leading-[22px] text-[#8F8E8C] hover:text-white">
+              +1 541 219 1673
+            </a>
+            <a
+              href="mailto://david@houseofwatkins.com"
+              className="text-[15px] leading-[22px] text-[#8F8E8C] hover:text-white"
+            >
+              david@houseofwatkins.com
+            </a>
+            <div className="text-[15px] leading-[22px] text-[#8F8E8C]">
+              16673 E Mansfield Circle, Aurora, Colorado 80013
             </div>
           </div>
         </div>
