@@ -39,11 +39,15 @@ export default function ShopifySyncPanel() {
       while (true) {
         setProgress(`Syncing products ${offset + 1}–${offset + 10}...`);
 
+        const controller = new AbortController();
+        const timer = setTimeout(() => controller.abort(), 120_000); // 2 min per batch
         const res = await fetch("/api/admin/shopify-sync", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ offset }),
+          signal: controller.signal,
         });
+        clearTimeout(timer);
 
         const json: BatchResult = await res.json();
 
@@ -67,8 +71,12 @@ export default function ShopifySyncPanel() {
 
       setResult(totals);
     } catch (e: any) {
-      setError(e?.message || "Network error");
-      if (totals.created.length > 0 || totals.updated.length > 0) {
+      if (e?.name === "AbortError") {
+        setError(`Batch timed out at offset ${offset}. Partial results shown below. You can re-run to continue.`);
+      } else {
+        setError(e?.message || "Network error");
+      }
+      if (totals.created.length > 0 || totals.updated.length > 0 || totals.errors.length > 0) {
         setResult(totals);
       }
     } finally {
