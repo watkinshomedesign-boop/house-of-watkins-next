@@ -18,6 +18,24 @@ import {
   type ShopifyProduct,
 } from "@/lib/shopify";
 
+const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+
+/** Retry a function up to `retries` times on 429 errors with backoff. */
+async function withRetry<T>(fn: () => Promise<T>, retries = 3): Promise<T> {
+  for (let attempt = 0; ; attempt++) {
+    try {
+      return await fn();
+    } catch (e: any) {
+      const is429 = String(e?.message || "").includes("429");
+      if (is429 && attempt < retries) {
+        await sleep(2000 * (attempt + 1)); // 2s, 4s, 6s backoff
+        continue;
+      }
+      throw e;
+    }
+  }
+}
+
 type SyncResult = {
   created: string[];
   updated: string[];
@@ -181,19 +199,19 @@ export async function syncPlansToShopify(): Promise<SyncResult> {
             id: existing.variants[i]?.id,
           }));
         }
-        await updateProduct(existing.id, updatePayload);
+        await withRetry(() => updateProduct(existing.id, updatePayload));
         result.updated.push(plan.slug);
       } else {
         // Create new product
-        await createProduct(payload);
+        await withRetry(() => createProduct(payload));
         result.created.push(plan.slug);
       }
     } catch (e: any) {
       result.errors.push({ slug: plan.slug, error: e?.message || String(e) });
     }
 
-    // Rate limit: Shopify Basic allows 2 req/s; wait 600ms between calls
-    await new Promise((r) => setTimeout(r, 600));
+    // Rate limit: Shopify Basic allows 2 req/s; wait 1s between calls
+    await sleep(1000);
   }
 
   return result;
