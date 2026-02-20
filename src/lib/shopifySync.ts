@@ -36,11 +36,15 @@ async function withRetry<T>(fn: () => Promise<T>, retries = 3): Promise<T> {
   }
 }
 
-type SyncResult = {
+export type SyncResult = {
   created: string[];
   updated: string[];
   skipped: string[];
   errors: Array<{ slug: string; error: string }>;
+  total: number;
+  offset: number;
+  batchSize: number;
+  done: boolean;
 };
 
 /** Compute the base price in dollars for a plan (single-build license). */
@@ -155,14 +159,21 @@ function buildProductPayload(
   };
 }
 
-export async function syncPlansToShopify(): Promise<SyncResult> {
-  const result: SyncResult = { created: [], updated: [], skipped: [], errors: [] };
+const BATCH_SIZE = 10;
+
+export async function syncPlansToShopify(offset = 0): Promise<SyncResult> {
+  const result: SyncResult = {
+    created: [], updated: [], skipped: [], errors: [],
+    total: 0, offset, batchSize: BATCH_SIZE, done: false,
+  };
 
   // 1. Load plans + pricing
   const [plans, pricing] = await Promise.all([
     getPublishedPlans(),
     loadPricingSettingsServer(),
   ]);
+
+  result.total = plans.length;
 
   const baseCents = pricing.base_price_cents;
   const perSqFtCents = pricing.per_heated_sqft_cents;
@@ -175,8 +186,11 @@ export async function syncPlansToShopify(): Promise<SyncResult> {
     if (p.handle) shopifyByHandle.set(p.handle, p);
   }
 
-  // 3. Sync each plan (with rate-limit delay: ~1 request per 600ms)
-  for (const plan of plans) {
+  // 3. Sync a batch of plans
+  const batch = plans.slice(offset, offset + BATCH_SIZE);
+  result.done = offset + BATCH_SIZE >= plans.length;
+
+  for (const plan of batch) {
     if (!plan.slug) {
       result.skipped.push("(no slug)");
       continue;
@@ -187,12 +201,10 @@ export async function syncPlansToShopify(): Promise<SyncResult> {
       const existing = shopifyByHandle.get(plan.slug);
 
       if (existing) {
-        // Update existing product — keep existing images if no new ones
         const updatePayload: Record<string, any> = { ...payload };
         if (payload.images.length === 0) {
           delete updatePayload.images;
         }
-        // Map variant IDs for update
         if (existing.variants && existing.variants.length >= 2) {
           updatePayload.variants = payload.variants.map((v, i) => ({
             ...v,
@@ -202,7 +214,6 @@ export async function syncPlansToShopify(): Promise<SyncResult> {
         await withRetry(() => updateProduct(existing.id, updatePayload));
         result.updated.push(plan.slug);
       } else {
-        // Create new product
         await withRetry(() => createProduct(payload));
         result.created.push(plan.slug);
       }

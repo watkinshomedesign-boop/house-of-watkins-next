@@ -2,6 +2,17 @@
 
 import { useState } from "react";
 
+type BatchResult = {
+  created: string[];
+  updated: string[];
+  skipped: string[];
+  errors: Array<{ slug: string; error: string }>;
+  total: number;
+  offset: number;
+  batchSize: number;
+  done: boolean;
+};
+
 type SyncResult = {
   created: string[];
   updated: string[];
@@ -11,6 +22,7 @@ type SyncResult = {
 
 export default function ShopifySyncPanel() {
   const [loading, setLoading] = useState(false);
+  const [progress, setProgress] = useState("");
   const [result, setResult] = useState<SyncResult | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -18,31 +30,50 @@ export default function ShopifySyncPanel() {
     setLoading(true);
     setError(null);
     setResult(null);
+    setProgress("Starting sync...");
+
+    const totals: SyncResult = { created: [], updated: [], skipped: [], errors: [] };
+    let offset = 0;
 
     try {
-      const controller = new AbortController();
-      const timeout = setTimeout(() => controller.abort(), 180_000); // 3 min
-      const res = await fetch("/api/admin/shopify-sync", {
-        method: "POST",
-        signal: controller.signal,
-      });
-      clearTimeout(timeout);
-      const json = await res.json();
+      while (true) {
+        setProgress(`Syncing products ${offset + 1}–${offset + 10}...`);
 
-      if (!res.ok) {
-        setError(json.error || `Sync failed (${res.status})`);
-        return;
+        const res = await fetch("/api/admin/shopify-sync", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ offset }),
+        });
+
+        const json: BatchResult = await res.json();
+
+        if (!res.ok) {
+          setError((json as any).error || `Sync failed (${res.status})`);
+          break;
+        }
+
+        totals.created.push(...json.created);
+        totals.updated.push(...json.updated);
+        totals.skipped.push(...json.skipped);
+        totals.errors.push(...json.errors);
+
+        setProgress(
+          `Processed ${Math.min(offset + json.batchSize, json.total)} of ${json.total} plans...`
+        );
+
+        if (json.done) break;
+        offset += json.batchSize;
       }
 
-      setResult(json);
+      setResult(totals);
     } catch (e: any) {
-      if (e?.name === "AbortError") {
-        setError("Request timed out (3 min). The sync may still be running on the server. Check Shopify admin for results.");
-      } else {
-        setError(e?.message || "Network error");
+      setError(e?.message || "Network error");
+      if (totals.created.length > 0 || totals.updated.length > 0) {
+        setResult(totals);
       }
     } finally {
       setLoading(false);
+      setProgress("");
     }
   }
 
@@ -55,6 +86,12 @@ export default function ShopifySyncPanel() {
       >
         {loading ? "Syncing…" : "Sync Plans to Shopify"}
       </button>
+
+      {loading && progress && (
+        <div className="rounded border border-blue-200 bg-blue-50 p-4 text-sm text-blue-700">
+          {progress}
+        </div>
+      )}
 
       {error && (
         <div className="rounded border border-red-200 bg-red-50 p-4 text-sm text-red-700">
