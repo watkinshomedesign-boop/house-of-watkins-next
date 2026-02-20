@@ -114,9 +114,10 @@ function buildProductPayload(
     vendor: "House of Watkins",
     product_type: "House Plan",
     tags,
+    options: [{ name: "License", values: ["Single Build License", "Builder License"] }],
     variants: [
       {
-        title: "Single Build License",
+        option1: "Single Build License",
         price: singlePrice.toFixed(2),
         sku: `${plan.slug}-single`,
         requires_shipping: false,
@@ -124,7 +125,7 @@ function buildProductPayload(
         taxable: true,
       },
       {
-        title: "Builder License",
+        option1: "Builder License",
         price: builderPrice.toFixed(2),
         sku: `${plan.slug}-builder`,
         requires_shipping: false,
@@ -156,7 +157,7 @@ export async function syncPlansToShopify(): Promise<SyncResult> {
     if (p.handle) shopifyByHandle.set(p.handle, p);
   }
 
-  // 3. Sync each plan
+  // 3. Sync each plan (with rate-limit delay: ~1 request per 600ms)
   for (const plan of plans) {
     if (!plan.slug) {
       result.skipped.push("(no slug)");
@@ -190,6 +191,9 @@ export async function syncPlansToShopify(): Promise<SyncResult> {
     } catch (e: any) {
       result.errors.push({ slug: plan.slug, error: e?.message || String(e) });
     }
+
+    // Rate limit: Shopify Basic allows 2 req/s; wait 600ms between calls
+    await new Promise((r) => setTimeout(r, 600));
   }
 
   return result;

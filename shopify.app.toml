@@ -1,0 +1,13 @@
+client_id = "6156f59cb4ea4b4111687223768802a3"
+name = "Product Sync"
+application_url = "https://houseofwatkins.com/api/admin/shopify-oauth"
+embedded = false
+
+[access_scopes]
+scopes = "read_products,write_products,read_inventory,write_inventory"
+
+[auth]
+redirect_urls = ["https://houseofwatkins.com/api/admin/shopify-oauth"]
+
+[webhooks]
+api_version = "2024-01"
