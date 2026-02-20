@@ -4,6 +4,12 @@ import Script from "next/script";
 import { CartProvider } from "@/lib/cart/CartContext";
 import { FavoritesProvider } from "@/lib/favorites/useFavorites";
 import { PlansCacheProvider } from "@/lib/plans/PlansCache";
+export const metadata = {
+  verification: {
+    google: "p1FaTI1nGV-fpDjoRqgx1jqGigY9lFyfEgGW_pwjQ5c",
+  },
+};
+
 
 const gilroy = localFont({
   variable: "--font-gilroy",
