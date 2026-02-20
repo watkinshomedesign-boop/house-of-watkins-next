@@ -20,7 +20,13 @@ export default function ShopifySyncPanel() {
     setResult(null);
 
     try {
-      const res = await fetch("/api/admin/shopify-sync", { method: "POST" });
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 180_000); // 3 min
+      const res = await fetch("/api/admin/shopify-sync", {
+        method: "POST",
+        signal: controller.signal,
+      });
+      clearTimeout(timeout);
       const json = await res.json();
 
       if (!res.ok) {
@@ -30,7 +36,11 @@ export default function ShopifySyncPanel() {
 
       setResult(json);
     } catch (e: any) {
-      setError(e?.message || "Network error");
+      if (e?.name === "AbortError") {
+        setError("Request timed out (3 min). The sync may still be running on the server. Check Shopify admin for results.");
+      } else {
+        setError(e?.message || "Network error");
+      }
     } finally {
       setLoading(false);
     }
