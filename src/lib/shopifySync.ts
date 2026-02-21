@@ -155,7 +155,7 @@ function buildProductPayload(
         taxable: true,
       },
     ],
-    images: collectImages(plan),
+    // images: collectImages(plan), // disabled — images uploaded manually
   };
 }
 
@@ -202,9 +202,6 @@ export async function syncPlansToShopify(offset = 0): Promise<SyncResult> {
 
       if (existing) {
         const updatePayload: Record<string, any> = { ...payload };
-        if (payload.images.length === 0) {
-          delete updatePayload.images;
-        }
         if (existing.variants && existing.variants.length >= 2) {
           updatePayload.variants = payload.variants.map((v, i) => ({
             ...v,

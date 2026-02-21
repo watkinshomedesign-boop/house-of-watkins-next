@@ -11,6 +11,7 @@ import { PdpProvider, type PlanSetConfig, type PlanSetId, usePdp } from "@/lib/p
 import { useTypographyStyle } from "@/lib/typographyContext";
 import { getTextStyleCss } from "@/lib/typography";
 import { useCart } from "@/lib/cart/CartContext";
+import { gtmPush } from "@/lib/gtm";
 import { FavoritesProvider } from "@/lib/favorites/useFavorites";
 import { usePlansCache, type CachedPlan } from "@/lib/plans/PlansCache";
 
@@ -328,6 +329,21 @@ function MobileAddToCartButton(props: { className?: string; variant?: "cta" }) {
       body: JSON.stringify({ event_name: "add_to_cart", plan_slug: plan.slug }),
     }).catch(() => {
       // ignore
+    });
+
+    gtmPush({
+      event: "add_to_cart",
+      ecommerce: {
+        currency: "USD",
+        items: [
+          {
+            item_id: plan.slug,
+            item_name: plan.name,
+            item_variant: planSet.license === "builder" ? "Builder License" : "Single Build License",
+            quantity: 1,
+          },
+        ],
+      },
     });
 
     router.push("/cart");

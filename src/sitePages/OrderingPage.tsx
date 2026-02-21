@@ -6,6 +6,7 @@ import { Breadcrumb } from "@/components/Breadcrumb";
 import { useCart } from "@/lib/cart/CartContext";
 import { cartToCheckoutItems } from "@/lib/cart/toCheckoutItems";
 import { getStoredBuilderCode } from "@/lib/builderPromo/storage";
+import { gtmPush } from "@/lib/gtm";
 
 type ExpandedLine = { label: string; amount: string };
 
@@ -473,6 +474,18 @@ export function OrderingPage() {
     const params = new URLSearchParams(window.location.search);
     const success = params.get("success");
     if (success === "1") {
+      gtmPush({
+        event: "purchase",
+        ecommerce: {
+          currency: "USD",
+          items: cart.items.map((ci) => ({
+            item_id: ci.slug,
+            item_name: ci.name,
+            item_variant: ci.license_type === "builder" ? "Builder License" : "Single Build License",
+            quantity: ci.qty,
+          })),
+        },
+      });
       setShowThankYou(true);
       cart.clearCart();
     }
@@ -694,6 +707,20 @@ export function OrderingPage() {
       scrollToRef(termsCheckboxRef.current, true);
       return;
     }
+
+    // GTM: begin_checkout
+    gtmPush({
+      event: "begin_checkout",
+      ecommerce: {
+        currency: "USD",
+        items: cart.items.map((ci) => ({
+          item_id: ci.slug,
+          item_name: ci.name,
+          item_variant: ci.license_type === "builder" ? "Builder License" : "Single Build License",
+          quantity: ci.qty,
+        })),
+      },
+    });
 
     // Option A: PayPal redirect (when selected)
     if (paymentMethod === "paypal") {

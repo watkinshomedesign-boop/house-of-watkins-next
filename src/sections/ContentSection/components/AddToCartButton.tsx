@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useCart } from "@/lib/cart/CartContext";
 import { usePdp } from "@/lib/pdpState";
+import { gtmPush } from "@/lib/gtm";
 
 export function AddToCartButton(props: {
   slug: string;
@@ -42,6 +43,21 @@ export function AddToCartButton(props: {
       body: JSON.stringify({ event_name: "add_to_cart", plan_slug: props.slug }),
     }).catch(() => {
       // ignore
+    });
+
+    gtmPush({
+      event: "add_to_cart",
+      ecommerce: {
+        currency: "USD",
+        items: [
+          {
+            item_id: props.slug,
+            item_name: props.name,
+            item_variant: planSet.license === "builder" ? "Builder License" : "Single Build License",
+            quantity: 1,
+          },
+        ],
+      },
     });
 
     router.push("/cart");

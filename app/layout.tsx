@@ -1,6 +1,7 @@
 import "./globals.css";
 import localFont from "next/font/local";
 import Script from "next/script";
+import { GoogleTagManager } from "@/components/GoogleTagManager";
 import { CartProvider } from "@/lib/cart/CartContext";
 import { FavoritesProvider } from "@/lib/favorites/useFavorites";
 import { PlansCacheProvider } from "@/lib/plans/PlansCache";
@@ -36,6 +37,8 @@ const gilroy = localFont({
   ],
 });
 
+const gtmId = process.env.NEXT_PUBLIC_GTM_ID || "";
+
 export default function RootLayout({
   children,
 }: {
@@ -59,6 +62,7 @@ export default function RootLayout({
         />
       </head>
       <body className={`${gilroy.variable} ${gilroy.className}`}>
+        {gtmId && <GoogleTagManager GTM_ID={gtmId} />}
         <CartProvider>
           <FavoritesProvider>
             <PlansCacheProvider>{children}</PlansCacheProvider>
