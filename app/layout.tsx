@@ -2,6 +2,7 @@ import "./globals.css";
 import localFont from "next/font/local";
 import Script from "next/script";
 import { GoogleTagManager } from "@/components/GoogleTagManager";
+import { PageVisitTracker } from "@/components/analytics/PageVisitTracker";
 import { CartProvider } from "@/lib/cart/CartContext";
 import { FavoritesProvider } from "@/lib/favorites/useFavorites";
 import { PlansCacheProvider } from "@/lib/plans/PlansCache";
@@ -63,6 +64,7 @@ export default function RootLayout({
       </head>
       <body className={`${gilroy.variable} ${gilroy.className}`}>
         {gtmId && <GoogleTagManager GTM_ID={gtmId} />}
+        <PageVisitTracker />
         <CartProvider>
           <FavoritesProvider>
             <PlansCacheProvider>{children}</PlansCacheProvider>
