@@ -1,4 +1,5 @@
 import "./globals.css";
+import { Suspense } from "react";
 import localFont from "next/font/local";
 import Script from "next/script";
 import { GoogleTagManager } from "@/components/GoogleTagManager";
@@ -63,7 +64,7 @@ export default function RootLayout({
         />
       </head>
       <body className={`${gilroy.variable} ${gilroy.className}`}>
-        {gtmId && <GoogleTagManager GTM_ID={gtmId} />}
+        {gtmId && <Suspense fallback={null}><GoogleTagManager GTM_ID={gtmId} /></Suspense>}
         <PageVisitTracker />
         <CartProvider>
           <FavoritesProvider>
