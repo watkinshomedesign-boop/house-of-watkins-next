@@ -1,22 +1,19 @@
 "use client";
 
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
 
 export function PageVisitTracker() {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
   const lastPath = useRef<string>("");
 
   useEffect(() => {
-    const fullPath = pathname + (searchParams?.toString() ? `?${searchParams.toString()}` : "");
-
     // Avoid duplicate fires for the same path
-    if (fullPath === lastPath.current) return;
-    lastPath.current = fullPath;
+    if (pathname === lastPath.current) return;
+    lastPath.current = pathname;
 
-    const url = new URL(window.location.href);
     const referrer = document.referrer || null;
+    const url = new URL(window.location.href);
     const utm_source = url.searchParams.get("utm_source") || null;
     const utm_medium = url.searchParams.get("utm_medium") || null;
     const utm_campaign = url.searchParams.get("utm_campaign") || null;
@@ -34,7 +31,7 @@ export function PageVisitTracker() {
     }).catch(() => {
       // ignore
     });
-  }, [pathname, searchParams]);
+  }, [pathname]);
 
   return null;
 }

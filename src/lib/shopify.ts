@@ -2,7 +2,7 @@
  * Shopify Admin API client – REST (2024-01).
  *
  * Env vars required:
- *   SHOPIFY_STORE_DOMAIN        – e.g. vterik-w0.myshopify.com
+ *   SHOPIFY_STORE_DOMAIN        – e.g. houseofwatkinsplans.com
  *   SHOPIFY_ADMIN_ACCESS_TOKEN  – permanent OAuth token (shpat_xxxxx)
  */
 
