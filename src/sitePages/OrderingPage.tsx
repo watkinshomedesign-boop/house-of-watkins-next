@@ -1331,7 +1331,7 @@ export function OrderingPage() {
                   )}>
                     <div className="min-h-0 overflow-hidden">
                       <p className="font-gilroy text-[15px] leading-[22px] text-[#8f8e8c]">
-                        Click <span className="font-medium">'Place Order'</span> to proceed to the PayPal payment page and complete your purchase.
+                        Click <span className="font-medium">&apos;Place Order&apos;</span> to proceed to the PayPal payment page and complete your purchase.
                       </p>
                     </div>
                   </div>
