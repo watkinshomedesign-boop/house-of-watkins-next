@@ -18,11 +18,33 @@ import {
   type ShopifyProduct,
 } from "@/lib/shopify";
 
-type SyncResult = {
+const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+
+/** Retry a function up to `retries` times on 429 errors with backoff. */
+async function withRetry<T>(fn: () => Promise<T>, retries = 3): Promise<T> {
+  for (let attempt = 0; ; attempt++) {
+    try {
+      return await fn();
+    } catch (e: any) {
+      const is429 = String(e?.message || "").includes("429");
+      if (is429 && attempt < retries) {
+        await sleep(2000 * (attempt + 1)); // 2s, 4s, 6s backoff
+        continue;
+      }
+      throw e;
+    }
+  }
+}
+
+export type SyncResult = {
   created: string[];
   updated: string[];
   skipped: string[];
   errors: Array<{ slug: string; error: string }>;
+  total: number;
+  offset: number;
+  batchSize: number;
+  done: boolean;
 };
 
 /** Compute the base price in dollars for a plan (single-build license). */
@@ -114,9 +136,10 @@ function buildProductPayload(
     vendor: "House of Watkins",
     product_type: "House Plan",
     tags,
+    options: [{ name: "License", values: ["Single Build License", "Builder License"] }],
     variants: [
       {
-        title: "Single Build License",
+        option1: "Single Build License",
         price: singlePrice.toFixed(2),
         sku: `${plan.slug}-single`,
         requires_shipping: false,
@@ -124,7 +147,7 @@ function buildProductPayload(
         taxable: true,
       },
       {
-        title: "Builder License",
+        option1: "Builder License",
         price: builderPrice.toFixed(2),
         sku: `${plan.slug}-builder`,
         requires_shipping: false,
@@ -132,18 +155,25 @@ function buildProductPayload(
         taxable: true,
       },
     ],
-    images: collectImages(plan),
+    // images: collectImages(plan), // disabled — images uploaded manually
   };
 }
 
-export async function syncPlansToShopify(): Promise<SyncResult> {
-  const result: SyncResult = { created: [], updated: [], skipped: [], errors: [] };
+const BATCH_SIZE = 10;
+
+export async function syncPlansToShopify(offset = 0): Promise<SyncResult> {
+  const result: SyncResult = {
+    created: [], updated: [], skipped: [], errors: [],
+    total: 0, offset, batchSize: BATCH_SIZE, done: false,
+  };
 
   // 1. Load plans + pricing
   const [plans, pricing] = await Promise.all([
     getPublishedPlans(),
     loadPricingSettingsServer(),
   ]);
+
+  result.total = plans.length;
 
   const baseCents = pricing.base_price_cents;
   const perSqFtCents = pricing.per_heated_sqft_cents;
@@ -156,8 +186,11 @@ export async function syncPlansToShopify(): Promise<SyncResult> {
     if (p.handle) shopifyByHandle.set(p.handle, p);
   }
 
-  // 3. Sync each plan
-  for (const plan of plans) {
+  // 3. Sync a batch of plans
+  const batch = plans.slice(offset, offset + BATCH_SIZE);
+  result.done = offset + BATCH_SIZE >= plans.length;
+
+  for (const plan of batch) {
     if (!plan.slug) {
       result.skipped.push("(no slug)");
       continue;
@@ -168,28 +201,25 @@ export async function syncPlansToShopify(): Promise<SyncResult> {
       const existing = shopifyByHandle.get(plan.slug);
 
       if (existing) {
-        // Update existing product — keep existing images if no new ones
         const updatePayload: Record<string, any> = { ...payload };
-        if (payload.images.length === 0) {
-          delete updatePayload.images;
-        }
-        // Map variant IDs for update
         if (existing.variants && existing.variants.length >= 2) {
           updatePayload.variants = payload.variants.map((v, i) => ({
             ...v,
             id: existing.variants[i]?.id,
           }));
         }
-        await updateProduct(existing.id, updatePayload);
+        await withRetry(() => updateProduct(existing.id, updatePayload));
         result.updated.push(plan.slug);
       } else {
-        // Create new product
-        await createProduct(payload);
+        await withRetry(() => createProduct(payload));
         result.created.push(plan.slug);
       }
     } catch (e: any) {
       result.errors.push({ slug: plan.slug, error: e?.message || String(e) });
     }
+
+    // Rate limit: Shopify Basic allows 2 req/s; wait 1s between calls
+    await sleep(1000);
   }
 
   return result;

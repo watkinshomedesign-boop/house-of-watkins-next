@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 
 type Row = {
   plan_slug: string;
+  plan_name: string | null;
+  front_image_url: string | null;
   views_count: number;
   favorites_count: number;
   purchases_count: number;
@@ -71,7 +73,22 @@ export function AnalyticsTable() {
             <tbody>
               {rows.map((r) => (
                 <tr key={r.plan_slug} className="border-t">
-                  <td className="px-4 py-2 font-mono">{r.plan_slug}</td>
+                  <td className="px-4 py-2">
+                    <div className="flex items-center gap-3">
+                      {r.front_image_url ? (
+                        <img
+                          src={r.front_image_url}
+                          alt={r.plan_name || r.plan_slug}
+                          className="h-10 w-14 rounded object-cover"
+                        />
+                      ) : (
+                        <div className="flex h-10 w-14 items-center justify-center rounded bg-neutral-100 text-xs text-neutral-400">
+                          —
+                        </div>
+                      )}
+                      <span className="font-medium">{r.plan_name || r.plan_slug}</span>
+                    </div>
+                  </td>
                   <td className="px-4 py-2 text-right">{Number(r.views_count ?? 0)}</td>
                   <td className="px-4 py-2 text-right">{Number(r.favorites_count ?? 0)}</td>
                   <td className="px-4 py-2 text-right">{Number(r.purchases_count ?? 0)}</td>

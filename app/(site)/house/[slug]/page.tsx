@@ -79,7 +79,7 @@ export default async function Page(props: { params: { slug: string } }) {
   return (
     <PlanProvider plan={plan}>
       <TypographyProvider templateKey="house_details" content={typographyContent as any}>
-        <PlanViewTracker planSlug={plan.slug} />
+        <PlanViewTracker planSlug={plan.slug} planName={plan.name} />
         <ProductDetailsPageResponsive />
       </TypographyProvider>
     </PlanProvider>

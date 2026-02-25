@@ -4,6 +4,7 @@ import type { HomePageMediaSlots } from "@/lib/homePage/types";
 import { urlForImage } from "@/lib/sanity/image";
 import { useMemo, useState } from "react";
 import { usePathname } from "next/navigation";
+import { gtmPush } from "@/lib/gtm";
 
 function imageUrl(source: unknown): string | undefined {
   if (!source) return undefined;
@@ -60,6 +61,8 @@ export function MobileLeadCaptureSection(props: { media?: HomePageMediaSlots }) 
 
       const json = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(String((json as any)?.error ?? "Failed to submit"));
+
+      gtmPush({ event: "generate_lead", value: 1 });
 
       setSuccess("Thanks — check your inbox shortly.");
       setEmail("");
