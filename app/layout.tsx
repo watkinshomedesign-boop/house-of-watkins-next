@@ -52,6 +52,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <meta name="msvalidate.01" content="76C12C5F9919B997B34A104924FB7C04" />
         <Script
           id="microsoft-clarity"
           strategy="afterInteractive"
