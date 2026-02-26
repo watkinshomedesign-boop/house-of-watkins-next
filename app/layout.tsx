@@ -7,6 +7,7 @@ import { PageVisitTracker } from "@/components/analytics/PageVisitTracker";
 import { CartProvider } from "@/lib/cart/CartContext";
 import { FavoritesProvider } from "@/lib/favorites/useFavorites";
 import { PlansCacheProvider } from "@/lib/plans/PlansCache";
+import { GoogleAnalytics } from "@next/third-parties/google";
 export const metadata = {
   verification: {
     google: "p1FaTI1nGV-fpDjoRqgx1jqGigY9lFyfEgGW_pwjQ5c",
@@ -76,6 +77,7 @@ export default function RootLayout({
             <PlansCacheProvider>{children}</PlansCacheProvider>
           </FavoritesProvider>
         </CartProvider>
+        <GoogleAnalytics gaId="G-NSV7HV1CJ6" />
       </body>
     </html>
   );
