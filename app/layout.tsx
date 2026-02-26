@@ -10,6 +10,9 @@ import { PlansCacheProvider } from "@/lib/plans/PlansCache";
 export const metadata = {
   verification: {
     google: "p1FaTI1nGV-fpDjoRqgx1jqGigY9lFyfEgGW_pwjQ5c",
+    other: {
+      "msvalidate.01": ["76C12C5F9919B997B34A104924FB7C04"],
+    },
   },
 };
 
