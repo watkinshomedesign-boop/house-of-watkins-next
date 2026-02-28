@@ -4,6 +4,8 @@ import { Footer } from "@/sections/Footer";
 import { InteriorHeader } from "@/sections/InteriorHeader";
 import { Suspense } from "react";
 
+export const revalidate = 60;
+
 export default async function Page() {
   try {
     const provider = getBlogProvider();

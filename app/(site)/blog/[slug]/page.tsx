@@ -4,6 +4,8 @@ import { getBlogProvider } from "@/lib/blog/getProvider";
 import { Footer } from "@/sections/Footer";
 import { InteriorHeader } from "@/sections/InteriorHeader";
 
+export const revalidate = 60;
+
 export default async function Page(props: { params: { slug: string } }) {
   try {
     const provider = getBlogProvider();
