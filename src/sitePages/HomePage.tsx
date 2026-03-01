@@ -63,6 +63,12 @@ export function HomePage(props: { cms?: HomePageSlots }) {
                         </div>
                       </div>
                     ) : null}
+                    <section className="px-4 md:px-[56.832px]">
+                      <h1 className="text-xl font-semibold text-neutral-900 md:text-2xl">Premium House Plans Designed in Oregon</h1>
+                      <p className="mt-3 max-w-3xl text-sm leading-relaxed text-neutral-600 md:text-base md:leading-relaxed">
+                        House of Watkins is a small, intentional collection of house plans drawn by David Watkins in Bend, Oregon. Our catalog includes <a href="/adu-plans" className="text-orange-700 underline underline-offset-2 hover:text-orange-900">ADU and accessory dwelling unit plans</a>, midcentury modern house plans, contemporary house plans, and farmhouse designs — each one shaped by over 30 years of residential design experience. Whether you are an owner-builder planning your first project or a family looking for a home that fits the way you actually live, every plan here was designed with care, not generated in volume.
+                      </p>
+                    </section>
                     <SearchSection />
                     {valuePropsEnabled && valuePropsBullets.length > 0 ? (
                       <div className="px-0 md:px-[56.832px]">

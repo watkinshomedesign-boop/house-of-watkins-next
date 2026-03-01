@@ -19,10 +19,10 @@ export async function generateMetadata(): Promise<Metadata> {
   const siteSettings = await getSiteSettings();
   const baseUrl = await getSiteUrl();
 
-  const title = siteSettings?.defaultSeoTitle?.trim() || "House of Watkins | Custom House Plans & Design";
+  const title = siteSettings?.defaultSeoTitle?.trim() || "House of Watkins | ADU Plans, Midcentury Modern & Contemporary House Plans";
   const description =
     siteSettings?.defaultSeoDescription?.trim() ||
-    "Discover custom house plans and architectural designs from House of Watkins. Browse our collection of unique home designs.";
+    "Premium house plans designed in Bend, Oregon by David Watkins — ADU and accessory dwelling unit plans, midcentury modern, contemporary, and farmhouse designs. Curated plans for owner-builders and families, from compact backyard cottages to full-size custom homes.";
 
   let ogImage: string | undefined;
   if (siteSettings?.defaultOgImage) {

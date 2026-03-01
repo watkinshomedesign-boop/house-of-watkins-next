@@ -15,9 +15,9 @@ export async function generateMetadata(): Promise<Metadata> {
   const baseUrl = await getSiteUrl();
   const canonicalUrl = `${baseUrl}/house-plans`;
 
-  const title = "House Plans | Browse Custom Home Designs | House of Watkins";
+  const title = "House Plans | ADU, Midcentury Modern & Contemporary Designs | House of Watkins";
   const description =
-    "Browse our collection of custom house plans and architectural designs. Find the perfect home plan for your lifestyle, from small homes to luxury estates. Filter by bedrooms, square footage, style, and more.";
+    "Browse curated house plans designed by David Watkins — ADU and accessory dwelling unit plans, midcentury modern, contemporary, and farmhouse designs. Filter by bedrooms, square footage, and style. Plans start at $1,250.";
 
   return {
     title,

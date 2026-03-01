@@ -168,11 +168,16 @@ export type HousePlansPageProps = {
   headerDescription?: string | null;
   searchIconSrc?: string | null;
   searchIconAlt?: string | null;
+  defaultFilters?: Partial<CatalogFilterState>;
 };
 
-function useHousePlansCatalogState() {
+function useHousePlansCatalogState(defaultFilters?: Partial<CatalogFilterState>) {
   const { plans: cachedPlans, loading, error } = usePlansCache();
   const plans = cachedPlans as CatalogPlan[];
+
+  const initialFilters = defaultFilters
+    ? { ...DEFAULT_FILTERS, ...defaultFilters } as CatalogFilterState
+    : DEFAULT_FILTERS;
 
   const [query, setQuery] = useState("");
   const [sort, setSort] = useState<SortKey>("popular");
@@ -180,8 +185,8 @@ function useHousePlansCatalogState() {
   const [desktopFiltersOpen, setDesktopFiltersOpen] = useState(false);
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const [mobileSortOpen, setMobileSortOpen] = useState(false);
-  const [filterState, setFilterState] = useState<CatalogFilterState>(DEFAULT_FILTERS);
-  const [mobileFilterDraft, setMobileFilterDraft] = useState<CatalogFilterState>(DEFAULT_FILTERS);
+  const [filterState, setFilterState] = useState<CatalogFilterState>(initialFilters);
+  const [mobileFilterDraft, setMobileFilterDraft] = useState<CatalogFilterState>(initialFilters);
   const [mobileSortDraft, setMobileSortDraft] = useState<SortKey>("popular");
   const scrollRestoreYRef = useRef(0);
 
@@ -319,7 +324,7 @@ function useHousePlansCatalogState() {
 }
 
 export function HousePlansPageMobile(props: HousePlansPageProps) {
-  const s = useHousePlansCatalogState();
+  const s = useHousePlansCatalogState(props.defaultFilters);
   const headerDescription = String(props.headerDescription || "").trim();
   const [visible, setVisible] = useState(false);
 
@@ -591,7 +596,7 @@ export function HousePlansPageMobile(props: HousePlansPageProps) {
 }
 
 export function HousePlansPageDesktop(props: HousePlansPageProps) {
-  const s = useHousePlansCatalogState();
+  const s = useHousePlansCatalogState(props.defaultFilters);
   const headerDescription = String(props.headerDescription || "").trim();
   const [visible, setVisible] = useState(false);
 

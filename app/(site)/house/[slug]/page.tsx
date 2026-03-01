@@ -8,18 +8,28 @@ import { notFound } from "next/navigation";
 import { PlanViewTracker } from "@/components/analytics/PlanViewTracker";
 import type { Metadata } from "next";
 
-function defaultTitle(planName: string) {
-  const name = String(planName || "").trim() || "House Plan";
-  return `${name} House Plan | House of Watkins`;
+function defaultTitle(plan: { name: string; beds?: number | null; heated_sqft: number }) {
+  const name = String(plan.name || "").trim() || "House Plan";
+  const beds = plan.beds ? `${plan.beds} Bedroom` : "";
+  const sqft = plan.heated_sqft ? ` ${plan.heated_sqft.toLocaleString()} Sq Ft` : "";
+  const specs = [beds, sqft].filter(Boolean).join(" \u2013 ");
+  return specs ? `${name} \u2013 ${specs} | House of Watkins` : `${name} House Plan | House of Watkins`;
 }
 
-function defaultDescription(planName: string, description: string | null | undefined) {
-  const base = String(description || "").trim();
+function defaultDescription(plan: { name: string; description?: string | null; beds?: number | null; baths?: number | null; heated_sqft: number; garage_bays?: number | null }) {
+  const base = String(plan.description || "").trim();
   if (base) {
     return base.length > 160 ? `${base.slice(0, 157).trim()}...` : base;
   }
-  const name = String(planName || "").trim() || "this plan";
-  return `Explore ${name}, including square footage, key features, and downloadable plan options.`;
+  const name = String(plan.name || "").trim() || "this plan";
+  const parts: string[] = [];
+  if (plan.heated_sqft) parts.push(`${plan.heated_sqft.toLocaleString()} sq ft`);
+  if (plan.beds) parts.push(`${plan.beds} bed`);
+  if (plan.baths) parts.push(`${plan.baths} bath`);
+  if (plan.garage_bays) parts.push(`${plan.garage_bays}-car garage`);
+  const specs = parts.length ? ` \u2014 ${parts.join(", ")}` : "";
+  const price = plan.heated_sqft ? `. Plans from $${Math.round(1250 + 0.65 * plan.heated_sqft).toLocaleString()}.` : ".";
+  return `Browse the ${name} floor plan${specs}. Designed by David Watkins in Bend, Oregon${price}`;
 }
 
 async function getSiteUrl(): Promise<string> {
@@ -39,8 +49,8 @@ export async function generateMetadata(props: { params: { slug: string } }): Pro
   const baseUrl = await getSiteUrl();
   const canonicalUrl = `${baseUrl}/house/${plan.slug}`;
 
-  const title = (plan.seo_title || "").trim() || defaultTitle(plan.name);
-  const description = (plan.seo_description || "").trim() || defaultDescription(plan.name, plan.description);
+  const title = (plan.seo_title || "").trim() || defaultTitle(plan);
+  const description = (plan.seo_description || "").trim() || defaultDescription(plan);
 
   const ogUrl = await resolvePlanOgImageUrl(plan);
 
