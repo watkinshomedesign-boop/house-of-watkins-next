@@ -7,6 +7,7 @@ import { getTypographyTemplateContent } from "@/lib/typographyServer";
 import { notFound } from "next/navigation";
 import { PlanViewTracker } from "@/components/analytics/PlanViewTracker";
 import JsonLd from "@/components/JsonLd";
+import { loadPricingSettingsServer } from "@/lib/pricingSettingsServer";
 import type { Metadata } from "next";
 
 function defaultTitle(plan: { name: string; beds?: number | null; heated_sqft: number }) {
@@ -79,7 +80,7 @@ export async function generateMetadata(props: { params: { slug: string } }): Pro
   };
 }
 
-function buildProductSchema(plan: Plan, imageUrl: string | null) {
+function buildProductSchema(plan: Plan, imageUrl: string | null, priceDollars: number) {
   const priceValidUntil = new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split("T")[0];
   return {
     "@context": "https://schema.org",
@@ -95,7 +96,7 @@ function buildProductSchema(plan: Plan, imageUrl: string | null) {
     "offers": {
       "@type": "Offer",
       "url": `https://houseofwatkins.com/house/${plan.slug}`,
-      "price": "1738",
+      "price": String(priceDollars),
       "priceCurrency": "USD",
       "availability": "https://schema.org/InStock",
       "seller": { "@id": "https://houseofwatkins.com/#organization" },
@@ -113,7 +114,7 @@ function buildProductSchema(plan: Plan, imageUrl: string | null) {
   };
 }
 
-function buildFaqSchema(plan: Plan) {
+function buildFaqSchema(plan: Plan, priceDollars: number) {
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -139,7 +140,7 @@ function buildFaqSchema(plan: Plan) {
         "name": `How much does the ${plan.name} cost?`,
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": `Plans from House of Watkins start at $1,738. The ${plan.name} is a ${plan.heated_sqft || ""} sq ft, ${plan.beds || ""}-bedroom, ${plan.baths || ""}-bathroom design. Contact us for exact pricing including any customizations.`
+          "text": `The ${plan.name} starts at $${priceDollars.toLocaleString()}. It is a ${plan.heated_sqft || ""} sq ft, ${plan.beds || ""}-bedroom, ${plan.baths || ""}-bathroom design. Contact us for exact pricing including any customizations.`
         }
       },
       {
@@ -182,12 +183,14 @@ export default async function Page(props: { params: { slug: string } }) {
 
   const typographyContent = (await getTypographyTemplateContent("house_details")) ?? {};
   const ogUrl = await resolvePlanOgImageUrl(plan);
+  const pricing = await loadPricingSettingsServer();
+  const priceDollars = Math.round((pricing.base_price_cents + pricing.per_heated_sqft_cents * plan.heated_sqft) / 100);
 
   return (
     <PlanProvider plan={plan}>
       <TypographyProvider templateKey="house_details" content={typographyContent as any}>
-        <JsonLd data={buildProductSchema(plan, ogUrl)} />
-        <JsonLd data={buildFaqSchema(plan)} />
+        <JsonLd data={buildProductSchema(plan, ogUrl, priceDollars)} />
+        <JsonLd data={buildFaqSchema(plan, priceDollars)} />
         <JsonLd data={buildBreadcrumbSchema(plan)} />
         <PlanViewTracker planSlug={plan.slug} planName={plan.name} />
         <ProductDetailsPageResponsive />
