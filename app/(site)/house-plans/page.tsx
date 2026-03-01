@@ -1,6 +1,7 @@
 import { HousePlansPageResponsive } from "@/sitePages/HousePlansPageResponsive.client";
 import { getHousePlansPage } from "@/lib/contentPages/sanity";
 import { urlForImage } from "@/lib/sanity/image";
+import JsonLd from "@/components/JsonLd";
 import type { Metadata } from "next";
 
 async function getSiteUrl(): Promise<string> {
@@ -56,12 +57,24 @@ export default async function Page() {
   const media = (cms as any)?.housePlansMedia;
   const searchIconSrc = getImageUrl(media?.searchIcon);
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://houseofwatkins.com" },
+      { "@type": "ListItem", "position": 2, "name": "House Plans", "item": "https://houseofwatkins.com/house-plans" }
+    ]
+  };
+
   return (
-    <HousePlansPageResponsive
-      headerTitle={media?.headerTitle ?? null}
-      headerDescription={media?.headerDescription ?? null}
-      searchIconSrc={searchIconSrc}
-      searchIconAlt={media?.searchIconAlt ?? null}
-    />
+    <>
+      <JsonLd data={breadcrumbSchema} />
+      <HousePlansPageResponsive
+        headerTitle={media?.headerTitle ?? null}
+        headerDescription={media?.headerDescription ?? null}
+        searchIconSrc={searchIconSrc}
+        searchIconAlt={media?.searchIconAlt ?? null}
+      />
+    </>
   );
 }

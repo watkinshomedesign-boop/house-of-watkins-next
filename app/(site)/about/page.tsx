@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { getAboutPage } from "@/lib/contentPages/sanity";
 import { isContentPageVisibleToRequest } from "@/lib/contentPages/visibility";
 import { urlForImage } from "@/lib/sanity/image";
+import JsonLd from "@/components/JsonLd";
 
 function imageUrl(source: unknown, width: number) {
   if (!source) return undefined;
@@ -63,7 +64,37 @@ export default async function Page() {
       }
     : undefined;
 
+  const heroImgUrl = media?.heroImageSrc || "";
+
+  const personSchema = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": "https://houseofwatkins.com/about#david-watkins",
+    "name": "David Elijah Watkins",
+    "jobTitle": "Residential Designer",
+    "worksFor": { "@id": "https://houseofwatkins.com/#organization" },
+    "description": "Award-winning residential designer with over 30 years of experience and 400+ homes designed. Educated at the Art Institute of Denver. Specializes in midcentury modern, contemporary, and ADU house plans.",
+    "alumniOf": {
+      "@type": "EducationalOrganization",
+      "name": "Art Institute of Denver"
+    },
+    "knowsAbout": [
+      "Residential Architecture",
+      "Midcentury Modern Design",
+      "ADU Design",
+      "Contemporary House Plans",
+      "Construction",
+      "Site Planning"
+    ],
+    "award": "Award-Winning Designer",
+    "url": "https://houseofwatkins.com/about",
+    ...(heroImgUrl ? { "image": heroImgUrl } : {})
+  };
+
   return (
-    <AboutPageResponsive media={media} />
+    <>
+      <JsonLd data={personSchema} />
+      <AboutPageResponsive media={media} />
+    </>
   );
 }

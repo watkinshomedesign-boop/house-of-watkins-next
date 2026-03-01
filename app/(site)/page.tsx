@@ -6,6 +6,7 @@ import { draftMode } from "next/headers";
 import type { Metadata } from "next";
 import { getSiteSettings } from "@/lib/sitePages/sanity";
 import { urlForImage } from "@/lib/sanity/image";
+import JsonLd from "@/components/JsonLd";
 
 async function getSiteUrl(): Promise<string> {
   const url = process.env.NEXT_PUBLIC_SITE_URL || process.env.VERCEL_URL;
@@ -67,8 +68,64 @@ export default async function Page() {
     if (!visible && process.env.NODE_ENV === "production") return notFound();
   }
 
+  const homepageSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://houseofwatkins.com/#organization",
+        "name": "House of Watkins",
+        "url": "https://houseofwatkins.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://houseofwatkins.com/brand/Logo%20Images/Logo%20Stacked.png"
+        },
+        "description": "Custom house plans and architectural designs by award-winning designer David Watkins. 77 designer plans starting at $1,738. Over 30 years of experience and 400+ homes designed.",
+        "foundingDate": "1995",
+        "founder": {
+          "@type": "Person",
+          "name": "David Elijah Watkins"
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Bend",
+          "addressRegion": "OR",
+          "addressCountry": "US"
+        },
+        "sameAs": [
+          "https://www.instagram.com/house.of.watkins/",
+          "https://www.pinterest.com/houseofwatkins/",
+          "https://www.facebook.com/houseofwatkins",
+          "https://www.linkedin.com/company/house-of-watkins"
+        ],
+        "numberOfEmployees": {
+          "@type": "QuantitativeValue",
+          "value": 3
+        },
+        "knowsAbout": [
+          "House Plans",
+          "ADU Floor Plans",
+          "Midcentury Modern Architecture",
+          "Contemporary House Design",
+          "Oregon ADU Plans",
+          "Custom Home Design",
+          "Residential Architecture"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://houseofwatkins.com/#website",
+        "name": "House of Watkins",
+        "url": "https://houseofwatkins.com",
+        "publisher": { "@id": "https://houseofwatkins.com/#organization" },
+        "description": "Browse 77 designer house plans from award-winning designer David Watkins. ADU plans, midcentury modern, contemporary, and custom designs starting at $1,738."
+      }
+    ]
+  };
+
   return (
     <>
+      <JsonLd data={homepageSchema} />
       <div className="md:hidden">
         <HomePageMobile cms={cms ?? undefined} />
       </div>
