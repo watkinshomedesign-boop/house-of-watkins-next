@@ -8,6 +8,7 @@ import { cartToCheckoutItems } from "@/lib/cart/toCheckoutItems";
 import { getStoredBuilderCode } from "@/lib/builderPromo/storage";
 import { cn } from "@/lib/utils";
 import { gtmPush } from "@/lib/gtm";
+import { trackPinterestEvent } from "@/lib/pinterest";
 
 type ExpandedLine = { label: string; amount: string };
 
@@ -556,6 +557,7 @@ export function OrderingPage() {
     return () => window.removeEventListener("moss_builder_code_changed", onChange);
   }, []);
 
+  const purchaseFiredRef = useRef(false);
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const success = params.get("success");
@@ -572,6 +574,22 @@ export function OrderingPage() {
           })),
         },
       });
+
+      if (!purchaseFiredRef.current) {
+        purchaseFiredRef.current = true;
+        trackPinterestEvent('checkout', {
+          value: 0,
+          order_quantity: cart.items.length || 1,
+          currency: 'USD',
+          line_items: cart.items.map((ci) => ({
+            product_name: ci.name,
+            product_id: ci.slug,
+            product_quantity: ci.qty,
+            product_category: 'House Plans',
+          })),
+        });
+      }
+
       setShowThankYou(true);
       cart.clearCart();
     }
@@ -824,6 +842,18 @@ export function OrderingPage() {
           quantity: ci.qty,
         })),
       },
+    });
+
+    trackPinterestEvent('checkout', {
+      value: quoteData ? quoteData.totalCents / 100 : 0,
+      order_quantity: cart.items.length,
+      currency: 'USD',
+      line_items: cart.items.map((ci) => ({
+        product_name: ci.name,
+        product_id: ci.slug,
+        product_quantity: ci.qty,
+        product_category: 'House Plans',
+      })),
     });
 
     // Option A: PayPal redirect (when selected)

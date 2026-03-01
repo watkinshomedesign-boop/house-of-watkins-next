@@ -192,7 +192,7 @@ export default async function Page(props: { params: { slug: string } }) {
         <JsonLd data={buildProductSchema(plan, ogUrl, priceDollars)} />
         <JsonLd data={buildFaqSchema(plan, priceDollars)} />
         <JsonLd data={buildBreadcrumbSchema(plan)} />
-        <PlanViewTracker planSlug={plan.slug} planName={plan.name} />
+        <PlanViewTracker planSlug={plan.slug} planName={plan.name} planPrice={priceDollars} />
         <ProductDetailsPageResponsive />
       </TypographyProvider>
     </PlanProvider>

@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useCart } from "@/lib/cart/CartContext";
 import { usePdp } from "@/lib/pdpState";
 import { gtmPush } from "@/lib/gtm";
+import { trackPinterestEvent } from "@/lib/pinterest";
 
 export function AddToCartButton(props: {
   slug: string;
@@ -58,6 +59,15 @@ export function AddToCartButton(props: {
           },
         ],
       },
+    });
+
+    trackPinterestEvent('addtocart', {
+      value: 0,
+      order_quantity: 1,
+      currency: 'USD',
+      product_name: props.name,
+      product_id: props.slug,
+      product_category: 'House Plans',
     });
 
     router.push("/cart");

@@ -2,6 +2,7 @@ import { HousePlansPageResponsive } from "@/sitePages/HousePlansPageResponsive.c
 import { getHousePlansPage } from "@/lib/contentPages/sanity";
 import { urlForImage } from "@/lib/sanity/image";
 import JsonLd from "@/components/JsonLd";
+import { PinterestCategoryTracker } from "@/components/analytics/PinterestCategoryTracker";
 import type { Metadata } from "next";
 
 async function getSiteUrl(): Promise<string> {
@@ -69,6 +70,7 @@ export default async function Page() {
   return (
     <>
       <JsonLd data={breadcrumbSchema} />
+      <PinterestCategoryTracker category="ADU Plans" />
       <HousePlansPageResponsive
         headerTitle="ADU Plans"
         headerDescription="Accessory dwelling unit plans designed for real life — backyard cottages, granny flats, in-law suites, and casitas."

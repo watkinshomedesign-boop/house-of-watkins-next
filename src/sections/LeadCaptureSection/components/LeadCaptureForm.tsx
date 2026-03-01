@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { usePathname } from "next/navigation";
 import { gtmPush } from "@/lib/gtm";
+import { trackPinterestEvent } from "@/lib/pinterest";
 
 function isValidEmail(email: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -51,6 +52,7 @@ export const LeadCaptureForm = () => {
       if (!res.ok) throw new Error(String((json as any)?.error ?? "Failed to submit"));
 
       gtmPush({ event: "generate_lead", value: 1 });
+      trackPinterestEvent('lead', { value: 0, currency: 'USD' });
 
       setSuccess("Thanks — check your inbox shortly.");
       setEmail("");

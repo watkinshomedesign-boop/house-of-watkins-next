@@ -12,6 +12,7 @@ import { useTypographyStyle } from "@/lib/typographyContext";
 import { getTextStyleCss } from "@/lib/typography";
 import { useCart } from "@/lib/cart/CartContext";
 import { gtmPush } from "@/lib/gtm";
+import { trackPinterestEvent } from "@/lib/pinterest";
 import { FavoritesProvider } from "@/lib/favorites/useFavorites";
 import { usePlansCache, type CachedPlan } from "@/lib/plans/PlansCache";
 
@@ -344,6 +345,15 @@ function MobileAddToCartButton(props: { className?: string; variant?: "cta" }) {
           },
         ],
       },
+    });
+
+    trackPinterestEvent('addtocart', {
+      value: 0,
+      order_quantity: 1,
+      currency: 'USD',
+      product_name: plan.name,
+      product_id: plan.slug,
+      product_category: 'House Plans',
     });
 
     router.push("/cart");

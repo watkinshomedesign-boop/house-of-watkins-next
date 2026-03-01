@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { gtmPush } from "@/lib/gtm";
+import { trackPinterestEvent } from "@/lib/pinterest";
 
 export function PlanViewTracker(props: {
   planSlug: string;
@@ -31,6 +32,13 @@ export function PlanViewTracker(props: {
           },
         ],
       },
+    });
+
+    trackPinterestEvent('pagevisit', {
+      product_name: props.planName || slug,
+      product_id: slug,
+      product_category: 'House Plans',
+      ...(props.planPrice ? { product_price: props.planPrice, value: props.planPrice, currency: 'USD' } : {}),
     });
   }, [props.planSlug, props.planName, props.planPrice]);
 
