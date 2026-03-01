@@ -845,7 +845,7 @@ export function OrderingPage() {
     });
 
     trackPinterestEvent('checkout', {
-      value: quoteData ? quoteData.totalCents / 100 : 0,
+      value: 0,
       order_quantity: cart.items.length,
       currency: 'USD',
       line_items: cart.items.map((ci) => ({
