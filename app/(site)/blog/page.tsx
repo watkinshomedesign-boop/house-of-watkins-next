@@ -8,11 +8,11 @@ import type { Metadata } from "next";
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: "Blog | House of Watkins",
+  title: "Blog",
   description:
     "Design insights, building guides, and Pacific Northwest architecture from architect David Elijah Watkins. Explore house plans, barndominiums, ADUs, and more.",
   openGraph: {
-    title: "Blog | House of Watkins",
+    title: "Blog",
     description:
       "Design insights, building guides, and Pacific Northwest architecture from architect David Elijah Watkins.",
     url: "https://houseofwatkins.com/blog",

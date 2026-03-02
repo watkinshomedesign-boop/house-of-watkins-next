@@ -28,10 +28,10 @@ export async function generateMetadata(props: { params: { slug: string } }): Pro
     const provider = getBlogProvider();
     const post = await provider.getPost(props.params.slug);
     if (!post) {
-      return { title: "Post Not Found | House of Watkins" };
+      return { title: "Post Not Found" };
     }
 
-    const title = `${post.title} | House of Watkins`;
+    const title = post.title;
     const description = truncate(
       post.excerpt || "Read this article from House of Watkins.",
       155,
@@ -74,7 +74,7 @@ export async function generateMetadata(props: { params: { slug: string } }): Pro
       },
     };
   } catch {
-    return { title: "Blog | House of Watkins" };
+    return { title: "Blog" };
   }
 }
 
