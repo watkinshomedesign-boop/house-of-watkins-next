@@ -3,8 +3,26 @@ import { getBlogProvider } from "@/lib/blog/getProvider";
 import { Footer } from "@/sections/Footer";
 import { InteriorHeader } from "@/sections/InteriorHeader";
 import { Suspense } from "react";
+import type { Metadata } from "next";
 
 export const revalidate = 60;
+
+export const metadata: Metadata = {
+  title: "Blog | House of Watkins",
+  description:
+    "Design insights, building guides, and Pacific Northwest architecture from architect David Elijah Watkins. Explore house plans, barndominiums, ADUs, and more.",
+  openGraph: {
+    title: "Blog | House of Watkins",
+    description:
+      "Design insights, building guides, and Pacific Northwest architecture from architect David Elijah Watkins.",
+    url: "https://houseofwatkins.com/blog",
+    type: "website",
+    siteName: "House of Watkins",
+  },
+  alternates: {
+    canonical: "https://houseofwatkins.com/blog",
+  },
+};
 
 export default async function Page() {
   try {
