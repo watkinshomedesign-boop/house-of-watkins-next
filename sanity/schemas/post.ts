@@ -6,6 +6,7 @@ const categories = [
   "Product Reviews",
   "Case Studies",
   "Inspiration",
+  "Accessory Units",
 ];
 
 export const post = defineType({

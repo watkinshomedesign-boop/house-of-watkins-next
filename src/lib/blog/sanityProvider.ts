@@ -63,6 +63,7 @@ export class SanityBlogProvider implements BlogProvider {
       "Product Reviews",
       "Case Studies",
       "Inspiration",
+      "Accessory Units",
     ];
   }
 

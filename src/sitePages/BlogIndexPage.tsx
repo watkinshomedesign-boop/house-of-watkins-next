@@ -22,6 +22,7 @@ const CATEGORY_PILLS = [
   "Product Reviews",
   "Case Studies",
   "Inspiration",
+  "Accessory Units",
 ];
 
 function formatDate(date: string) {
