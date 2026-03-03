@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import "./builder-landing.css";
 import { motion, useInView } from "framer-motion";
-import { ChevronDown, ArrowRight, Phone, Mail, MapPin, Check } from "lucide-react";
+import { ChevronDown, ArrowRight, Mail, Check } from "lucide-react";
 import type { BuilderPageCMS } from "@/lib/builderPage/sanity";
 import {
   Accordion,
@@ -286,10 +286,8 @@ const Header = () => {
 // Section 1: Hero
 const HeroSection = ({ cms }: { cms?: BuilderPageCMS["hero"] }) => {
   const bgImage = cms?.backgroundImageUrl ?? "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920&q=80";
-  const headline = cms?.headline ?? "Stop Competing. Start Dominating.";
-  const subheadline = cms?.subheadline ?? "In a market flooded with look-alike luxury homes, design distinction is your last true competitive advantage. Our plans help you command premium prices, attract high-caliber clients, and build a reputation that sells itself.";
-  const ctaLabel = cms?.ctaLabel ?? "See How Our Designs Deliver a 20-40% Premium";
-  const secondaryCtaLabel = cms?.secondaryCtaLabel ?? "Read by 150+ premium builders. Download the Free Guide";
+  const headline = cms?.headline ?? "Complete, Buildable Plans. From a Designer Who\u2019s Watched 400+ of Them Go Up.";
+  const subheadline = cms?.subheadline ?? "I design homes that work on the job site -- not just on screen. Stock plans with builder discounts, modifications on your timeline, and fully custom design at $2.85 per square foot.";
 
   return (
     <section
@@ -322,33 +320,10 @@ const HeroSection = ({ cms }: { cms?: BuilderPageCMS["hero"] }) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          <Dialog>
-            <DialogTrigger asChild>
-              <button className="blp-btn-primary">{ctaLabel}</button>
-            </DialogTrigger>
-            <DialogContent className="sm:max-w-[500px]">
-              <DialogHeader>
-                <DialogTitle className="blp-heading-h3">Schedule Your Strategy Call</DialogTitle>
-              </DialogHeader>
-              <LeadCaptureForm />
-            </DialogContent>
-          </Dialog>
-          <Dialog>
-            <DialogTrigger asChild>
-              <button className="text-white/80 hover:text-white text-sm underline underline-offset-4 transition-colors">
-                {secondaryCtaLabel}
-              </button>
-            </DialogTrigger>
-            <DialogContent className="sm:max-w-[500px]">
-              <DialogHeader>
-                <DialogTitle className="blp-heading-h3">
-                  Download: The Builder&apos;s Guide to Design Distinction
-                </DialogTitle>
-              </DialogHeader>
-              <p className="blp-body-text mb-6">Enter your email to receive your free copy.</p>
-              <LeadCaptureForm />
-            </DialogContent>
-          </Dialog>
+          <a href="/house-plans" className="blp-btn-primary">Browse Builder Plans</a>
+          <a href="#builder-partner-program" className="text-white/80 hover:text-white text-sm underline underline-offset-4 transition-colors">
+            Or scroll down to see the Builder Partner Program
+          </a>
         </motion.div>
       </div>
     </section>
@@ -357,14 +332,14 @@ const HeroSection = ({ cms }: { cms?: BuilderPageCMS["hero"] }) => {
 
 // Section 2: The Problem
 const PROBLEM_DEFAULTS = {
-  headline: "Are You Building Homes, or Just Competing on Price?",
+  headline: "The Plans You\u2019re Getting Aren\u2019t Complete. You Already Know This.",
   body: [
-    'The luxury market is crowded. Every day, another builder puts up a "custom" home that looks just like the one next door. They compete on square footage, finishes, and, ultimately, on price. This is a race to the bottom, where your margins get squeezed and your brand gets lost in the noise.',
-    "Premium builders know this. They know that the most discerning clients aren\u2019t looking for the biggest house or the cheapest price-per-square-foot. They are looking for something different. They are looking for a home that feels unique, that tells a story, that has a soul.",
+    "If you\u2019ve been building for any length of time, you\u2019ve dealt with this: plans that look fine on screen but fall apart in the field. Missing dimensions. Details that don\u2019t translate to framing. Specs that generate RFIs and change orders before the foundation is poured.",
+    "It\u2019s not that the designers don\u2019t care. It\u2019s that most of them haven\u2019t stood on a job site and watched a framing crew try to work from their drawings. I have -- for 30 years, across more than 400 homes.",
   ],
-  boldStatement: "If your designs look like everyone else\u2019s, you\u2019re not in the luxury business. You\u2019re in the commodity business.",
+  boldStatement: "Every plan I produce is dimensioned for the framer, detailed for the sub, and designed by someone who knows where the problems hide. That\u2019s what \u2018complete\u2019 actually means.",
   imageUrl: "https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=800&q=80",
-  imageAlt: "Generic suburban homes",
+  imageAlt: "Construction site",
 };
 
 const ProblemSection = ({ cms }: { cms?: BuilderPageCMS["problem"] }) => {
@@ -402,49 +377,67 @@ const ProblemSection = ({ cms }: { cms?: BuilderPageCMS["problem"] }) => {
   );
 };
 
-// Section 3: The Solution
-const SOLUTION_DEFAULTS = {
-  headline: "Sell a Masterpiece. Not Just a House.",
-  intro: "Design distinction is the invisible asset that allows you to exit the pricing game and enter the value conversation. It\u2019s the difference between a client who haggles over every line item and a client who says, \u201cI have to have this,\u201d and signs the contract.",
-  body: "For 30 years, I\u2019ve designed homes that provide that unfair advantage. My plans are not just blueprints; they are strategic business tools for builders who refuse to be average.",
-  benefits: [
-    { title: "Command Premium Pricing", description: "Justify 20-40% higher sale prices that clients are happy to pay." },
-    { title: "Shorten Your Sales Cycle", description: "Create homes with such powerful curb appeal they sell before the drywall is even up." },
-    { title: "Build a Powerful Brand", description: "Become the builder known for creating the most distinctive, sought-after homes in your market." },
-    { title: "Eliminate Costly Rework", description: "Work from complete, professional plans honed over 400+ successful builds." },
-  ],
-};
-
-const SolutionSection = ({ cms }: { cms?: BuilderPageCMS["solution"] }) => {
-  const headline = cms?.headline ?? SOLUTION_DEFAULTS.headline;
-  const intro = cms?.intro ?? SOLUTION_DEFAULTS.intro;
-  const body = cms?.body ?? SOLUTION_DEFAULTS.body;
-  const benefits = cms?.benefits?.length ? cms.benefits : SOLUTION_DEFAULTS.benefits;
+// Section 3: Three Ways I Work With Builders
+const SolutionSection = () => {
+  const cards = [
+    {
+      title: "Ready-to-Build Plans",
+      body: "Proven designs refined across hundreds of projects. Every plan on my site has been built before. Builder discounts start at 15% off your first plan, and CAD files include an unlimited build license.",
+      ctaLabel: "Browse Plans",
+      ctaHref: "/house-plans",
+    },
+    {
+      title: "Plan Modifications",
+      body: "Need to adjust a stock plan to fit a lot, a client\u2019s wish list, or local code? Small adjustments start at $225. I turn modifications around on your timeline, not mine.",
+      ctaLabel: "See Modification Options",
+      ctaHref: "/whats-included",
+    },
+    {
+      title: "Custom Design -- $2.85/sqft",
+      body: "For clients who want something designed from scratch. $2.85 per square foot of conditioned space. That includes consultation, schematic design, and a complete construction document set. I\u2019ll meet with your clients directly if that helps -- most builders tell me it does.",
+      ctaLabel: "Let\u2019s Talk About Your Project",
+      ctaHref: null, // opens contact dialog
+    },
+  ];
 
   return (
     <AnimatedSection className="blp-section">
       <div className="blp-container">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="blp-heading-h2 mb-6">{headline}</h2>
-          <p className="blp-body-large">{intro}</p>
+          <h2 className="blp-heading-h2 mb-6">Three Ways I Work With Builders</h2>
         </div>
 
-        <p className="blp-body-text text-center max-w-3xl mx-auto mb-12">{body}</p>
-
         <motion.div
-          className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
+          className="grid md:grid-cols-3 gap-6"
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
         >
-          {benefits.map((benefit, index) => (
-            <motion.div key={index} className="blp-card text-center" variants={fadeInUp}>
+          {cards.map((card, index) => (
+            <motion.div key={index} className="blp-card text-center flex flex-col" variants={fadeInUp}>
               <div className="w-12 h-12 rounded-full bg-[#FFF7ED] flex items-center justify-center mx-auto mb-4">
                 <Check className="w-6 h-6 text-[#EA580C]" />
               </div>
-              <h3 className="blp-heading-h3 text-lg mb-3">{benefit.title}</h3>
-              <p className="blp-body-text text-sm">{benefit.description}</p>
+              <h3 className="blp-heading-h3 text-lg mb-3">{card.title}</h3>
+              <p className="blp-body-text text-sm mb-6 flex-1">{card.body}</p>
+              {card.ctaHref ? (
+                <a href={card.ctaHref} className="blp-btn-secondary text-sm py-2.5 px-5 inline-block">
+                  {card.ctaLabel}
+                </a>
+              ) : (
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <button className="blp-btn-secondary text-sm py-2.5 px-5">{card.ctaLabel}</button>
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-[500px]">
+                    <DialogHeader>
+                      <DialogTitle className="blp-heading-h3">Get in Touch</DialogTitle>
+                    </DialogHeader>
+                    <LeadCaptureForm />
+                  </DialogContent>
+                </Dialog>
+              )}
             </motion.div>
           ))}
         </motion.div>
@@ -455,8 +448,8 @@ const SolutionSection = ({ cms }: { cms?: BuilderPageCMS["solution"] }) => {
 
 // Section 4: Portfolio
 const PORTFOLIO_DEFAULTS = {
-  headline: "The Proof is in the Portfolio.",
-  subheadline: "Over 400 luxury homes across America. Each one unique. Each one a testament to the power of design mastery.",
+  headline: "Some of the 400+ Homes I\u2019ve Designed",
+  subheadline: "These have all been built. They\u2019re not renderings of theoretical designs -- they\u2019re real homes, framed and finished by builders like you.",
   ctaLabel: "Explore the Full Builder\u2019s Portfolio",
   images: [
     { url: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&h=400&fit=crop&q=80", alt: "Luxury home 1" },
@@ -509,60 +502,77 @@ const PortfolioSection = ({ cms }: { cms?: BuilderPageCMS["portfolio"] }) => {
   );
 };
 
-// Section 5: ROI
-const ROI_DEFAULTS = {
-  headline: "Don\u2019t Think of it as a Cost. Think of it as Your Highest-ROI Investment.",
-  intro: "Let\u2019s be blunt. A set of stock plans might cost you $500. Our Signature Collection plans are a $4,000 investment. Here\u2019s why that\u2019s the easiest business decision you\u2019ll make all year.",
-  tableNote: "Consider a typical $2,000,000 luxury build:",
-  tableRows: [
-    { metric: "Sale Price", stockValue: "$2,000,000", watkinsValue: "$2,400,000 (20% Premium)", difference: "+$400,000" },
-    { metric: "Cost of Goods Sold", stockValue: "$1,600,000", watkinsValue: "$1,604,000", difference: "+$4,000" },
-    { metric: "Gross Profit", stockValue: "$400,000", watkinsValue: "$796,000", difference: "+$396,000" },
-    { metric: "Your Net Profit (at 7%)", stockValue: "$28,000", watkinsValue: "$55,720", difference: "+99% Profit" },
-  ],
-  conclusion: "Would you invest $4,000 to make an additional $396,000 in gross profit on a single project? That\u2019s the power of design distinction. It\u2019s not an expense; it\u2019s a multiplier for your revenue and your reputation.",
-};
+// Section 5: Builder Partner Program
+const BuilderPartnerProgramSection = () => {
+  const tiers = [
+    { level: "First Plan", qualification: "Any builder, first purchase", discount: "15% off" },
+    { level: "Repeat Builder", qualification: "2nd through 5th plan", discount: "20% off" },
+    { level: "Preferred Builder", qualification: "6+ plans purchased", discount: "25% off + priority modifications" },
+  ];
 
-const ROISection = ({ cms }: { cms?: BuilderPageCMS["roi"] }) => {
-  const headline = cms?.headline ?? ROI_DEFAULTS.headline;
-  const intro = cms?.intro ?? ROI_DEFAULTS.intro;
-  const tableNote = cms?.tableNote ?? ROI_DEFAULTS.tableNote;
-  const tableRows = cms?.tableRows?.length ? cms.tableRows : ROI_DEFAULTS.tableRows;
-  const conclusion = cms?.conclusion ?? ROI_DEFAULTS.conclusion;
+  const perks = [
+    { title: "Unlimited Build License", description: "CAD file purchases include the right to build the plan as many times as you want. No per-use fees." },
+    { title: "Free Consultation Call", description: "15-20 minutes on every plan you purchase. I walk you through the design intent, framing considerations, and site adaptation options." },
+    { title: "Marketing Image Rights", description: "Use my renderings and floor plan images in your own marketing -- MLS listings, brochures, your website. I\u2019ll share them in a format you can use." },
+    { title: "Direct Client Meetings", description: "I\u2019ll meet (via video) with your end client to walk through the plan, answer their questions, and help you close the sale. No stock plan company does this." },
+    { title: "Priority Modifications", description: "Preferred builders (6+ plans) move to the front of the modification queue." },
+  ];
 
   return (
-    <AnimatedSection className="blp-section">
+    <AnimatedSection className="blp-section" id="builder-partner-program">
       <div className="blp-container">
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <h2 className="blp-heading-h2 mb-6">{headline}</h2>
-          <p className="blp-body-text">{intro}</p>
-          <p className="blp-body-text mt-4 font-semibold text-[#27272A]">{tableNote}</p>
+          <h2 className="blp-heading-h2 mb-6">Builder Partner Program</h2>
+          <p className="blp-body-large">No contracts. No annual minimums. No registration fees. The discount grows as the relationship grows.</p>
         </div>
 
         <div className="overflow-x-auto mb-10">
           <table className="blp-roi-table">
             <thead>
               <tr>
-                <th>Metric</th>
-                <th>With Stock Plans</th>
-                <th>With a House of Watkins Design</th>
-                <th className="bg-[#FFF7ED]">The Difference</th>
+                <th>Level</th>
+                <th>How You Qualify</th>
+                <th className="bg-[#FFF7ED]">Your Discount</th>
               </tr>
             </thead>
             <tbody>
-              {tableRows.map((row, index) => (
+              {tiers.map((tier, index) => (
                 <tr key={index}>
-                  <td className="font-medium text-[#27272A]">{row.metric}</td>
-                  <td>{row.stockValue}</td>
-                  <td>{row.watkinsValue}</td>
-                  <td className="blp-highlight">{row.difference}</td>
+                  <td className="font-medium text-[#27272A]">{tier.level}</td>
+                  <td>{tier.qualification}</td>
+                  <td className="blp-highlight">{tier.discount}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
 
-        <p className="blp-body-text text-center max-w-3xl mx-auto">{conclusion}</p>
+        <p className="blp-body-text text-center max-w-3xl mx-auto mb-12">
+          At an average plan price of $1,600, your first plan costs $1,360. By your sixth plan, you&apos;re paying $1,200 -- with unlimited build licenses on every CAD purchase.
+        </p>
+
+        <h3 className="blp-heading-h3 text-center mb-8">Builder Perks</h3>
+        <motion.div
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12"
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+        >
+          {perks.map((perk, index) => (
+            <motion.div key={index} className="blp-card" variants={fadeInUp}>
+              <h4 className="font-semibold text-[#27272A] mb-2" style={{ fontFamily: "Manrope, sans-serif" }}>{perk.title}</h4>
+              <p className="blp-body-text text-sm">{perk.description}</p>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        <div className="text-center">
+          <a href="/house-plans" className="blp-btn-primary">
+            Get Your First Plan at 15% Off
+            <ArrowRight className="w-5 h-5 ml-2" />
+          </a>
+        </div>
       </div>
     </AnimatedSection>
   );
@@ -570,12 +580,12 @@ const ROISection = ({ cms }: { cms?: BuilderPageCMS["roi"] }) => {
 
 // Section 6: Process
 const PROCESS_DEFAULTS = {
-  headline: "A Proven Process for Predictable Excellence.",
+  headline: "How It Works",
   steps: [
-    { number: "01", title: "Explore the Collection", description: "Browse our curated Signature Collection of proven, market-tested luxury designs. Find the one that aligns with your project vision and client profile." },
-    { number: "02", title: "Strategic Consultation", description: "Every plan purchase includes a 90-minute consultation. We'll review your specific lot, your client's needs, and make strategic modifications." },
-    { number: "03", title: "Receive Complete Plans", description: "Get a full set of professional, builder-ready architectural plans. Detailed, clear, and complete\u2014designed to minimize errors." },
-    { number: "04", title: "Build with Confidence", description: "Construct a home that stands apart from the competition. Enjoy a smoother build, fewer change orders, and a premium price." },
+    { number: "01", title: "Pick a Plan or Start Custom", description: "Browse ready-to-build plans on the site, or reach out about a fully custom design at $2.85/sqft. Either way, builder discounts apply from day one." },
+    { number: "02", title: "We Talk Through the Details", description: "Every project starts with a conversation. Your lot, your client\u2019s priorities, local code considerations. If you\u2019re modifying a stock plan, this is where we sort out what changes make sense and what they\u2019ll cost." },
+    { number: "03", title: "You Get Complete Documents", description: "Framer-friendly dimensions. Details your subs can actually build from. A plan set that doesn\u2019t generate a stack of RFIs. That\u2019s the standard." },
+    { number: "04", title: "Build It", description: "You build. I\u2019m available if questions come up. Builders on tight schedules don\u2019t have time for a designer who disappears for two weeks." },
   ],
 };
 
@@ -608,150 +618,41 @@ const ProcessSection = ({ cms }: { cms?: BuilderPageCMS["process"] }) => {
   );
 };
 
-// Section 7: Testimonials
-const TESTIMONIALS_DEFAULTS = {
-  headline: "Don\u2019t Just Take Our Word For It.",
-  items: [
-    { quote: "David's designs are our secret weapon. We were stuck competing with every other builder in Aspen. With our first Watkins-designed home, we sold it for 25% more than our previous projects, and we had a waiting list for the next one. We don't build anything else now.", name: "John T.", title: "Founder, Aspen Peak Homes", photoUrl: "https://images.unsplash.com/photo-1652772589253-c1ab2308fbf4?crop=entropy&cs=srgb&fm=jpg&w=150&q=80" },
-    { quote: "The level of detail in these plans is unlike anything I've seen. My framing crew made zero errors. We had almost no change orders related to design. That saved me at least $50,000 and two months on the project timeline. The ROI is a no-brainer.", name: "Maria G.", title: "CEO, Sterling Custom Builds", photoUrl: "https://images.unsplash.com/photo-1650100689950-966e8ed82230?crop=entropy&cs=srgb&fm=jpg&w=150&q=80" },
-    { quote: "Our clients can see the difference immediately. The way the light fills the rooms, the flow of the space... it just feels different. We're no longer selling houses; we're selling a vision. And that vision is created by David Watkins.", name: "Sam R.", title: "President, Coastal Legacy Homes", photoUrl: "https://images.unsplash.com/photo-1601310721867-15e1a5493360?crop=entropy&cs=srgb&fm=jpg&w=150&q=80" },
-  ],
-};
-
-const TestimonialsSection = ({ cms }: { cms?: BuilderPageCMS["testimonials"] }) => {
-  const headline = cms?.headline ?? TESTIMONIALS_DEFAULTS.headline;
-  const items = cms?.items?.length ? cms.items : TESTIMONIALS_DEFAULTS.items;
-
+// Section 7: Testimonials (placeholder)
+const TestimonialsSection = () => {
   return (
     <AnimatedSection className="blp-section">
       <div className="blp-container">
-        <h2 className="blp-heading-h2 text-center mb-12">{headline}</h2>
-
-        <motion.div
-          className="grid md:grid-cols-3 gap-8"
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-        >
-          {items.map((testimonial, index) => (
-            <motion.div key={index} className="blp-testimonial-card" variants={fadeInUp}>
-              <p className="blp-testimonial-quote">&quot;{testimonial.quote}&quot;</p>
-              <div className="flex items-center gap-4">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={testimonial.photoUrl ?? ""}
-                  alt={testimonial.name ?? ""}
-                  className="w-14 h-14 rounded-full object-cover"
-                  loading="lazy"
-                />
-                <div>
-                  <p className="font-semibold text-[#27272A]">{testimonial.name}</p>
-                  <p className="text-sm text-[#52525B]">{testimonial.title}</p>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
-      </div>
-    </AnimatedSection>
-  );
-};
-
-// Section 8: The Offer
-const OFFER_DEFAULTS = {
-  headline: "The Signature Collection Partnership",
-  subheadline: "This isn\u2019t a one-time transaction; it\u2019s the start of a partnership.",
-  price: "$3,995",
-  ctaLabel: "Get Started Today",
-  includes: [
-    "Full Architectural Plan Set: Complete, builder-ready plans for any design in our Signature Collection.",
-    "90-Minute Site-Specific Consultation: We'll work with you to adapt the design to your lot, views, and client needs.",
-    "Professional Detailing: Plans honed over 30 years and 400+ builds to ensure clarity and reduce rework.",
-    "Portfolio-Grade Credibility: Leverage our stunning portfolio to help sell the vision to your clients.",
-    "Direct Access: You get my personal email and phone number for support during the build.",
-  ],
-  partnershipNote: "Ready for a deeper partnership? We offer Preferred and Exclusive tiers for builders who want to dominate their market.",
-};
-
-const OfferSection = ({ cms }: { cms?: BuilderPageCMS["offer"] }) => {
-  const headline = cms?.headline ?? OFFER_DEFAULTS.headline;
-  const subheadline = cms?.subheadline ?? OFFER_DEFAULTS.subheadline;
-  const price = cms?.price ?? OFFER_DEFAULTS.price;
-  const ctaLabel = cms?.ctaLabel ?? OFFER_DEFAULTS.ctaLabel;
-  const includes = cms?.includes?.length ? cms.includes : OFFER_DEFAULTS.includes;
-  const partnershipNote = cms?.partnershipNote ?? OFFER_DEFAULTS.partnershipNote;
-
-  return (
-    <AnimatedSection className="blp-section bg-[#F4F4F5]">
-      <div className="blp-container">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="blp-heading-h2 mb-4">{headline}</h2>
-            <p className="blp-body-large">{subheadline}</p>
-          </div>
-
-          <div className="bg-white rounded-[16px] p-8 md:p-12 shadow-lg">
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 pb-8 border-b border-[#E4E4E7]">
-              <div>
-                <p className="text-sm font-medium text-[#52525B] mb-1">Your Investment</p>
-                <p className="text-4xl font-bold text-[#27272A]" style={{ fontFamily: "Manrope, sans-serif" }}>
-                  {price}
-                </p>
-              </div>
-              <Dialog>
-                <DialogTrigger asChild>
-                  <button className="blp-btn-primary mt-4 md:mt-0">{ctaLabel}</button>
-                </DialogTrigger>
-                <DialogContent className="sm:max-w-[500px]">
-                  <DialogHeader>
-                    <DialogTitle className="blp-heading-h3">Start Your Partnership</DialogTitle>
-                  </DialogHeader>
-                  <LeadCaptureForm />
-                </DialogContent>
-              </Dialog>
-            </div>
-
-            <h3 className="blp-heading-h3 mb-6">What&apos;s Included:</h3>
-            <ul className="space-y-4">
-              {includes.map((item, index) => (
-                <li key={index} className="flex items-start gap-3">
-                  <div className="w-6 h-6 rounded-full bg-[#FFF7ED] flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <Check className="w-4 h-4 text-[#EA580C]" />
-                  </div>
-                  <span className="blp-body-text">{item}</span>
-                </li>
-              ))}
-            </ul>
-
-            <div className="mt-8 pt-8 border-t border-[#E4E4E7]">
-              <p className="blp-body-text">
-                {partnershipNote}{" "}
-                <a href="#contact" className="text-[#EA580C] hover:underline ml-1">
-                  Learn about our Partnership Programs
-                </a>
-              </p>
-            </div>
-          </div>
+        <div className="text-center max-w-3xl mx-auto">
+          <h2 className="blp-heading-h2 mb-6">What Builders Say</h2>
+          <p className="blp-body-text mb-8">
+            I&apos;m collecting testimonials from builders I&apos;ve worked with. In the meantime, here&apos;s what I can tell you: every plan on this site has been built. The builders who&apos;ve used them came back for more. That&apos;s the only testimonial that really matters.
+          </p>
+          <a href="/portfolio" className="blp-btn-primary">
+            See the Plans They Built
+            <ArrowRight className="w-5 h-5 ml-2" />
+          </a>
         </div>
       </div>
     </AnimatedSection>
   );
 };
 
+// Section 8: (Removed — handled by Builder Partner Program above)
+
 // Section 9: About
 const ABOUT_DEFAULTS = {
-  headline: "Your Partner in Design Mastery.",
+  headline: "About David",
   body: [
-    "For 30 years, I\u2019ve had a single focus: designing homes. Not office buildings, not retail centers, not hospitals. Just homes. This singular obsession has allowed me to design over 400 luxury residences across America and refine a process that delivers both breathtaking beauty and practical buildability.",
-    "I\u2019m not a typical architect; I started my career with hands-on construction experience. I understand your challenges because I\u2019ve lived them.",
+    "I\u2019m David Watkins, a residential designer based in South Carolina. I\u2019ve spent the last 30 years focused entirely on homes -- not office buildings, not retail, not mixed-use. Just homes. More than 400 of them.",
+    "I started in construction, which is probably why my plans read the way they do. I know what happens when a dimension is missing or a detail doesn\u2019t make sense at 7 AM on a job site. My goal is to hand you a set of documents that your crew can build from without calling me -- but I\u2019m here if they do.",
   ],
-  boldStatement: "My goal is to be your most valuable partner\u2014the one who provides the strategic design asset that makes your business more profitable, more reputable, and more successful.",
+  boldStatement: "I\u2019m not a large firm. I\u2019m a one-person operation, which means when you call, you get me. That\u2019s on purpose.",
   imageUrl: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&q=80",
-  imageAlt: "David Watkins - Architect",
+  imageAlt: "David Watkins - Residential Designer",
   stats: [
     { value: "400+", label: "Homes Designed" },
-    { value: "30", label: "Years Experience" },
+    { value: "30", label: "Years of Experience" },
     { value: "50+", label: "Markets Served" },
   ],
 };
@@ -804,12 +705,14 @@ const AboutSection = ({ cms }: { cms?: BuilderPageCMS["about"] }) => {
 
 // Section 10: FAQ
 const FAQ_DEFAULTS = {
-  headline: "Frequently Asked Questions",
+  headline: "Questions Builders Ask Me",
   items: [
-    { question: "Why not just use stock plans for a fraction of the cost?", answer: "Because stock plans lead to stock homes, which compete on price. Our designs are for builders who want to compete on excellence. The $3,500 difference in plan cost is recouped 100-fold by the 20-40% premium you'll command on the final sale price." },
-    { question: "I already have an architect. Why do I need you?", answer: "Most architects are generalists. I am a residential specialist with 30 years and 400+ homes of focused experience. I've solved the unique challenges of luxury residential design hundreds of times. My plans aren't just drawings; they are proven, market-tested business tools." },
-    { question: "What if my client wants significant changes?", answer: "That's what the 90-minute consultation is for. We work together to make the design perfect for your client and site. If the changes are substantial, it may evolve into a Bespoke Design project, but for most clients, the Signature Collection provides the perfect, customizable foundation." },
-    { question: "How do I know these designs will sell in my specific market?", answer: "The principles of great design\u2014natural light, intelligent flow, emotional impact\u2014are universal. My portfolio spans from the mountains of Colorado to the coasts of the Carolinas. Great design sells everywhere. We'll choose a plan and make modifications that perfectly suit your regional aesthetic." },
+    { question: "What does the builder discount look like?", answer: "15% off your first plan, 20% off plans 2 through 5, and 25% off everything after that. CAD file purchases include an unlimited build license. No contracts, no annual fees." },
+    { question: "Can you modify a stock plan to fit my lot or my client?", answer: "Yes. That\u2019s one of the most common things I do. Small modifications (garage flip, bedroom resize) start at $225. Larger changes are quoted after a quick conversation. Turnaround depends on scope, but I don\u2019t sit on projects." },
+    { question: "What does $2.85 per square foot include for custom design?", answer: "Consultation, schematic design, and a full construction document set -- the same level of detail you\u2019d get in any plan on my site. I\u2019ll also meet with your client directly if that helps move the project forward." },
+    { question: "I already have a designer. Why would I switch?", answer: "Maybe you wouldn\u2019t. But if you\u2019re dealing with incomplete plans, slow turnarounds, or drawings your framing crew can\u2019t follow, it\u2019s worth a conversation. I\u2019ve spent 30 years doing nothing but residential design, and I started in construction. That combination shows up in the documents." },
+    { question: "Will these plans work in my market?", answer: "I\u2019ve designed homes from the mountains of Colorado to the coasts of the Carolinas. Good bones translate everywhere. We\u2019ll talk about your regional code requirements and aesthetic preferences before anything gets drawn." },
+    { question: "How do I get started?", answer: "Browse plans on the site and use the builder checkout, or email me at david@houseofwatkins.com. Either way, the discount applies from your first purchase." },
   ],
 };
 
@@ -848,19 +751,7 @@ const FAQSection = ({ cms }: { cms?: BuilderPageCMS["faq"] }) => {
 };
 
 // Section 11: Final CTA
-const FINAL_CTA_DEFAULTS = {
-  headline: "Ready to Build a Reputation, Not Just More Houses?",
-  body: "Stop competing and start commanding the prices you deserve. Let\u2019s partner to create the most sought-after homes in your market.",
-  primaryCtaLabel: "Schedule Your Free Builder Strategy Call",
-  secondaryCtaLabel: "Explore the Signature Collection Now",
-};
-
-const FinalCTASection = ({ cms }: { cms?: BuilderPageCMS["finalCta"] }) => {
-  const headline = cms?.headline ?? FINAL_CTA_DEFAULTS.headline;
-  const body = cms?.body ?? FINAL_CTA_DEFAULTS.body;
-  const primaryCta = cms?.primaryCtaLabel ?? FINAL_CTA_DEFAULTS.primaryCtaLabel;
-  const secondaryCta = cms?.secondaryCtaLabel ?? FINAL_CTA_DEFAULTS.secondaryCtaLabel;
-
+const FinalCTASection = () => {
   return (
     <section className="blp-cta-section py-24 md:py-32">
       <div className="blp-container text-center">
@@ -871,7 +762,7 @@ const FinalCTASection = ({ cms }: { cms?: BuilderPageCMS["finalCta"] }) => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          {headline}
+          Let&apos;s Build Something Worth Building
         </motion.h2>
         <motion.p
           className="blp-body-large text-white/90 max-w-2xl mx-auto mb-10"
@@ -880,7 +771,7 @@ const FinalCTASection = ({ cms }: { cms?: BuilderPageCMS["finalCta"] }) => {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
         >
-          {body}
+          Browse builder plans, ask about modifications, or start a custom project. No pressure, no sales pitch -- just a conversation between two people who care about getting the details right.
         </motion.p>
         <motion.div
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
@@ -889,18 +780,8 @@ const FinalCTASection = ({ cms }: { cms?: BuilderPageCMS["finalCta"] }) => {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <Dialog>
-            <DialogTrigger asChild>
-              <button className="blp-cta-btn-primary">{primaryCta}</button>
-            </DialogTrigger>
-            <DialogContent className="sm:max-w-[500px]">
-              <DialogHeader>
-                <DialogTitle className="blp-heading-h3">Schedule Your Strategy Call</DialogTitle>
-              </DialogHeader>
-              <LeadCaptureForm />
-            </DialogContent>
-          </Dialog>
-          <button className="blp-cta-btn-secondary">{secondaryCta}</button>
+          <a href="/house-plans" className="blp-cta-btn-primary">Browse Builder Plans</a>
+          <a href="mailto:david@houseofwatkins.com" className="blp-cta-btn-secondary">Email David Directly</a>
         </motion.div>
       </div>
     </section>
@@ -929,10 +810,10 @@ const BuilderFooter = () => {
               Terms of Service
             </a>
             <a
-              href="mailto:info@houseofwatkins.com"
+              href="mailto:david@houseofwatkins.com"
               className="hover:text-[#27272A] transition-colors flex items-center gap-2"
             >
-              <Mail className="w-4 h-4" /> info@houseofwatkins.com
+              <Mail className="w-4 h-4" /> david@houseofwatkins.com
             </a>
           </div>
         </div>
@@ -981,15 +862,14 @@ export default function BuilderLandingPage({ cms }: { cms?: BuilderPageCMS | nul
       <main>
         <HeroSection cms={cms?.hero} />
         <ProblemSection cms={cms?.problem} />
-        <SolutionSection cms={cms?.solution} />
+        <SolutionSection />
         <PortfolioSection cms={cms?.portfolio} />
-        <ROISection cms={cms?.roi} />
+        <BuilderPartnerProgramSection />
         <ProcessSection cms={cms?.process} />
-        <TestimonialsSection cms={cms?.testimonials} />
-        <OfferSection cms={cms?.offer} />
+        <TestimonialsSection />
         <AboutSection cms={cms?.about} />
         <FAQSection cms={cms?.faq} />
-        <FinalCTASection cms={cms?.finalCta} />
+        <FinalCTASection />
       </main>
       <BuilderFooter />
       <ScrollToTop />
