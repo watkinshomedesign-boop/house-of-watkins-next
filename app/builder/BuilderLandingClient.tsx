@@ -3,7 +3,9 @@
 import { useState, useEffect, useRef } from "react";
 import "./builder-landing.css";
 import { motion, useInView } from "framer-motion";
-import { ChevronDown, ArrowRight, Mail, Check } from "lucide-react";
+import { ChevronDown, ArrowRight, Check } from "lucide-react";
+import { InteriorHeader } from "@/sections/InteriorHeader";
+import { Footer } from "@/sections/Footer";
 import type { BuilderPageCMS } from "@/lib/builderPage/sanity";
 import {
   Accordion,
@@ -182,106 +184,6 @@ const LeadCaptureForm = ({ variant = "default" }: { variant?: string }) => {
   );
 };
 
-// Header Component
-const Header = () => {
-  const [scrolled, setScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  return (
-    <header className={`blp-header-sticky transition-all duration-300 ${scrolled ? "py-3" : "py-5"}`}>
-      <div className="blp-container flex items-center justify-between">
-        <a href="/" className="flex items-center gap-1">
-          <span
-            className="font-bold text-xl tracking-tight text-[#27272A]"
-            style={{ fontFamily: "Manrope, sans-serif" }}
-          >
-            HOUSE <span className="text-sm font-normal">OF</span> WATKINS
-          </span>
-        </a>
-
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-8">
-          <a href="#portfolio" className="blp-text-link text-sm font-medium">
-            Portfolio
-          </a>
-          <a href="#process" className="blp-text-link text-sm font-medium">
-            Process
-          </a>
-          <a href="#about" className="blp-text-link text-sm font-medium">
-            About
-          </a>
-          <a href="#faq" className="blp-text-link text-sm font-medium">
-            FAQ
-          </a>
-        </nav>
-
-        <div className="flex items-center gap-4">
-          {/* Mobile Menu Button */}
-          <button className="md:hidden p-2" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-            <svg className="w-6 h-6 text-[#27272A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              {mobileMenuOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
-          </button>
-
-          <Dialog>
-            <DialogTrigger asChild>
-              <button className="blp-btn-secondary text-sm py-2.5 px-5 hidden md:block">Contact Us</button>
-            </DialogTrigger>
-            <DialogContent className="sm:max-w-[500px]">
-              <DialogHeader>
-                <DialogTitle className="blp-heading-h3">Get in Touch</DialogTitle>
-              </DialogHeader>
-              <LeadCaptureForm />
-            </DialogContent>
-          </Dialog>
-        </div>
-      </div>
-
-      {/* Mobile Menu */}
-      {mobileMenuOpen && (
-        <div className="md:hidden bg-white border-t border-[#E4E4E7] py-4">
-          <nav className="blp-container flex flex-col gap-4">
-            <a href="#portfolio" className="blp-text-link text-sm font-medium py-2" onClick={() => setMobileMenuOpen(false)}>
-              Portfolio
-            </a>
-            <a href="#process" className="blp-text-link text-sm font-medium py-2" onClick={() => setMobileMenuOpen(false)}>
-              Process
-            </a>
-            <a href="#about" className="blp-text-link text-sm font-medium py-2" onClick={() => setMobileMenuOpen(false)}>
-              About
-            </a>
-            <a href="#faq" className="blp-text-link text-sm font-medium py-2" onClick={() => setMobileMenuOpen(false)}>
-              FAQ
-            </a>
-            <Dialog>
-              <DialogTrigger asChild>
-                <button className="blp-btn-primary text-sm py-2.5 px-5 mt-2">Contact Us</button>
-              </DialogTrigger>
-              <DialogContent className="sm:max-w-[500px]">
-                <DialogHeader>
-                  <DialogTitle className="blp-heading-h3">Get in Touch</DialogTitle>
-                </DialogHeader>
-                <LeadCaptureForm />
-              </DialogContent>
-            </Dialog>
-          </nav>
-        </div>
-      )}
-    </header>
-  );
-};
 
 // Section 1: Hero
 const HeroSection = ({ cms }: { cms?: BuilderPageCMS["hero"] }) => {
@@ -788,42 +690,6 @@ const FinalCTASection = () => {
   );
 };
 
-// Footer
-const BuilderFooter = () => {
-  return (
-    <footer className="py-12 border-t border-[#E4E4E7]">
-      <div className="blp-container">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="flex items-center gap-1">
-            <span
-              className="font-bold text-lg tracking-tight text-[#27272A]"
-              style={{ fontFamily: "Manrope, sans-serif" }}
-            >
-              HOUSE <span className="text-xs font-normal">OF</span> WATKINS
-            </span>
-          </div>
-          <div className="flex items-center gap-8 text-sm text-[#52525B]">
-            <a href="#" className="hover:text-[#27272A] transition-colors">
-              Privacy Policy
-            </a>
-            <a href="#" className="hover:text-[#27272A] transition-colors">
-              Terms of Service
-            </a>
-            <a
-              href="mailto:david@houseofwatkins.com"
-              className="hover:text-[#27272A] transition-colors flex items-center gap-2"
-            >
-              <Mail className="w-4 h-4" /> david@houseofwatkins.com
-            </a>
-          </div>
-        </div>
-        <div className="mt-8 text-center text-sm text-[#A1A1AA]">
-          &copy; {new Date().getFullYear()} House of Watkins. All rights reserved.
-        </div>
-      </div>
-    </footer>
-  );
-};
 
 // Scroll to Top Button
 const ScrollToTop = () => {
@@ -858,7 +724,7 @@ const ScrollToTop = () => {
 export default function BuilderLandingPage({ cms }: { cms?: BuilderPageCMS | null }) {
   return (
     <div className="builder-landing" style={{ fontFamily: "'Inter', sans-serif" }}>
-      <Header />
+      <InteriorHeader />
       <main>
         <HeroSection cms={cms?.hero} />
         <ProblemSection cms={cms?.problem} />
@@ -871,7 +737,7 @@ export default function BuilderLandingPage({ cms }: { cms?: BuilderPageCMS | nul
         <FAQSection cms={cms?.faq} />
         <FinalCTASection />
       </main>
-      <BuilderFooter />
+      <Footer />
       <ScrollToTop />
     </div>
   );
