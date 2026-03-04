@@ -38,6 +38,10 @@
   letter-spacing: -0.02em;
 }
 
+.builder-landing .blp-heading-h1.text-white {
+  color: #ffffff;
+}
+
 @media (min-width: 768px) {
   .builder-landing .blp-heading-h1 {
     font-size: 3.75rem;
@@ -91,6 +95,10 @@
   font-size: 1.125rem;
   color: #52525B;
   line-height: 1.7;
+}
+
+.builder-landing .blp-body-large.text-white {
+  color: #ffffff;
 }
 
 @media (min-width: 768px) {

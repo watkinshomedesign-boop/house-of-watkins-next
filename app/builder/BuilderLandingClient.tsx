@@ -188,8 +188,8 @@ const LeadCaptureForm = ({ variant = "default" }: { variant?: string }) => {
 // Section 1: Hero
 const HeroSection = ({ cms }: { cms?: BuilderPageCMS["hero"] }) => {
   const bgImage = cms?.backgroundImageUrl ?? "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920&q=80";
-  const headline = cms?.headline ?? "Complete, Buildable Plans. From a Designer Who\u2019s Watched 400+ of Them Go Up.";
-  const subheadline = cms?.subheadline ?? "I design homes that work on the job site -- not just on screen. Stock plans with builder discounts, modifications on your timeline, and fully custom design at $2.85 per square foot.";
+  const headline = cms?.headline ?? "Complete, Buildable Plans. From a Designer Who\u2019s Designed 400+ of Them.";
+  const subheadline = cms?.subheadline ?? "I design homes that work on the job site, not just on screen. Stock plans with builder discounts & modifications. Or fully custom design at $2.85 per square foot.";
 
   return (
     <section
@@ -209,7 +209,7 @@ const HeroSection = ({ cms }: { cms?: BuilderPageCMS["hero"] }) => {
           {headline}
         </motion.h1>
         <motion.p
-          className="blp-body-large text-white/90 max-w-3xl mx-auto mb-10"
+          className="blp-body-large text-white max-w-3xl mx-auto mb-10"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
