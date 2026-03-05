@@ -3,16 +3,24 @@
 import { useState, useEffect, useRef } from "react";
 import "./builder-landing.css";
 import { motion, useInView } from "framer-motion";
-import { ChevronDown, ArrowRight, Check } from "lucide-react";
+import { ChevronDown, ArrowRight, Check, Copy } from "lucide-react";
 import { InteriorHeader } from "@/sections/InteriorHeader";
 import { Footer } from "@/sections/Footer";
 import type { BuilderPageCMS } from "@/lib/builderPage/sanity";
+import { setStoredBuilderCode } from "@/lib/builderPromo/storage";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 // Animation variants
 const fadeInUp = {
@@ -328,10 +336,38 @@ const BuilderPartnerProgramSection = () => {
         </motion.div>
 
         <div className="text-center">
-          <a href="/house-plans" className="blp-btn-primary">
-            Get Your First Plan at 15% Off
-            <ArrowRight className="w-5 h-5 ml-2" />
-          </a>
+          <Dialog>
+            <DialogTrigger asChild>
+              <button className="blp-btn-primary">
+                Get Your First Plan at 15% Off
+                <ArrowRight className="w-5 h-5 ml-2" />
+              </button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-[440px]">
+              <DialogHeader>
+                <DialogTitle className="text-xl font-bold" style={{ fontFamily: "Manrope, sans-serif" }}>Your Builder Discount Code</DialogTitle>
+              </DialogHeader>
+              <div className="text-center py-4">
+                <p className="text-sm text-[#52525B] mb-4">Use this code at checkout to get 15% off your first plan purchase.</p>
+                <div className="flex items-center justify-center gap-3 mb-6">
+                  <code className="text-2xl font-bold tracking-wider bg-[#FFF7ED] text-[#EA580C] px-6 py-3 rounded-lg border border-[#EA580C]/20">BUILDER15</code>
+                  <button
+                    onClick={() => {
+                      navigator.clipboard.writeText("BUILDER15");
+                      setStoredBuilderCode("BUILDER15");
+                    }}
+                    className="p-2 rounded-lg hover:bg-gray-100 transition-colors" title="Copy code"
+                  >
+                    <Copy className="w-5 h-5 text-[#52525B]" />
+                  </button>
+                </div>
+                <a href="/house-plans" className="blp-btn-primary inline-flex">
+                  Browse Plans Now
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </a>
+              </div>
+            </DialogContent>
+          </Dialog>
         </div>
       </div>
     </AnimatedSection>
