@@ -189,7 +189,7 @@ const LeadCaptureForm = ({ variant = "default" }: { variant?: string }) => {
 const HeroSection = ({ cms }: { cms?: BuilderPageCMS["hero"] }) => {
   const bgImage = cms?.backgroundImageUrl ?? "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920&q=80";
   const headline = cms?.headline ?? "Complete, Buildable Plans. From a Designer Who\u2019s Designed 400+ of Them.";
-  const subheadline = cms?.subheadline ?? "I design homes that work on the job site, not just on screen. Stock plans with builder discounts & modifications. Or fully custom design at $2.85 per square foot.";
+  const subheadline = cms?.subheadline ?? "I design homes that work on the job site, not just on screen. Stock plans with builder discounts & modifications.";
 
   return (
     <section
@@ -222,7 +222,7 @@ const HeroSection = ({ cms }: { cms?: BuilderPageCMS["hero"] }) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          <a href="/house-plans" className="blp-btn-primary">Browse Builder Plans</a>
+          <a href="/house-plans" className="blp-btn-primary">See House Plans</a>
           <a href="#builder-partner-program" className="text-white/80 hover:text-white text-sm underline underline-offset-4 transition-colors">
             Or scroll down to see the Builder Partner Program
           </a>
