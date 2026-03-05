@@ -377,25 +377,6 @@ const ProcessSection = ({ cms }: { cms?: BuilderPageCMS["process"] }) => {
   );
 };
 
-// Section 7: Testimonials (placeholder)
-const TestimonialsSection = () => {
-  return (
-    <AnimatedSection className="blp-section">
-      <div className="blp-container">
-        <div className="text-center max-w-3xl mx-auto">
-          <h2 className="blp-heading-h2 mb-6">What Builders Say</h2>
-          <p className="blp-body-text mb-8">
-            I&apos;m collecting testimonials from builders I&apos;ve worked with. In the meantime, here&apos;s what I can tell you: every plan on this site has been built. The builders who&apos;ve used them came back for more. That&apos;s the only testimonial that really matters.
-          </p>
-          <a href="/portfolio" className="blp-btn-primary">
-            See the Plans They Built
-            <ArrowRight className="w-5 h-5 ml-2" />
-          </a>
-        </div>
-      </div>
-    </AnimatedSection>
-  );
-};
 
 // Section 8: (Removed — handled by Builder Partner Program above)
 
@@ -589,7 +570,6 @@ export default function BuilderLandingPage({ cms }: { cms?: BuilderPageCMS | nul
         <PortfolioSection cms={cms?.portfolio} />
         <BuilderPartnerProgramSection />
         <ProcessSection cms={cms?.process} />
-        <TestimonialsSection />
         <AboutSection cms={cms?.about} />
         <FAQSection cms={cms?.faq} />
         <FinalCTASection />
