@@ -387,14 +387,9 @@ const ABOUT_DEFAULTS = {
     "I\u2019m David Watkins, a residential designer based in South Carolina. I\u2019ve spent the last 30 years focused entirely on homes -- not office buildings, not retail, not mixed-use. Just homes. More than 400 of them.",
     "I started in construction, which is probably why my plans read the way they do. I know what happens when a dimension is missing or a detail doesn\u2019t make sense at 7 AM on a job site. My goal is to hand you a set of documents that your crew can build from without calling me -- but I\u2019m here if they do.",
   ],
-  boldStatement: "I\u2019m not a large firm. I\u2019m a one-person operation, which means when you call, you get me. That\u2019s on purpose.",
+  boldStatement: "I\u2019m not a large firm. I\u2019m a one-person operation, which means when you call, you get me.",
   imageUrl: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&q=80",
   imageAlt: "David Watkins - Residential Designer",
-  stats: [
-    { value: "400+", label: "Homes Designed" },
-    { value: "30", label: "Years of Experience" },
-    { value: "50+", label: "Markets Served" },
-  ],
 };
 
 const AboutSection = ({ cms }: { cms?: BuilderPageCMS["about"] }) => {
@@ -403,7 +398,6 @@ const AboutSection = ({ cms }: { cms?: BuilderPageCMS["about"] }) => {
   const bold = cms?.boldStatement ?? ABOUT_DEFAULTS.boldStatement;
   const imgUrl = cms?.imageUrl ?? ABOUT_DEFAULTS.imageUrl;
   const imgAlt = cms?.imageAlt ?? ABOUT_DEFAULTS.imageAlt;
-  const stats = cms?.stats?.length ? cms.stats : ABOUT_DEFAULTS.stats;
 
   return (
     <AnimatedSection className="blp-section" id="about">
@@ -425,16 +419,6 @@ const AboutSection = ({ cms }: { cms?: BuilderPageCMS["about"] }) => {
                 <p key={i}>{p}</p>
               ))}
               <p className="font-semibold text-[#27272A]">{bold}</p>
-            </div>
-            <div className="mt-8 flex items-center gap-8">
-              {stats.map((stat, i) => (
-                <div key={i}>
-                  <p className="text-3xl font-bold text-[#EA580C]" style={{ fontFamily: "Manrope, sans-serif" }}>
-                    {stat.value}
-                  </p>
-                  <p className="text-sm text-[#52525B]">{stat.label}</p>
-                </div>
-              ))}
             </div>
           </div>
         </div>
