@@ -68,6 +68,8 @@ export type BuilderPageCMS = {
     body?: string;
     primaryCtaLabel?: string;
     secondaryCtaLabel?: string;
+    backgroundImageUrl?: string;
+    backgroundImageAlt?: string;
   };
 };
 
@@ -138,7 +140,9 @@ const BUILDER_PAGE_QUERY = `*[_type == "builderLandingPage" && _id == "builderLa
     headline,
     body,
     primaryCtaLabel,
-    secondaryCtaLabel
+    secondaryCtaLabel,
+    "backgroundImageUrl": backgroundImage.asset->url,
+    backgroundImageAlt
   }
 }`;
 

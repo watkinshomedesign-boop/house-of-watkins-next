@@ -475,10 +475,16 @@ const FAQSection = ({ cms }: { cms?: BuilderPageCMS["faq"] }) => {
 };
 
 // Section 11: Final CTA
-const FinalCTASection = () => {
+const FinalCTASection = ({ cms }: { cms?: BuilderPageCMS["finalCta"] }) => {
+  const bgImage = cms?.backgroundImageUrl;
+
   return (
-    <section className="blp-cta-section py-24 md:py-32">
-      <div className="blp-container text-center">
+    <section
+      className="blp-cta-section py-24 md:py-32 relative bg-cover bg-center"
+      style={bgImage ? { backgroundImage: `url('${bgImage}')` } : undefined}
+    >
+      {bgImage && <div className="absolute inset-0 bg-black/50" />}
+      <div className="blp-container text-center relative z-10">
         <motion.h2
           className="blp-heading-h2 text-white mb-6"
           initial={{ opacity: 0, y: 20 }}
@@ -547,7 +553,7 @@ export default function BuilderLandingPage({ cms }: { cms?: BuilderPageCMS | nul
         <ProcessSection cms={cms?.process} />
         <AboutSection cms={cms?.about} />
         <FAQSection cms={cms?.faq} />
-        <FinalCTASection />
+        <FinalCTASection cms={cms?.finalCta} />
       </main>
       <Footer />
       <ScrollToTop />

@@ -246,6 +246,8 @@ export const builderLandingPage = defineType({
         defineField({ name: "body", title: "Body", type: "text", rows: 3 }),
         defineField({ name: "primaryCtaLabel", title: "Primary CTA Label", type: "string" }),
         defineField({ name: "secondaryCtaLabel", title: "Secondary CTA Label", type: "string" }),
+        defineField({ name: "backgroundImage", title: "Background Image", type: "image", options: { hotspot: true } }),
+        defineField({ name: "backgroundImageAlt", title: "Background Image Alt", type: "string" }),
       ],
     }),
   ],
