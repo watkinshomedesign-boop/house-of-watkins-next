@@ -209,7 +209,7 @@ const SolutionSection = () => {
 const PORTFOLIO_DEFAULTS = {
   headline: "Some of the 400+ Homes I\u2019ve Designed",
   subheadline: "These have all been built. They\u2019re not renderings of theoretical designs -- they\u2019re real homes, framed and finished by builders like you.",
-  ctaLabel: "Explore the Full Builder\u2019s Portfolio",
+  ctaLabel: "Explore the Full Portfolio",
   images: [
     { url: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&h=400&fit=crop&q=80", alt: "Luxury home 1" },
     { url: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&h=400&fit=crop&q=80", alt: "Luxury home 2" },
