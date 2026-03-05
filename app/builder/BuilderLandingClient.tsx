@@ -285,7 +285,7 @@ const SolutionSection = () => {
     {
       title: "Ready-to-Build Plans",
       body: "Proven designs refined across hundreds of projects. Every plan on my site has been built before. Builder discounts start at 15% off your first plan, and CAD files include an unlimited build license.",
-      ctaLabel: "Browse Plans",
+      ctaLabel: "See House Plans",
       ctaHref: "/house-plans",
     },
     {
@@ -295,8 +295,8 @@ const SolutionSection = () => {
       ctaHref: "/whats-included",
     },
     {
-      title: "Custom Design -- $2.85/sqft",
-      body: "For clients who want something designed from scratch. $2.85 per square foot of conditioned space. That includes consultation, schematic design, and a complete construction document set. I\u2019ll meet with your clients directly if that helps -- most builders tell me it does.",
+      title: "Custom Design",
+      body: "For clients who want something designed from scratch. $2.85 per square foot of conditioned space.",
       ctaLabel: "Let\u2019s Talk About Your Project",
       ctaHref: null, // opens contact dialog
     },
