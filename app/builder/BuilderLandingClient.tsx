@@ -135,7 +135,11 @@ const ProblemSection = ({ cms }: { cms?: BuilderPageCMS["problem"] }) => {
       <div className="blp-container">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <div>
-            <h2 className="blp-heading-h2 mb-6">{h}</h2>
+            <h2 className="blp-heading-h2 mb-6">
+              {h.includes("You Already Know This.") ? (
+                <>{h.replace("You Already Know This.", "")}<br />You Already Know This.</>
+              ) : h}
+            </h2>
             <div className="blp-body-text space-y-4">
               {body.map((p, i) => (
                 <p key={i}>{p}</p>
