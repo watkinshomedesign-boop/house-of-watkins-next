@@ -488,15 +488,6 @@ const FinalCTASection = () => {
         >
           Let&apos;s Build Something Worth Building
         </motion.h2>
-        <motion.p
-          className="blp-body-large text-white/90 max-w-2xl mx-auto mb-10"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-        >
-          Browse builder plans, ask about modifications, or start a custom project. No pressure, no sales pitch -- just a conversation between two people who care about getting the details right.
-        </motion.p>
         <motion.div
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
           initial={{ opacity: 0, y: 20 }}
