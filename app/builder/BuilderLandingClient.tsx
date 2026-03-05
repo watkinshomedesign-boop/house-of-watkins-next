@@ -118,7 +118,7 @@ const PROBLEM_DEFAULTS = {
     "If you\u2019ve been building for any length of time, you\u2019ve dealt with this: plans that look fine on screen but fall apart in the field. Missing dimensions. Details that don\u2019t translate to framing. Specs that generate RFIs and change orders before the foundation is poured.",
     "It\u2019s not that the designers don\u2019t care. It\u2019s that most of them haven\u2019t stood on a job site and watched a framing crew try to work from their drawings. I have -- for 30 years, across more than 400 homes.",
   ],
-  boldStatement: "Every plan I produce is dimensioned for the framer, detailed for the sub, and designed by someone who knows where the problems hide. That\u2019s what \u2018complete\u2019 actually means.",
+  boldStatement: "Every plan I produce is dimensioned for the framer, detailed for the sub, and designed by someone who knows where the problems hide.",
   imageUrl: "https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=800&q=80",
   imageAlt: "Construction site",
 };
