@@ -274,7 +274,7 @@ const BuilderPartnerProgramSection = () => {
     { title: "Free Consultation Call", description: "15-20 minutes on every plan you purchase. I walk you through the design intent, framing considerations, and site adaptation options." },
     { title: "Marketing Image Rights", description: "Use my renderings and floor plan images in your own marketing -- MLS listings, brochures, your website. I\u2019ll share them in a format you can use." },
     { title: "Direct Client Meetings", description: "I\u2019ll meet (via video) with your end client to walk through the plan, answer their questions, and help you close the sale. No stock plan company does this." },
-    { title: "Priority Modifications", description: "Preferred builders (6+ plans) move to the front of the modification queue." },
+    { title: "Priority Modifications", description: "Preferred builders move to the front of the modification queue." },
     { title: "15% Discount", description: "Enjoy 15% off your first plan purchase as a welcome to the Builder Partner Program. Experience our personalized service and proven designs. Risk-free." },
   ];
 
