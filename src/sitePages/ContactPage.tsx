@@ -81,42 +81,6 @@ export function ContactPageInner(props?: { media?: ContactPageMediaProps }) {
             </div>
           </Reveal>
 
-          <Reveal className="w-full" delayMs={80}>
-            <div className="flex justify-end gap-[14px]">
-              <SocialIcon href={SOCIAL_LINKS.instagram} label="Instagram">
-                <img
-                  src="/placeholders/icon-15.svg"
-                  alt=""
-                  aria-hidden="true"
-                  className="h-[34px] w-[34px] brightness-0"
-                />
-              </SocialIcon>
-              <SocialIcon href={SOCIAL_LINKS.pinterest} label="Pinterest">
-                <img
-                  src="/placeholders/icon-15.svg"
-                  alt=""
-                  aria-hidden="true"
-                  className="h-[34px] w-[34px] brightness-0"
-                />
-              </SocialIcon>
-              <SocialIcon href={SOCIAL_LINKS.facebook} label="Facebook">
-                <img
-                  src="/placeholders/icon-15.svg"
-                  alt=""
-                  aria-hidden="true"
-                  className="h-[34px] w-[34px] brightness-0"
-                />
-              </SocialIcon>
-              <SocialIcon href={SOCIAL_LINKS.linkedin} label="LinkedIn">
-                <img
-                  src="/placeholders/icon-15.svg"
-                  alt=""
-                  aria-hidden="true"
-                  className="h-[34px] w-[34px] brightness-0"
-                />
-              </SocialIcon>
-            </div>
-          </Reveal>
         </div>
 
         <div className="pt-[2.0625rem]">

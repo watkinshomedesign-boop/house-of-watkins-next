@@ -154,21 +154,6 @@ export function ContactPageMobile(props?: { media?: ContactPageMediaProps }) {
           </a>
         </div>
 
-        <div className="mt-4 flex items-center gap-4 text-neutral-700">
-          <a href={SOCIAL_LINKS.instagram} target="_blank" rel="noreferrer" aria-label="Instagram" className="inline-flex">
-            <SocialSvg kind="instagram" className="h-5 w-5" />
-          </a>
-          <a href={SOCIAL_LINKS.pinterest} target="_blank" rel="noreferrer" aria-label="Pinterest" className="inline-flex">
-            <SocialSvg kind="pinterest" className="h-5 w-5" />
-          </a>
-          <a href={SOCIAL_LINKS.facebook} target="_blank" rel="noreferrer" aria-label="Facebook" className="inline-flex">
-            <SocialSvg kind="facebook" className="h-5 w-5" />
-          </a>
-          <a href={SOCIAL_LINKS.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn" className="inline-flex">
-            <SocialSvg kind="linkedin" className="h-5 w-5" />
-          </a>
-        </div>
-
         <div className="mt-6 rounded-[24px] bg-[#F5F5F5] p-5">
           <div className={styles.formCard}>
             <ContactForm />
