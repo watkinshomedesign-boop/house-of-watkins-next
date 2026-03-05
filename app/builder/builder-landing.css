@@ -280,6 +280,9 @@
   font-weight: 800;
   color: #F4F4F5;
   line-height: 1;
+  position: relative;
+  top: -20px;
+  margin-bottom: -20px;
 }
 
 /* Testimonial Cards */
