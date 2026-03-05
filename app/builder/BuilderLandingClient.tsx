@@ -549,17 +549,63 @@ const FinalCTASection = ({ cms }: { cms?: BuilderPageCMS["finalCta"] }) => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          Let&apos;s Build Something Worth Building
+          Let&apos;s Build Something<br />Worth Building
         </motion.h2>
         <motion.div
-          className="flex flex-col sm:flex-row items-center justify-center gap-4"
+          className="flex items-center justify-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <a href="/house-plans" className="blp-cta-btn-primary">Browse Builder Plans</a>
-          <a href="mailto:david@houseofwatkins.com" className="blp-cta-btn-secondary">Email David Directly</a>
+          <Dialog>
+            <DialogTrigger asChild>
+              <button className="blp-cta-btn-primary">
+                Get Your First Plan at 15% Off
+                <ArrowRight className="w-5 h-5 ml-2" />
+              </button>
+            </DialogTrigger>
+            <DialogContent className="max-w-[90vw] sm:max-w-[500px] p-6 sm:p-8">
+              <DialogHeader>
+                <DialogTitle className="text-xl sm:text-2xl font-bold text-[#27272A]" style={{ fontFamily: "Manrope, sans-serif" }}>Welcome to the Builder Partner Program</DialogTitle>
+              </DialogHeader>
+              <div className="py-2 sm:py-4 space-y-4">
+                <p className="text-sm sm:text-base text-[#52525B] leading-relaxed">
+                  As a thank you for considering House of Watkins, here&apos;s your exclusive 15% discount code for your first plan purchase:
+                </p>
+                <div className="text-center py-3">
+                  <p className="text-xs uppercase tracking-widest text-[#52525B] mb-2 font-semibold">Builder Discount Code</p>
+                  <div className="flex items-center justify-center gap-3">
+                    <code className="text-2xl sm:text-3xl font-bold tracking-wider bg-[#FFF7ED] text-[#EA580C] px-6 py-3 rounded-lg border border-[#EA580C]/20">BUILDER15</code>
+                    <button
+                      onClick={() => {
+                        navigator.clipboard.writeText("BUILDER15");
+                        setStoredBuilderCode("BUILDER15");
+                      }}
+                      className="p-2 rounded-lg hover:bg-gray-100 transition-colors" title="Copy code"
+                    >
+                      <Copy className="w-5 h-5 text-[#52525B]" />
+                    </button>
+                  </div>
+                </div>
+                <p className="text-sm sm:text-base text-[#52525B] leading-relaxed">
+                  Apply this code at checkout to receive 15% off your first set of plans.
+                </p>
+                <p className="text-sm sm:text-base text-[#52525B] leading-relaxed">
+                  If you have any questions or would like help selecting the right plan, I&apos;m here to guide you — just reach out.
+                </p>
+                <p className="text-xs text-[#71717A] italic">
+                  This offer is valid for new builder clients only. Discount applies to your first plan purchase.
+                </p>
+                <div className="text-center pt-2">
+                  <a href="/house-plans" className="blp-btn-primary inline-flex">
+                    Browse Plans Now
+                    <ArrowRight className="w-5 h-5 ml-2" />
+                  </a>
+                </div>
+              </div>
+            </DialogContent>
+          </Dialog>
         </motion.div>
       </div>
     </section>
