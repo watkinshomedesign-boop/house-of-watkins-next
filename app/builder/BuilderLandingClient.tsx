@@ -13,13 +13,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 
 // Animation variants
 const fadeInUp = {
@@ -59,128 +52,6 @@ const AnimatedSection = ({
     >
       {children}
     </motion.section>
-  );
-};
-
-// Lead Capture Form Component
-const LeadCaptureForm = ({ variant = "default" }: { variant?: string }) => {
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    companyName: "",
-    role: "builder",
-    message: "",
-  });
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("Form submitted:", formData);
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const inputClass =
-    variant === "cta"
-      ? "blp-form-input bg-white/10 border-white/30 text-white placeholder:text-white/60 focus:border-white"
-      : "blp-form-input";
-
-  if (submitted) {
-    return (
-      <div className="text-center py-8">
-        <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4">
-          <Check className="w-8 h-8 text-green-600" />
-        </div>
-        <p className="blp-heading-h3 mb-2">Thank You!</p>
-        <p className="blp-body-text">We&apos;ll be in touch soon.</p>
-      </div>
-    );
-  }
-
-  return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      <div className="grid grid-cols-2 gap-4">
-        <div>
-          <label className="blp-form-label">First Name *</label>
-          <input
-            type="text"
-            name="firstName"
-            required
-            value={formData.firstName}
-            onChange={handleChange}
-            className={inputClass}
-            placeholder="John"
-          />
-        </div>
-        <div>
-          <label className="blp-form-label">Last Name *</label>
-          <input
-            type="text"
-            name="lastName"
-            required
-            value={formData.lastName}
-            onChange={handleChange}
-            className={inputClass}
-            placeholder="Doe"
-          />
-        </div>
-      </div>
-      <div>
-        <label className="blp-form-label">Email *</label>
-        <input
-          type="email"
-          name="email"
-          required
-          value={formData.email}
-          onChange={handleChange}
-          className={inputClass}
-          placeholder="john@company.com"
-        />
-      </div>
-      <div>
-        <label className="blp-form-label">Phone</label>
-        <input
-          type="tel"
-          name="phone"
-          value={formData.phone}
-          onChange={handleChange}
-          className={inputClass}
-          placeholder="(555) 123-4567"
-        />
-      </div>
-      <div>
-        <label className="blp-form-label">Company Name</label>
-        <input
-          type="text"
-          name="companyName"
-          value={formData.companyName}
-          onChange={handleChange}
-          className={inputClass}
-          placeholder="Your Building Company"
-        />
-      </div>
-      <div>
-        <label className="blp-form-label">Message / Project Details</label>
-        <textarea
-          name="message"
-          rows={3}
-          value={formData.message}
-          onChange={handleChange}
-          className={inputClass}
-          placeholder="Tell us about your project..."
-        />
-      </div>
-      <input type="hidden" name="role" value="builder" />
-      <button type="submit" className="blp-btn-primary w-full">
-        Send Message
-      </button>
-    </form>
   );
 };
 
@@ -298,7 +169,7 @@ const SolutionSection = () => {
       title: "Custom Design",
       body: "For clients who want something designed from scratch. $2.85 per square foot of conditioned space.",
       ctaLabel: "Let\u2019s Talk About Your Project",
-      ctaHref: null, // opens contact dialog
+      ctaHref: "/contact-us",
     },
   ];
 
@@ -323,23 +194,9 @@ const SolutionSection = () => {
               </div>
               <h3 className="blp-heading-h3 text-lg mb-3">{card.title}</h3>
               <p className="blp-body-text text-sm mb-6 flex-1">{card.body}</p>
-              {card.ctaHref ? (
-                <a href={card.ctaHref} className="blp-btn-secondary text-sm py-2.5 px-5 inline-block">
-                  {card.ctaLabel}
-                </a>
-              ) : (
-                <Dialog>
-                  <DialogTrigger asChild>
-                    <button className="blp-btn-secondary text-sm py-2.5 px-5">{card.ctaLabel}</button>
-                  </DialogTrigger>
-                  <DialogContent className="sm:max-w-[500px]">
-                    <DialogHeader>
-                      <DialogTitle className="blp-heading-h3">Get in Touch</DialogTitle>
-                    </DialogHeader>
-                    <LeadCaptureForm />
-                  </DialogContent>
-                </Dialog>
-              )}
+              <a href={card.ctaHref} className="blp-btn-secondary text-sm py-2.5 px-5 inline-block">
+                {card.ctaLabel}
+              </a>
             </motion.div>
           ))}
         </motion.div>
