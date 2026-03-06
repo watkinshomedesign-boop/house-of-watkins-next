@@ -31,7 +31,7 @@ function defaultDescription(plan: { name: string; description?: string | null; b
   if (plan.garage_bays) parts.push(`${plan.garage_bays}-car garage`);
   const specs = parts.length ? ` \u2014 ${parts.join(", ")}` : "";
   const price = plan.heated_sqft ? `. Plans from $${Math.round(1250 + 0.65 * plan.heated_sqft).toLocaleString()}.` : ".";
-  return `Browse the ${name} floor plan${specs}. Designed by David Watkins in Bend, Oregon${price}`;
+  return `Browse the ${name} floor plan${specs}. Designed by David Watkins${price}`;
 }
 
 async function getSiteUrl(): Promise<string> {
@@ -148,15 +148,15 @@ function buildFaqSchema(plan: Plan, priceDollars: number) {
         "name": "Who designed this house plan?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "All House of Watkins plans are personally designed by David Elijah Watkins, an award-winning residential designer with over 30 years of experience and 400+ homes to his name. David studied at the Art Institute of Denver and is based in Bend, Oregon."
+          "text": "All House of Watkins plans are personally designed by David Elijah Watkins, an award-winning residential designer with over 30 years of experience and 400+ homes to his name. David studied at the Art Institute of Denver and is based in Aurora, Colorado."
         }
       },
       {
         "@type": "Question",
-        "name": "Are these plans suitable for building in Oregon?",
+        "name": "Can I build these plans in my state?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. House of Watkins is based in Bend, Oregon, and our plans are designed with Pacific Northwest building requirements in mind. Plans can be adapted for specific local building codes and HOA requirements. ADU plans are designed to comply with Oregon's statewide ADU regulations."
+          "text": "Yes. House of Watkins plans are sold nationwide and can be adapted for specific local building codes and HOA requirements in any state. Plans are designed with buildability in mind and your builder can work with them anywhere in the U.S."
         }
       }
     ]

@@ -19,7 +19,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
   const title = "ADU Floor Plans | Accessory Dwelling Unit Plans | House of Watkins";
   const description =
-    "Browse curated ADU plans and accessory dwelling unit floor plans designed by David Watkins — 1 and 2 bedroom detached ADU plans under 800 sq ft, backyard cottages, granny flats, in-law suites, and casitas. Designed in Bend, Oregon for owner-builders and families.";
+    "Browse curated ADU plans and accessory dwelling unit floor plans designed by David Watkins — 1 and 2 bedroom detached ADU plans under 800 sq ft, backyard cottages, granny flats, in-law suites, and casitas. Designed for owner-builders and families nationwide.";
 
   return {
     title,
@@ -89,14 +89,14 @@ export default async function Page() {
 
         <h2 className="mt-10 text-2xl font-semibold text-neutral-900">What Makes Our ADU Floor Plans Different</h2>
         <p className="mt-4 leading-relaxed">
-          Most ADU plans you will find online are generic catalog entries — designed once, sold thousands of times, with no thought given to climate, site, or the people who will actually live there. Our plans are different because they come from a Pacific Northwest design practice rooted in over 30 years of residential experience. They reflect the way light moves through a space in Oregon, how a covered entry works in a rainy climate, and why single-level living matters for aging in place.
+          Most ADU plans you will find online are generic catalog entries — designed once, sold thousands of times, with no thought given to climate, site, or the people who will actually live there. Our plans are different because they come from a residential design practice rooted in over 30 years of experience. They reflect the way light moves through a space, how a covered entry works in any climate, and why single-level living matters for aging in place.
         </p>
         <ul className="mt-4 list-disc space-y-2 pl-6 leading-relaxed">
           <li><strong>1 and 2 bedroom ADU plans</strong> — compact layouts from under 500 sq ft to just over 1,000 sq ft</li>
           <li><strong>Detached ADU floor plans</strong> — designed as stand-alone structures for backyard or side-lot placement</li>
           <li><strong>Aging-in-place features</strong> — single-level living, no-step entries, wider hallways and doorways</li>
           <li><strong>Contemporary and midcentury modern ADU plans</strong> — distinctive design, not builder-basic</li>
-          <li><strong>Oregon ADU compliance</strong> — plans designed with Pacific Northwest building codes in mind</li>
+          <li><strong>Code-ready designs</strong> — plans designed with buildability and local code adaptability in mind</li>
         </ul>
 
         <h2 className="mt-10 text-2xl font-semibold text-neutral-900">Who Our ADU Plans Are For</h2>
@@ -121,7 +121,7 @@ export default async function Page() {
           <div>
             <h3 className="font-semibold text-neutral-900">How much does it cost to build an ADU?</h3>
             <p className="mt-1 leading-relaxed">
-              Construction costs vary widely by region, but a typical detached ADU in the Pacific Northwest ranges from $150,000 to $350,000 depending on size, finishes, and site conditions. The plan itself is a small fraction of that investment — and the right plan can save you tens of thousands by avoiding costly changes during construction.
+              Construction costs vary widely by region, but a typical detached ADU ranges from $150,000 to $350,000 depending on size, finishes, and site conditions. The plan itself is a small fraction of that investment — and the right plan can save you tens of thousands by avoiding costly changes during construction.
             </p>
           </div>
         </div>

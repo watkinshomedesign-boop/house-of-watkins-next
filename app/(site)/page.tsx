@@ -20,10 +20,10 @@ export async function generateMetadata(): Promise<Metadata> {
   const siteSettings = await getSiteSettings();
   const baseUrl = await getSiteUrl();
 
-  const title = siteSettings?.defaultSeoTitle?.trim() || "House of Watkins | ADU Plans, Midcentury Modern & Contemporary House Plans";
+  const title = siteSettings?.defaultSeoTitle?.trim() || "House of Watkins | Midcentury Modern & Contemporary House Plans";
   const description =
     siteSettings?.defaultSeoDescription?.trim() ||
-    "Premium house plans designed in Bend, Oregon by David Watkins — ADU and accessory dwelling unit plans, midcentury modern, contemporary, and farmhouse designs. Curated plans for owner-builders and families, from compact backyard cottages to full-size custom homes.";
+    "Premium house plans designed by David Watkins — midcentury modern, contemporary, and farmhouse designs shaped by 30 years of experience. Curated for owner-builders and families who want a home that fits the way they actually live.";
 
   let ogImage: string | undefined;
   if (siteSettings?.defaultOgImage) {
@@ -88,8 +88,10 @@ export default async function Page() {
         },
         "address": {
           "@type": "PostalAddress",
-          "addressLocality": "Bend",
-          "addressRegion": "OR",
+          "streetAddress": "16673 E Mansfield Circle",
+          "addressLocality": "Aurora",
+          "addressRegion": "CO",
+          "postalCode": "80013",
           "addressCountry": "US"
         },
         "sameAs": [
@@ -107,7 +109,7 @@ export default async function Page() {
           "ADU Floor Plans",
           "Midcentury Modern Architecture",
           "Contemporary House Design",
-          "Oregon ADU Plans",
+          "ADU Plans",
           "Custom Home Design",
           "Residential Architecture"
         ]

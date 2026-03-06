@@ -17,6 +17,7 @@ const navItems: NavItem[] = [
   { label: "Portfolio", href: "/portfolio" },
   { label: "Contact Us", href: "/contact-us" },
   { label: "FAQ", href: "/faq" },
+  { label: "ADU Plans", href: "/adu-plans" },
 ];
 
 const IconCart = (props: { className?: string }) => (
