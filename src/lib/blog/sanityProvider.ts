@@ -58,12 +58,12 @@ export class SanityBlogProvider implements BlogProvider {
 
   async listCategories(): Promise<string[]> {
     return [
-      "Design Ideas",
-      "Building Tips",
+      "Home Building",
+      "Smart Luxury",
+      "ADUs & In-Laws",
+      "Design Tips",
       "Product Reviews",
-      "Case Studies",
       "Inspiration",
-      "Accessory Units",
     ];
   }
 

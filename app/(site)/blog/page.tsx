@@ -10,11 +10,11 @@ export const revalidate = 60;
 export const metadata: Metadata = {
   title: "Blog",
   description:
-    "Design insights, building guides, and Pacific Northwest architecture from architect David Elijah Watkins. Explore house plans, barndominiums, ADUs, and more.",
+    "Design insights, building guides, and residential architecture from designer David Elijah Watkins. Explore house plans, barndominiums, ADUs, and more.",
   openGraph: {
     title: "Blog",
     description:
-      "Design insights, building guides, and Pacific Northwest architecture from architect David Elijah Watkins.",
+      "Design insights, building guides, and residential architecture from designer David Elijah Watkins.",
     url: "https://houseofwatkins.com/blog",
     type: "website",
     siteName: "House of Watkins",

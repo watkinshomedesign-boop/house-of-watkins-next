@@ -17,12 +17,12 @@ type BlogIndexPageProps = {
 
 const CATEGORY_PILLS = [
   "All Posts",
-  "Design Ideas",
-  "Building Tips",
+  "Home Building",
+  "Smart Luxury",
+  "ADUs & In-Laws",
+  "Design Tips",
   "Product Reviews",
-  "Case Studies",
   "Inspiration",
-  "Accessory Units",
 ];
 
 function formatDate(date: string) {

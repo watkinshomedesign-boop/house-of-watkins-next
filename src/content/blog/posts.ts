@@ -24,7 +24,7 @@ export const posts: BlogPost[] = [
     title: "Block Editor Demo: Complete Guide to Modern Home Design",
     excerpt:
       "Discover how a block-based approach helps you structure content clearly, from hero images to callouts and galleries.",
-    category: "Design Ideas",
+    category: "Design Tips",
     coverImage: "/placeholders/whats-included-interior.svg",
     publishedAt: "2025-12-17",
     readTimeMinutes: 1,
@@ -64,7 +64,7 @@ export const posts: BlogPost[] = [
     title: "5 Essential Building Tips Before Breaking Ground",
     excerpt:
       "Planning to build your dream home? Here are the essential tips every homeowner should know before construction starts.",
-    category: "Building Tips",
+    category: "Home Building",
     coverImage: "/placeholders/floorplan.svg",
     publishedAt: "2025-12-17",
     readTimeMinutes: 1,
@@ -96,7 +96,7 @@ export const posts: BlogPost[] = [
     title: "10 Modern Farmhouse Design Ideas for Your Dream Home",
     excerpt:
       "Discover the perfect blend of rustic charm and contemporary style with these modern farmhouse ideas.",
-    category: "Design Ideas",
+    category: "Inspiration",
     coverImage: "/placeholders/whats-included-house-cta.svg",
     publishedAt: "2025-12-17",
     readTimeMinutes: 1,
